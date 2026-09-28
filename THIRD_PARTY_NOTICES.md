@@ -66,3 +66,13 @@ migration. RMF/SDF/XOSC export format support is not a compatibility certificati
 
 This Chinese explanation does not replace or translate the authoritative upstream
 license texts. / 中文说明不替代上游法律原文。
+
+## shadcn/ui source components / shadcn/ui 源组件
+
+`src/components/ui` adapts the official new-york-v4 registry components retrieved
+2026-09-28 from [shadcn/ui](https://ui.shadcn.com/r/styles/new-york-v4/button.json).
+MIT, Copyright (c) 2023 shadcn; full license: [shadcn-ui-MIT.txt](licenses/shadcn-ui-MIT.txt).
+Local changes include import aliases and semantic card headings. Radix, React,
+Next.js and other installed packages retain their package licenses.
+上述目录使用官方注册表组件，调整导入别名与标题语义；完整 MIT 声明随仓库保留。
+其他依赖许可证以安装包为准。

@@ -137,7 +137,7 @@ if (process.argv.includes("--apply")) {
           {
             parkId: park.id,
             jobId: job.id,
-            url: `${base}/#parks/${park.id}/control`,
+            url: `${base}/${process.env.GROUNDWORK_LEGACY === "1" ? "#parks/" : "parks/"}${park.id}/control`,
             metrics: r.metrics,
             verdict: r.verdict,
           },

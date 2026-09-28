@@ -7,7 +7,45 @@ startup but required for converter tests. Do not interpret omitted tests as pass
 所有命令在仓库根目录运行，Node >=22.19；启动不强制 Python，地图转换测试需要。
 未执行或排除的测试不能算通过。
 
-## Local checks / 本地检查
+## Next.js acceptance / Next.js 验收
+
+```sh
+npm test
+npm run test:next
+npm run test:engines
+npm run check
+npm run lint
+npm run build
+# Isolated groundwork_* database only / 仅独立测试库
+node --env-file=.env.local --import tsx --test tests-next/database.integration.js
+# Idle dedicated database; creates 24 synthetic jobs, retains evidence
+# 空闲专用库；新增24条合成实验并保留证据
+node --env-file=.env.local --import tsx --test tests-next/batch.integration.js
+# Empty groundwork_import_* database only / 仅独立空导入库
+node --env-file=.env.local --import tsx --test tests-next/import.integration.js
+# Running Next.js and worker, isolated database / 已启动新 Web 和 worker
+BASE_URL=http://127.0.0.1:4173 node scripts/next-smoke.mjs
+BASE_URL=http://127.0.0.1:4173 node scripts/next-labs-smoke.mjs
+# After batch integration; Web running, worker stopped for deterministic cancellation
+# 批次实库测试后执行；Web启动、worker停止，以确定性验证排队取消
+BASE_URL=http://127.0.0.1:4173 node scripts/next-layers-batches-smoke.mjs
+```
+
+`PLAYWRIGHT_MODULE` / `CHROME_PATH` can select local test tools; neither is an
+application dependency. Browser scripts create synthetic resources. Never point
+them at production. `check` now includes strict TypeScript, while lint is separate.
+工具路径可指定本地浏览器测试环境，不是产品运行依赖。浏览器测试写入合成资源，
+禁止指向生产。check 现在包含严格类型检查，lint 单独执行。
+
+New smoke paths cover park workflow, all five maps/eight floors, graph/layer
+controls, persistent batch summaries/cancellation/exports, unified lab and classic entry.
+Old four smoke scripts below target the retained legacy DOM and must not be
+misreported as new React tests. Current results/limits live in
+[review](changes/nextjs-platform/review.md).
+新测试覆盖园区、五张地图八个楼层、图层筛选、持久化批次/取消/导出及实验室；下方四个旧脚本针对旧 DOM，
+不能冒称验证新 React。真实结果和缺口见变更自检。
+
+## Historical legacy checks / 历史旧运行时检查
 
 ```sh
 npm ci
@@ -81,12 +119,12 @@ Reported unfinished-route/initial-contact UX failures remain open in the
 远端 CI 成功、分支保护或代理行为评估。浏览器测试按已知有效路线和位姿执行，
 不能证明首次使用者无需协助就能成功。未完成路线/初始接触问题仍记录在[本轮审计](audits/2026-09-28-park-sdlc.md)。
 
-The checked-in CI runs build/core/engine/parse/Python checks on Node 22/24 and
+The checked-in CI runs build/core/Next/engine/parse/type/lint/Python checks on Node 22/24 and
 Python 3.12. It currently does **not** run browser QA, the ready-yard preflight,
 Chrono, docs-link checks, agent evals or release approval gates. A workflow file
 is not evidence that GitHub ran or enforced it.
 
-仓库 CI 配置为 Node 22/24、Python 3.12 的构建、核心/引擎/语法/地图测试；当前不含
+仓库 CI 配置为 Node 22/24、Python 3.12 的构建、核心/Next/引擎/语法/类型/lint/地图测试；当前不含
 浏览器、示例预检、Chrono、文档链接、代理评估和发布审批门禁。配置存在不代表
 GitHub 已执行或强制合并门禁。
 

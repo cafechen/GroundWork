@@ -1,8 +1,8 @@
 # Documentation / 文档中心
 
-Current application baseline: `a634805` (2026-09-28). Documentation updates may be
-uncommitted; see the [current audit](audits/2026-09-28-park-sdlc.md).
-当前应用基线：`a634805`（2026-09-28）；文档可能含尚未提交的补充，见[本轮自检](audits/2026-09-28-park-sdlc.md)。
+Current work: approved Next.js/MySQL refactor, not deployed or committed; see
+[implementation review](changes/nextjs-platform/review.md).
+当前为已批准的 Next.js/MySQL 重构工作区，尚未提交或部署，证据见实施自检。
 
 Documents use either paired English/Chinese files or bilingual sections in one
 file. Historical change records describe their original stage, not today's feature
@@ -27,6 +27,7 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | Guide / 文档 | Purpose / 用途 |
 | --- | --- |
 | [Architecture / 架构](architecture.md) | Ownership and engine-specific contracts / 模块职责及不同引擎契约 |
+| [Database / 数据库设计](database/README.md) | 18 tables, provider migrations / 18 张表及双数据库迁移 |
 | [API and data / 接口与数据](api.md) | Endpoints, revisions, schemas and errors / 接口、版本、结构与错误 |
 | [Testing / 测试](testing.md) | Reproducible commands and evidence limits / 可复现命令与证据边界 |
 | [Roadmap / 路线图](roadmap.md) | Implemented versus planned / 已有与规划 |
@@ -47,6 +48,7 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | Park platform / 园区平台 | [Intent / 意图](changes/product-platform/intent.md) · [Spec / 规格](changes/product-platform/spec.md) · [Plan / 计划](changes/product-platform/plan.md) · [Review / 自检](changes/product-platform/review.md) |
 | Runnable example / 可运行示例 | [Record / 记录](changes/ready-yard-demo.md) |
 | Documentation and audit / 文档与审计 | [Record / 记录](changes/bilingual-docs-and-sdlc.md) |
+| Next.js refactor / Next.js 重构 | [Intent / 意图](changes/nextjs-platform/intent.md) · [Spec / 规格](changes/nextjs-platform/spec.md) · [Plan / 计划](changes/nextjs-platform/plan.md) · [Review / 自检](changes/nextjs-platform/review.md) |
 
 Historical records that say “not committed” describe the moment they were written.
 Their implementation and records were subsequently committed together as `a634805`;

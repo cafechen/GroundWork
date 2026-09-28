@@ -7,8 +7,11 @@ artifacts/
 .env.*
 !.env.example
 dist/
-data/
+/data/
 .tools/
 .venv-chrono/
 .venv-map-build/
 __pycache__/
+.next/
+src/generated/
+*.tsbuildinfo

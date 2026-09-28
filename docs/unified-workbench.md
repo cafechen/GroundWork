@@ -1,5 +1,41 @@
 # Unified workbench / 统一工作台
 
+## Next.js transition / Next.js 迁移说明
+
+The current default is React/Next.js + MySQL/Prisma; see the root README and
+[implementation review](changes/nextjs-platform/review.md). Five menus and seven
+park tabs are retained. Old hash URLs become `/parks/<id>/<tab>`.
+当前默认 React/Next.js + MySQL/Prisma；五主菜单和七子页保留，旧 hash URL 改为页面路径。
+
+Current React includes map graph/layer/facility controls and durable matched-batch
+summaries in both lab entries. Detailed screenshots below still describe the
+legacy layout. No new Gazebo or live-device support.
+当前 React 已补齐地图导航图/图层/设施显示控制，两个实验室入口均有持久化配对汇总；
+下方截图仍是旧布局，未新增 Gazebo 或实机接入。
+
+### Current matched batches / 当前配对批次
+
+Select yard parameters, then “6 paired cases (12 runs)”. The server atomically
+queues seeds 11/42 × door delays 0/8/18 s, FIFO baseline versus no-exclusion
+candidate. These three fields override the input form; all other parameters match.
+The panel retains the latest 20 batch manifests, shows every member ID/status,
+compares valid completed pairs only and exports JSON/CSV/HTML snapshots. Reload
+defaults to the latest batch; select earlier history explicitly. Cancelling a batch
+only cancels unfinished members, retaining completed evidence and worker leases.
+Queue capacity must have 12 free slots; rejection creates no partial batch.
+选择园区运动学参数后点击“6 组配对回归”：种子 11/42 × 门禁延迟 0/8/18 秒，比较 FIFO
+与无互斥策略。这三个字段覆盖表单，其余保持一致。面板列出最近 20 批历史及成员状态，
+只比较已完成且兼容的配对，导出 JSON/CSV/HTML 快照。刷新默认最近一批，可选择历史。
+取消只作用于未完成成员，保留已完成证据与 worker 租约；不足 12 个空闲队列名额时整批拒绝。
+
+“No new regression” only means no PASS→FAIL transition; both policies may still
+fail. Incomplete, missing, cancelled or incompatible evidence never counts as a
+pass. These synthetic planar experiments are not an industrial safety claim.
+“无新增退化”只表示未发生 PASS→FAIL，不等于两个策略均通过；缺失、未完成、取消或
+不兼容证据不计通过。这是合成平面实验，不是工业安全认证。
+
+## Legacy detailed reference / 以下为旧版详细参考
+
 This manual describes `/workbench`, not the current park homepage. The newer park
 adapter also supports a simplified forklift; the three engines below keep their
 separate numerical contracts. / 本文针对 /workbench，不是当前园区首页；新园区适配器

@@ -24,16 +24,25 @@ the bilingual addition does not introduce new permissions or evaluated agent rul
 
 ## Commands and evidence
 
-- `npm ci && npm run build`: install standalone workspaces and build contracts/engine. Node >=22.19. `npm start`: loopback preview at `http://127.0.0.1:4173`; `/classic` preserves the original lab.
+Current runtime: Next.js/React/shadcn + Prisma, default MySQL. Follow README for explicit DB migration/seed and the separate same-repository worker. Never use another application's business schema. PostgreSQL schema parity is not live validation. Old JS server is only `npm run legacy:start`.
+
+- New acceptance requires `npm run test:next`, `npm run lint`, strict `npm run typecheck`, isolated `tests-next/database.integration.js` and empty-target import tests. `npm run check` now checks JS parsing AND TypeScript; generated third-party code is excluded.
+- New React UI: run `scripts/next-smoke.mjs` and `scripts/next-labs-smoke.mjs` against isolated Next.js + worker. These cover the four paths below with new DOM selectors. Inspect both languages/mobile screenshots. Never run write tests against production.
+- Preserve JSON text envelopes for exact numerical snapshots; do not silently restore native JSON transport. Provider SQL histories remain independent.
+- Map/batch changes also require `tests-next/batch.integration.js` in an idle isolated DB and `scripts/next-layers-batches-smoke.mjs` (Web running, worker stopped). Do not count incomplete pairs as passing or treat hidden map layers as disabled collision geometry.
+
+The following legacy smoke scripts apply only to the retained old server.
+
+- `npm ci && npm run build`: install standalone workspaces and build packages, Prisma client and Next.js. Node >=22.19. `npm start`: loopback preview at `http://127.0.0.1:4173`; `/classic` preserves the original lab.
 - `npm test`: all Node core tests must pass, zero failures/skips. Baseline at adoption: 13 tests; this is not a permanent required count.
-- `npm run test:engines`: portable copied TS suites; six private-map suites are explicitly excluded, never count them as passing. `npm run check`: scan maintained JS in src/server/scripts/tests for parse errors; **not** a linter or type checker.
+- `npm run test:engines`: portable copied TS suites; six private-map suites are explicitly excluded, never count them as passing. `npm run check`: scan maintained JS in src/server/scripts/tests for parse errors; then strict TypeScript; lint remains separate.
 - For UI/interaction changes: run `scripts/platform-smoke.mjs` (park platform), `scripts/maps-smoke.mjs`, `scripts/workbench-smoke.mjs` (legacy unified) and `scripts/browser-smoke.mjs` (classic) with Playwright/Chromium available. Inspect both languages and small screens. `BASE_URL`, `PLAYWRIGHT_MODULE`, `CHROME_PATH` select target/dependencies. Do not invent success if unavailable.
 - Check changed files and local Markdown links. `git diff --check` does not cover untracked files; audit those separately until the first commit exists.
 - Capture the exact command, runtime, result and evidence location in the change record. Distinguish this run from historical results. Browser outputs under `artifacts/` are ignored; retain a textual verification summary for review.
 
 ## GroundWork invariants
 
-- Product navigation is park-centric: overview, maps, device models, gateways, parks. Instances, operations, controls and analysis live inside a park. A/B/C/D describe historical engine components, not new product navigation. `src/core` must remain DOM-free and deterministic for a fixed validated configuration in the tested runtime.
+- Product navigation is park-centric: overview, maps, device models, gateways, parks. Instances, operations, controls and analysis live inside a park. A/B/C/D describe historical engine components, not new product navigation. `src/core` and `src/simulation` must remain DOM-free and deterministic for a fixed validated configuration in the tested runtime.
 - Pin map/model revisions in parks and immutable run inputs. Real instances cannot enter a simulation or resolve real control from replay. Unsupported model/engine/channel combinations must fail explicitly, never fall back to an unrelated synthetic scene.
 - Keep metres/seconds/radians and axle-reference conventions explicit. Do not substitute an on-axle trailer for a different industrial cart topology without agreement and tests.
 - Preserve full tractor/trailer/drawbar clearance before resource release. Distinguish frame state from full-run metrics, contact episodes from accidents, and sampled footprints from continuous swept volumes.
@@ -70,11 +79,20 @@ the bilingual addition does not introduce new permissions or evaluated agent rul
 
 ### 命令和证据
 
+当前为 Next.js/React/shadcn + Prisma，默认 MySQL。按 README 显式迁移/初始化并启动同工程 worker；禁止使用其他应用业务库。PG 结构一致不等于实库验证。旧服务用 `npm run legacy:start`。
+
+- 新验收增加 test:next、lint、typecheck、隔离库 database.integration.js 及空目标导入测试。check 包含 JS 语法与严格 TS，排除生成的第三方代码。
+- 新 React 用 next-smoke.mjs 和 next-labs-smoke.mjs 覆盖下方四类旧流程，目标必须是独立 Next.js + worker 测试环境，检查双语/小屏截图；不能对生产运行写测试。
+- 保留 JSON 文本封装以维持快照数值精度，双数据库分别维护 SQL 历史。
+- 地图/批次变更另跑空闲隔离库 batch.integration.js 和 next-layers-batches-smoke.mjs（Web启动、worker停止）；未完成配对不能计通过，隐藏图层不等于关闭碰撞几何。
+
+下方旧浏览器脚本仅适用于保留的旧服务器。
+
 - `npm ci && npm run build` 安装并构建独立 workspace，Node >=22.19；`npm start`
   默认 `http://127.0.0.1:4173`，`/classic` 保留原始实验台。
 - `npm test` 全部 Node 核心测试必须通过、无失败/跳过；最初 13 项只是历史基线。
 - `npm run test:engines` 排除六个依赖私有地图的套件，不计通过。`npm run check`
-  只解析 src/server/scripts/tests 的 JavaScript，不是 lint 或类型检查。
+  解析受维护 JS 后执行严格 TS，lint 单独执行。
 - 界面变更运行 platform/maps/workbench/browser 四类 smoke；后者针对 classic。
   明确 BASE_URL、PLAYWRIGHT_MODULE、CHROME_PATH，检查双语、小屏和实际截图，不虚构成功。
 - 检查改动文件和本地 Markdown 链接；`git diff --check` 不覆盖未跟踪文件，需另查。
@@ -84,7 +102,7 @@ the bilingual addition does not introduce new permissions or evaluated agent rul
 ### 不变约束
 
 - 主菜单为总览、地图、设备模型、网关、园区；实例/作业/控制/分析在园区内。
-  A/B/C/D 仅为历史模块。src/core 无 DOM，相同已校验配置在测试运行时内确定。
+  A/B/C/D 仅为历史模块。src/core 和 src/simulation 无 DOM，相同已校验配置在测试运行时内确定。
 - 园区和实验固定地图/模型版本；实机不参加仿真，回放不解析实机控制地址；不支持的
   模型/引擎/通道明确失败，不能退回无关合成场景。
 - 单位米/秒/弧度，明确车轴参考；不得未经确认和测试替换拖车拓扑。

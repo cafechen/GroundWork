@@ -1,5 +1,54 @@
 # Architecture / 架构
 
+## Current Next.js runtime / 当前 Next.js 运行架构
+
+```text
+Browser / 浏览器
+  React + shadcn/ui + TanStack Query
+  Three.js / SVG (view only / 仅显示)
+            │ same-origin JSON / 同源接口
+Next.js App Router / pages + Route Handlers
+            │ Zod contracts, Host/Origin/body guards
+            │ 契约、主机/来源/请求大小校验
+Services / 服务：园区校验、版本控制、任务编译
+            │
+Prisma repositories / 仓储 ─── MySQL (default / 默认)
+            │                  PostgreSQL (migration prepared / 迁移已备)
+            │ durable queue / 持久化任务队列
+TypeScript worker / 同仓库独立进程
+  ├─ Park + yard kinematics / 园区与旧园区运动学
+  ├─ Internal road SDK / 内部道路引擎
+  └─ Optional Python Chrono / 可选力学引擎
+            │ frozen input + checksum / 冻结输入及校验和
+Local artifacts / 本地轨迹文件 ─── result API / 结果接口
+```
+
+- `src/app`: pages/API; `src/features`: five menus, seven park tabs, laboratory.
+  页面与接口由 App Router 承载，业务 React 页面位于 features。
+- `src/contracts/platform.ts`: strict shared Zod contracts; `src/server`: services/repositories.
+  前后端共享类型契约，服务与仓储分层。
+- `src/simulation`: typed ports of existing numerical logic; `packages` remains internal.
+  数值逻辑已平移为 TS，不依赖 UI；内部 packages 保持独立。
+- `workers/runner.ts`: claims the single preview slot transactionally before awaited work;
+  heartbeat lease, cancellation, expired-run interruption and checksum-indexed artifacts.
+  worker 事务占槽后执行，含心跳租约、取消、中断恢复和结果校验。
+- `src/features/scene/map-layers.ts`: pure display selection shared by SVG and Three;
+  no writes to maps or simulation collision rules. / 双视图共享纯图层筛选，不修改地图或碰撞规则。
+- `src/server/services/batches.ts`: atomically persists an audit manifest plus twelve
+  runs; `src/simulation/batch-summary.ts` validates matching evidence and derives
+  summaries; `src/features/batches.tsx` polls persisted state and exports snapshots.
+  批次服务原子保存清单与12任务，纯汇总函数验证证据，React轮询和导出；不在请求内跑仿真。
+- No Strategist/Robots runtime dependency, no hidden old HTTP proxy, no Gazebo integration.
+  无其他工程运行依赖、无旧 HTTP 代理、本轮未接 Gazebo。
+- [Database](database/README.md) specifies 18 tables, JSON precision envelopes, separate
+  provider histories and migration limits. PostgreSQL is not yet live-tested.
+  数据库文档定义18表、JSON精度封装及双迁移历史；PG尚未实库测试。
+
+## Legacy architecture reference / 以下为旧运行时参考
+
+The following sections describe `npm run legacy:start` and retained engine contracts,
+not the default Next.js server. / 以下为旧入口与保留引擎契约，不是默认 Next.js 服务。
+
 ## Park platform / 园区平台
 
 `/` serves `platform.html` and `src/platform.js/css`: five global menus, seven

@@ -52,3 +52,14 @@ No source repository was modified by this migration.
 English clarification: runs remain file-backed; the newer park platform uses its
 own SQLite resource store. Neither depends on the original products' databases
 or account services. Unconnected SDK/system capabilities remain explicitly unconnected.
+
+## Next.js refactor / Next.js 重构来源
+
+`src/simulation` ports the repository's existing JS engines/contracts to TypeScript;
+Prisma services and React feature pages are new GroundWork code. Numerical parity
+is tested against retained legacy modules. shadcn/ui primitives come from the official
+new-york-v4 registry (2026-09-28), with aliases and heading semantics adapted;
+see [license](../licenses/shadcn-ui-MIT.txt). Strategist informed layering only.
+数值代码由本仓库旧 JS 平移为 TS，服务与 React 业务页为新增代码；以旧模块验证一致性。
+shadcn/ui 来自官方注册表并保留许可证，调整别名及标题语义。Strategist 仅作分层参考，
+不依赖其服务、源代码路径或凭证运行。

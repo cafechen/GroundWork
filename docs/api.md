@@ -1,15 +1,43 @@
 # API and data reference / 接口与数据参考
 
-[Documentation / 文档中心](README.md) · [Contracts / 权威字段定义](../server/platform-contracts.mjs)
+[Documentation / 文档中心](README.md) · [Contracts / 权威字段定义](../src/contracts/platform.ts)
 
 Engineering preview, not a stable public SDK. JSON requests; no authentication.
 Never expose publicly or store secrets. POST requires `Content-Type: application/json`
-and `Origin` exactly matching `http://<Host>`; platform bodies ≤4 MiB, others ≤1 MiB.
+and `Origin` exactly matching `http://<Host>`; platform bodies ≤4 MiB, batches ≤16 KiB, other run submissions ≤1 MiB.
 Host allowlisting/origin checks are not identity checks. No real-device command API.
 
 这是工程预览，不是稳定公共 SDK。JSON 请求，无用户认证；不能公开部署或存放秘密。
 POST 需 JSON Content-Type，Origin 必须与 `http://<Host>` 完全一致；平台请求体最多
-4 MiB，其余 1 MiB。主机和来源检查不验证身份，没有真实设备命令接口。
+4 MiB，批次 16 KiB，其他实验提交 1 MiB。主机和来源检查不验证身份，没有真实设备命令接口。
+
+## Current runtime / 当前运行时
+
+Next.js Route Handlers own the API; Prisma persists resources and run metadata.
+Errors are `{error, code, issues?}`; internal failures include an opaque requestId,
+never SQL/credentials. HTTPS reverse proxies configure `GROUNDWORK_ORIGIN`.
+Next.js 接口使用 Prisma 持久化；结构化错误包含可读消息、错误码及可选字段详情，
+内部失败仅给 requestId，不泄露 SQL/凭证。HTTPS 代理需配置 Origin。
+
+`POST /api/runs` queues yard/road/Chrono jobs; parks submit compiled tasks only
+through their park endpoint. `GET /api/runs/:id/result` verifies the file checksum
+and requires completed execution. Report/XOSC/RMF/SDF exports retain engine guards.
+The old synchronous `/api/batch` is replaced by durable `/api/batches`.
+独立实验排队，园区必须经园区任务接口编译；结果读取校验文件哈希及完成状态；
+导出保留引擎限制。旧同步 batch 接口由持久化 `/api/batches` 替代。
+
+| Batch API / 批次接口 | Contract / 契约 |
+| --- | --- |
+| `POST /api/batches` | `{config:{...yard parameters}}`; atomically queues 12 members plus immutable manifest; HTTP 202 / 原子创建12成员及不可变清单 |
+| `GET /api/batches` | Latest 20 manifests, newest first / 最近20批清单，倒序 |
+| `GET /api/batches/:id` | Manifest, per-pair status/evidence, deltas, summary denominators / 清单、配对证据、差值及统计分母 |
+| `POST /api/batches/:id/cancel` | Cancels queued/running members only, preserves completed results / 只取消未完成成员 |
+
+Seeds 11/42, delays 0/8/18 s, FIFO/no-exclusion policies are fixed. Incompatible
+engine/version/code/input or missing/incomplete evidence is excluded from comparisons.
+JSON/CSV/HTML batch exports are client-side snapshots of the displayed summary.
+固定种子、延迟与配对策略；不兼容引擎/版本/代码/输入或缺失/未完成证据不参与比较。
+批次 JSON/CSV/HTML 是浏览器对当前汇总的快照导出，不新增下载接口。
 
 ## Resources / 资源
 
@@ -20,7 +48,7 @@ include archived records. Responses contain record metadata (`id`, `kind`, `name
 
 | Method/path / 方法及路径 | Contract / 契约 |
 | --- | --- |
-| `GET /api/platform` | All resource lists, last 100 audit entries, security mode, unavailable sixth map; map geometry is omitted from this summary / 全部资源、最近 100 条审计、安全模式及第六张地图状态；地图只返回摘要 |
+| `GET /api/platform` | `{maps,models,gateways,parks}` with complete current documents including map geometry / 返回四类资源完整当前文档，含地图几何；不包含审计事件 |
 | `GET /api/platform/:kind` | Full records / 完整记录列表 |
 | `GET /api/platform/:kind/:id` | Latest revision; `?version=N` fetches a frozen historical revision / 最新版本，查询参数读取历史版本 |
 | `GET /api/platform/:kind/:id/versions` | Revision/timestamp list / 版本及时间列表 |
@@ -92,13 +120,13 @@ resumed. One worker, 12 queued jobs, 200 stored jobs, 10-minute worker timeout.
 
 Typical errors: 400 validation/unsupported input, 403 host/origin, 404 missing
 resource/route, 409 resource revision/reference conflict, 405 unsupported method.
-Errors currently return `{error: string}` and may contain serialized validation
-details. Not every conflict uses 409: park-run revision mismatch currently throws
-a generic 400. Do not depend on friendly field-level error mapping.
+Errors return `{error,code,issues?}` with readable validation details. Park-run
+revision mismatch returns 409. Unsupported paths return 404; unexported HTTP
+methods use the framework's 405 response.
 
 典型错误：400 参数或不支持，403 主机/来源，404 缺失，409 资源版本或引用冲突，
-405 方法不支持。返回 `{error: string}`，可能内嵌校验 JSON。并非所有冲突都用 409：
-园区启动时版本不匹配当前返回普通 400。尚无完整友好的字段错误映射。
+405 方法不支持。返回可读 `{error,code,issues?}`；园区版本冲突返回 409。
+未知路径返回404，未导出的HTTP方法由框架返回405。
 
 Read-only local inspection / 本地只读查看：
 

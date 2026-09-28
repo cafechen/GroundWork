@@ -1,161 +1,83 @@
 # GroundWork
 
-**回到物理，回到事实。**
+**回到物理，回到事实。** Ground 品牌下的工业车辆仿真与证据平台。
 
-Ground 品牌下，面向工业车辆的开源、本地优先仿真与验证工作台。从封闭园区的牵引车与叉车切入，让场景、车辆、作业交互与实验记录形成一个可复现的验证流程。
+[English](README.md) · [文档中心](docs/README.md) · [架构](docs/architecture.md) · [数据库](docs/database/README.md)
 
-[English](README.md) · [文档中心](docs/README.md) · [首个可运行示例](docs/quickstart.md) · [架构说明](docs/architecture.md) · [参与贡献](CONTRIBUTING.md)
+## 当前架构
 
-> **园区研发平台预览。** 五个主菜单：总览、地图管理、设备模型管理、接入网关、园区管理。资源持久化，设备和作业归属于园区，支持业务图层编辑、选定地图上的平面仿真与证据分析。旧引擎和独立 Chrono 实验室保留。运行时不依赖 Strategist/Robots；不是生产调度或安全认证工具。
+TypeScript、Next.js App Router、React、真实 shadcn/ui（Radix）、Tailwind CSS、TanStack Query 和 Three.js。Next.js 统一承载页面及 API；常驻 TypeScript worker 执行仿真。Prisma **默认 MySQL**。PostgreSQL 已有生成式 schema 和独立 SQL 迁移，但**尚未通过真实 PostgreSQL 集成测试**。切换需要重新生成客户端、执行迁移和显式搬迁数据，不是只改连接串。
 
-![GroundWork 独立 Chrono 工作台](docs/images/unified-chrono-zh.png)
+应用独立运行，不需要 Strategist/Robots 的运行时导入、服务或凭证。Python Chrono 仍为可选组件。本轮未接入 Gazebo，也未替换物理模型。
 
 ## 本地启动
 
-需要 **Node.js 22.19+** 和现代浏览器。先安装依赖并构建已平移的 workspace 包。模板与结构化方案实验不需要账号、硬件或模型 API Key。
+需要 **Node.js 22.19+**、独立 MySQL 8+ 数据库和现代浏览器。参照 [.env.example](.env.example) 配置 `.env.local`，不要使用其他应用的业务库，不提交凭证。Next.js 自动读取该文件；脚本和 worker 要显式加载：
 
 ```sh
-git clone https://github.com/cafechen/GroundWork.git
-cd GroundWork
 npm ci
+node --env-file=.env.local scripts/prisma-provider.mjs --generate
+node --env-file=.env.local node_modules/prisma/build/index.js migrate deploy --schema prisma/mysql/schema.prisma
+node --env-file=.env.local --import tsx scripts/seed-next.ts
 npm run build
 npm start
+# 第二个终端：
+node --env-file=.env.local --import tsx workers/runner.ts
 ```
 
-打开 **http://127.0.0.1:4173** 进入园区平台；`/workbench` 保留三引擎实验室，`/classic` 保留 v0.1 实验台。支持中英切换，默认仅监听本机，`Ctrl+C` 停止。局域网部署需显式设置 `HOST` 和主机白名单；当前**没有用户认证，不能暴露公网**。见[部署说明](docs/deployment.md)。
+初始化只允许资源空库。开发模式使用 `npm run dev`，同时启动 worker。打开 **http://127.0.0.1:4173**，两个进程分别 Ctrl+C 停止。未运行 worker 时任务保持排队。当前仍为**可信局域网、单用户、无登录预览**，不能暴露公网。见[部署文档](docs/deployment.md)。
 
-## 园区平台
+## 产品流程
 
-建议先用[已预检的物流园示例](docs/quickstart.md)查看牵引车和挂车移动、转弯、限速，
-再编辑自己的场景。提供只读预检和显式 API 初始化脚本。路线保存、初始位置报错及
-`CONTACT` 不动等问题，见[故障排查](docs/troubleshooting.md)。
+五个主菜单：**总览、地图管理、设备模型、接入网关、园区管理**。园区内包含概览、场景编辑、设备实例、作业管理、控制面板、统计分析、园区配置。
 
-准备地图、设备模型和网关，再创建园区，关联一个或多个上述资源。园区内菜单：
-园区概览、场景编辑、设备实例、作业管理、控制面板、统计分析、园区配置。
-资源版本、实例和业务图层保存在 SQLite；作业和结果沿用文件持久化机制。
+1. 复用或导入地图，定义设备模型，登记网关配置。
+2. 创建园区，固定地图及模型版本，绑定网关。
+3. 在 2D 选择路线工具，点击至少两个点，完成路线并**保存场景**。
+4. 创建虚拟设备，点击初始位置或使用已保存路线起点；整车净空仍需验证。
+5. 创建同地图同楼层任务，仿真后在 2D/3D 回放冻结结果并查看指标。
 
-虚拟牵引车、叉车和轮式机器人使用选定地图楼层、显式路线、墙体、禁行区、限速区
-和已支持的模型参数计算。状态自动刷新，完成后回放冻结输入。参见[产品说明](docs/park-platform.md)。
+[已预检园区示例](docs/quickstart.md) · [故障排查](docs/troubleshooting.md)。`completed` 仅表示计算结束，不是安全判定。
 
-实机和外部网关目前**仅登记配置**，尚无真实遥测、视频、点云或接管。机器狗仅定义；
-厂商/URDF 模型、传感器仿真、任意园区上的 Chrono 力学尚未接通。下方截图和 A/B/C/D
-说明属于保留的旧实验室，不是新的主菜单。Chrono 仍使用明确标注的独立合成场景。
+内置五张 RMF 地图：酒店、办公室、机场、诊所、校园；制造与物流待补源码。校园只有拓扑，外部网格未包含。React 地图预览支持楼层选择、2D/3D、导航图/图层筛选、设施叠层及 JSON 导出。
+
+虚拟牵引车、叉车、AMR 保留平面运动学、显式路线、墙体/禁行区接触检测和限速区。机器狗仅支持定义。传感器和质量声明不会自动生成感知或动力学。实机及网关仍**仅登记配置**，未接遥测、视频、点云和远程接管。
+
+## 实验室与兼容入口
+
+`/workbench` 提供 React 版园区运动学、道路、可选 Chrono 实验；`/classic` 为园区运动学专用入口。任务统一进入持久化队列，支持回放、取消、基线比较和受约束的 JSON/HTML/XOSC/RMF/SDF 导出。12 次回归按钮原子保存六组配对，支持刷新后恢复历史、汇总指标、取消及 JSON/CSV/HTML 报告。未完成或不兼容配对不计为通过。
+
+地图预览支持导航图筛选，独立开关路线、墙体、门、电梯及模型位置，并可在 2D/3D 中显示站点名称。这些仅为显示设置，不改变碰撞几何；模型标记不是厂商实体网格。
+
+Chrono 仍使用独立合成力学世界，不接任意园区地图。`GROUNDWORK_CHRONO_PYTHON` 需指向已验证的 PyChrono 解释器。不同引擎并非同一已标定车辆的可互换后端；地面接触不是事故数。本次重构不声称完成新的 Chrono 真实运行验证。
+
+旧 JavaScript UI 和服务器保留为显式兼容入口及回归基线：`npm run legacy:start`。Next.js **没有代理旧服务器**。历史 A/B/C/D 截图及手册对应旧服务器，不代表 React 页面逐像素一致。
+
+## 数据与验证
+
+18 张关系表管理资源和园区设备、对象、任务；不可变版本、实验输入、租约、文件校验和及审计保留证据。轨迹默认位于 `data/next-runs`。JSON 列使用版本化文本封装，避免 Prisma JSON 通道舍入几何浮点数，由仓储层解码。见[表字典与迁移](docs/database/README.md)。
+
+SQLite 和实验文件导入器默认 dry-run，必须显式指定源路径；备份后仅向独立空目标应用，不修改源文件。本轮未迁移 robots/生产数据，未部署。
 
 ```sh
 npm test
+npm run test:next
 npm run test:engines
 npm run check
+npm run lint
+npm run build
+# 必须显式使用独立 groundwork_* 测试库：
+node --env-file=.env.local --import tsx --test tests-next/database.integration.js
 ```
 
-可选浏览器验收：执行 `BASE_URL=http://127.0.0.1:4173 node scripts/workbench-smoke.mjs`；`PLAYWRIGHT_MODULE`、`CHROME_PATH` 可指定已有 Playwright/Chrome。旧脚本 `scripts/browser-smoke.mjs` 验证 `/classic`。截图保存在忽略的 `artifacts/`。Chrono 和地图转换需要单独的 Python 依赖，Node 测试通过不代表它们已安装。
+真实证据见[测试](docs/testing.md)和[变更自检](docs/changes/nextjs-platform/review.md)。六个依赖私有地图的引擎套件仍排除，不计通过。测试不是工业安全认证。
 
-## 统一工作台：本次迁移能力
+## AI-native SDLC
 
-**地图资源库**：打开 `/maps`，或点击工作台引擎栏的地图入口，查看酒店、办公室、
-机场航站楼、诊所、校园五张 Open-RMF 地图。支持楼层切换、2D/3D、导航图筛选、设施
-标记和 JSON/原始文件下载；制造与物流明确标记待取得源码。`/maps` 是静态查看器；
-园区已可使用选定楼层墙体进行**局部平面仿真**，不代表完整数字孪生。外部 Gazebo
-网格未包含，Campus 当前仅显示导航拓扑。浏览无需
-ROS/Python 服务。详见[地图手册](docs/map-library.md)。
+整体参考 [The AI-native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)。实施前记录意图、规格、计划和维护者批准；复现缺陷、补回归证据，分别检查逻辑、安全和范围。数值引擎独立于 UI，保留单位和模型身份，同步中英，不能放宽物理检查以获得 PASS。
 
-| 模块 | 已接通 | 边界 |
-| --- | --- | --- |
-| A | 平移契约、movement 目录、可编辑结构化方案、编译校验；本地米制道路 GeoJSON 导入；可选模型网关；独立 GeoJSON→AEQD/SDF/RMF 转换工具 | 默认合成场景，未复制私有园区数据。未配置真实模型网关时禁用自然语言生成。 |
-| B | 原牵引车/叉车运动学；平移道路跟车/制动/换道引擎；平移 Chrono 力矩牵引车与动态 0–3 挂车；本地 2D/3D 回放 | 三类模型不能冒充同一辆标定车辆。尚无 Chrono 叉车及举升模型。 |
-| C | 原全车体 FIFO/门控；Chrono 分站作业、静止接挂/脱挂、跟车逻辑与充电状态 | Chrono 演示使用独立环线；未接真实 RMF 调度、物理门、PLC 或机器人。 |
-| D | 文件持久化队列、串行独立进程、进度/取消、重启恢复、输入溯源、两次实验对比、园区 12 次配对回归、JSON/HTML 与地图/轨迹导出 | 无账号、云服务、MCAP 数据管线；XOSC 是轨迹目录，未验证下游兼容性。 |
-
-完整平移的行为/模板/搜索库也可通过 `@groundwork/scenario-engine` 调用；并非每个 SDK 能力都有专门 GUI。详见[集成手册](docs/unified-workbench.md)、[源码来源](docs/source-provenance.md)、[变更记录](docs/changes/unified-workbench/intent.md)。
-
-建议先选 **Chrono → 1 辆车 → 3 节挂车 → 120 秒**，运行后回放完整作业循环。`MISSION_COMPLETE` 只表示模型中的作业循环完成；`NOT_EVALUATED` 表示时长内尚无完成证据。两者都不是安全认证，包含地面接触的计数不作为事故数。
-
-## 保留的经典实验台
-
-下面的 v0.1 表格、案例与运动学约定，仅适用于 **`/classic` 和 `yard` 引擎**，不适用于 Chrono 或道路行为引擎。
-
-## A / B / C / D 四个模块
-
-| 模块 | v0.1 已实现 | 暂未实现 |
-| --- | --- | --- |
-| **A · 场景与作业** | 合成园区模板、货架与护栏、两条路径与搬运任务、出口通道宽度、种子、单车/双车、模板配置 JSON 导入导出 | 自由绘图、任意地图导入、真实业务任务系统 |
-| **B · 车辆与运动** | 简单目标点追踪与单轨运动学；前轮转向牵引车 + 单节轴上铰接拖车；后轮转向叉车车身；车体/拖车/连接杆轮廓；离散多边形接触与净距 | 标定动力学、万向轮拖车列、货叉与载荷几何/接触、倒车对接、连续碰撞检测 |
-| **C · 交通与设备** | 两车、一处先到先服务互斥资源、完整组合驶离后释放、虚拟门延迟、明确等待原因、无互斥的不安全对照 | 通用多车路径规划、自动死锁诊断、真实 PLC/门禁、生产制动与安全逻辑 |
-| **D · 实验与回放** | 固定步长与种子、播放/暂停/定位/倍速、轮廓采样叠加、事件与指标、12 次配对实验、实验 JSON、独立 HTML 报告 | 云批量调度、MCAP/ROS 接入、历史实验数据库、任意版本基线管理 |
-
-四个页面使用**同一份仿真结果**，不是四组互不相干的静态演示。参数变化会重新计算并重置回放；指标卡描述整次实验，地图、任务状态和事件列表对应当前帧。
-
-## 先体验三个案例
-
-1. **开放交叉通道：** 保持默认配置，点击「运行实验」。观察牵引车与拖车经过 J-01，叉车等待整个组合驶离后再进入。默认案例可完成任务且未检测到离散接触。
-2. **窄通道转弯 · 拖车擦碰：** 选择模板，在 B 模块勾选「采样轮廓叠加」。回放转弯，或点击已经发生的接触事件定位。拖车向弯内侧偏移，与护栏发生接触。
-3. **门延迟开启 · 排队等待：** 选择模板并进入 C 模块。查看门状态、占用者和等待原因，观察门延迟带来的等待增加。
-
-然后进入 **D**，运行 **12 次配对实验**：两种种子 × 三种门开启时刻，共六组条件，每组分别运行互斥基线和无互斥候选。组内只改变策略，用于演示可复现退化，不是商业调度算法排行榜。
-
-## 模型与指标边界
-
-- 世界坐标单位为米、秒、弧度；x 向东、y 向北，航向逆时针为正。默认积分步长 0.1 秒，最长仿真 90 秒。
-- 牵引车以后轴为参考点，拖车铰接点也位于该轴。可调的是**铰接点至拖车轴距**，不是拖车车身长度。拖车固定车身为 2.3 × 1.65 米。该拓扑**不能代表所有工业料车**。
-- 叉车以前轴为参考点，后轮转向符号反转。仅检查简化的 3 × 1.5 米车身，不含货叉、载荷、举升；两类车均未按厂商实车标定。
-- 理想定位、平地、仅前进、瞬时变速与停车；不模拟轮胎侧滑、加减速限制、动力学、感知或硬件控制。
-- 使用凸多边形 SAT 进行**离散采样接触检测**，刚好接触也计入。可能漏掉帧间接触。轮廓叠加不是严格连续扫掠体计算。
-- **接触事件段：** 按每对几何体从不接触到接触的起点计数，不等于事故次数。拖车与连接杆分别接触会分别计数。
-- **最小净距：** 车体与障碍物、其他车辆之间的最小采样多边形距离；穿透时为零，不计算穿透深度，也不计边界距离。越过园区边界单独计为接触事件。
-- **车辆总等待：** 任务释放后因门或资源而等待的累计车辆秒数，不是墙钟耗时。种子使叉车任务在 [4, 5) 秒内释放。
-- **最大参考路径偏差：** 参考轴到路径折线的最大采样距离。当前仅报告，不作为验收阈值。
-- **PASS：** 全部任务在时限内完成，且没有离散接触；**FAIL：** 发生接触或任务未全部完成。该判定不证明安全，也不证明跟踪精度满足工业要求。
-
-改造引擎前请阅读[架构与数据契约](docs/architecture.md)。
-
-## 项目结构与复现
-
-```text
-src/
-  platform.js/css        当前五主菜单园区界面
-  park-viewer.js         选定楼层业务图层与回放
-  map-*.js               静态 RMF 数据、地图库与渲染
-  workbench.js/css        旧版三引擎实验室
-  app.js, core/          原始实验台与无 DOM 几何/运动学
-server/                  资源契约、SQLite、HTTP、任务进程与园区仿真
-packages/                独立平移的契约与场景引擎 SDK
-engines/                 可选 Chrono 与地图构建 Python 工具
-assets/maps/rmf/         固定版本原始地图、许可、标准化 JSON
-examples/ready-yard.mjs   可运行合成物流园数据
-scripts/                 服务、预检/初始化与验收脚本
-tests/                   Node 回归测试
-docs/                    双语手册、契约和变更证据
-```
-
-- **场景 JSON：** 仅导入导出模板配置，不是任意地图格式。只接受 `schemaVersion: 1`、`crossing-yard`。
-- **实验 JSON：** 包含引擎版本、完整场景/配置、种子、步长、指标、任务结果、帧与事件；暂不支持实验包导入。
-- **HTML 报告：** 独立、无脚本的结果摘要、事件表和配置；已计算批次会随报告一起导出。
-- `/classic` 的实验只在浏览器内存中保存；统一工作台的任务/结果持久化到 `data/runs/`（或 `GROUNDWORK_DATA`）。无遥测、外部字体和 CDN。显式使用模型网关时，会向管理员配置的端点发送输入描述和 movement 目录。
-- 同版本引擎与相同配置可重新运行复现；测试运行时内结果确定，不承诺所有浏览器/硬件的浮点结果逐位相同。
-
-## 项目方向
-
-**场景 → 车辆运动 → 作业交互 → 可复现证据。**
-
-下一步优先做经验证的车辆拓扑、更丰富的园区场景和独立参考测试。Chrono 已集成，实时 ROS/RMF 与 MCAP 尚未接通；不声明兼容仙工、劢微或 coScene。
-
-## 开发原则：AI-native SDLC
-
-GroundWork 采用 Anthropic 的 [The AI-native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook) 作为整体开发参考，并按个人维护、本地优先工程原型的实际情况落地，不绑定特定 AI 厂商或付费服务。
-
-本项目的具体规则：
-
-- 改变仿真行为前，记录目标、模型假设、受影响模块和验收案例；未明确的建模选择须由维护者确认。
-- 数值逻辑保留在无 DOM 的核心和引擎适配器（`src/core`、`packages/`、`engines/`、`server/park-simulation.mjs`），不混入界面；用户文案保持中英一致，复现证据包含单位、输入与引擎版本。
-- 修复必须有可证明的失败案例及通过的回归；不得为了得到 PASS 放宽净距标准或删除断言。
-- 分别检查仿真正确性、本地数据暴露和是否符合请求范围；明确不确定性，自检不冒充独立验证。
-- 远端写入和发布需要明确授权；复现的缺陷进入后续测试，不默认为本地原型接入遥测或后台代理。
-
-代理执行规则见 [AGENTS.md](AGENTS.md)，完整流程及执行边界见[开发政策](docs/development-policy.md)。
-[当前代码与文档自检](docs/audits/2026-09-28-park-sdlc.md)的结论是**部分符合，而非全面落地**：
-已有经过测试的代码和入库记录，但分阶段审批提交、强制审查门禁、代理评估以及完整
-用户缺陷闭环尚未建立。[初始自检](docs/audits/2026-09-28-ai-native-sdlc.md)保留为历史记录。
-书面政策不是强制控制或独立认证。
+执行规则见 [AGENTS.md](AGENTS.md) 和[开发政策](docs/development-policy.md)。同会话审查只是自检，不是独立批准；书面规则不证明已有强制 CI 门禁或完整落地。提交、推送、部署、上传及实机控制需要对应授权。
 
 ## 许可证
 
-原创 GroundWork 代码采用 [MIT](LICENSE)；迁移代码、依赖及对外发布审查见[第三方说明](THIRD_PARTY_NOTICES.md)和[源码来源](docs/source-provenance.md)。请勿上传未经授权的客户地图、机器人日志、凭证或其他数据。
+原创代码采用 [MIT](LICENSE)。见[第三方声明](THIRD_PARTY_NOTICES.md)和[源码来源](docs/source-provenance.md)。未经许可不上传客户地图、日志或凭证。

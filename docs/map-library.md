@@ -1,5 +1,23 @@
 # Map library / 地图资源库
 
+## Next.js transition / Next.js 迁移说明
+
+The current default is React/Next.js + MySQL/Prisma; see the root README and
+[implementation review](changes/nextjs-platform/review.md). Five menus and seven
+park tabs are retained. Old hash URLs become `/parks/<id>/<tab>`.
+当前默认 React/Next.js + MySQL/Prisma；五主菜单和七子页保留，旧 hash URL 改为页面路径。
+
+Current React previews include floor/2D/3D, graph selection, lane/wall/facility/model
+position toggles and optional names. Floors preserve holes; lifts preserve yaw and
+floor membership. Display toggles never change collision rules; missing meshes
+remain markers, and Campus does not gain invented floor geometry. The detailed
+screenshots below belong to `npm run legacy:start`, not exact current UI layouts.
+当前 React 支持楼层、2D/3D、导航图筛选、路线/墙/设施/模型位置开关与名称显示；
+保留地板孔洞、电梯旋转和楼层关系。隐藏图层不改变碰撞规则；缺失网格只画位置标记，
+Campus 不虚构地板。下方截图属于旧版入口，不代表当前 React 的精确布局。
+
+## Legacy detailed reference / 以下为旧版详细参考
+
 Open `/maps` or the **Map library** link in the workbench engine toolbar.
 打开 `/maps`，或点击实验工作台引擎栏中的“地图资源库”。
 

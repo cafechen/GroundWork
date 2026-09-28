@@ -16,7 +16,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run check
+      - run: npm run lint
       - run: npm test
+      - run: npm run test:next
       - run: npm run test:engines
       - uses: actions/setup-python@v5
         with:

@@ -2,6 +2,17 @@
 
 [Documentation / 文档中心](README.md) · [Troubleshooting / 排障](troubleshooting.md)
 
+## Next.js setup / 新架构准备
+
+First complete the database migration, explicit seed, build, web AND worker steps
+in the root README. Then run the read-only preflight or explicit `--apply` command
+below. The new URL is `/parks/<id>/control`, not the old hash route.
+先按根 README 完成数据库迁移、显式初始化、构建并启动 Web 与 worker，
+再执行下方预检或 --apply。新 URL 为上述页面路径，不再使用 hash。
+
+The robots URL below is historical and was not redeployed or reverified in this
+refactor. / 下方 robots 链接是历史记录，本轮未重新部署或验证在线状态。
+
 ## Existing robots preview / 已有 robots 预览
 
 Open the [demo's Operations page](http://10.1.153.185:5180/#parks/33fdfc9f-366f-405c-bb40-38334e24f90a/operations)
@@ -45,7 +56,7 @@ BASE_URL=http://127.0.0.1:4173 node scripts/ready-yard-demo.mjs --apply
 Use the park URL printed by the script; fresh installations generate different
 IDs. `BASE_URL` must be the origin without a trailing slash/path. The script
 requires an active local simulation gateway with `state` and `events` channels
-(normally seeded at startup). Use a remote URL only with permission to write there.
+(created by the explicit seed command). Use a remote URL only with permission to write there.
 
 使用脚本输出的园区链接，新环境 ID 不同。`BASE_URL` 只填协议、主机、端口，不带
 结尾斜杠或路径。脚本要求可用的本地仿真网关含 `state`、`events` 通道，通常启动时

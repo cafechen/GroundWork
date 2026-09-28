@@ -1,5 +1,21 @@
 # Park platform / 园区平台
 
+## Next.js transition / Next.js 迁移说明
+
+The current default is React/Next.js + MySQL/Prisma; see the root README and
+[implementation review](changes/nextjs-platform/review.md). Five menus and seven
+park tabs are retained. Old hash URLs become `/parks/<id>/<tab>`.
+当前默认 React/Next.js + MySQL/Prisma；五主菜单和七子页保留，旧 hash URL 改为页面路径。
+
+Current React includes map graph/layer filters and facility overlays alongside
+scene/device/task editing and replay. The standalone lab also has persistent
+six-pair regression summaries. Detailed screenshots below describe the legacy
+layout, not an exact React layout. No new Gazebo or live-device support.
+当前 React 已有地图导航图/图层筛选、设施叠层、场景/设备/任务编辑和回放；独立实验室
+具备持久化六组配对汇总。下方截图仍是旧布局，不是 React 精确布局；未新增 Gazebo 或实机接入。
+
+## Legacy detailed reference / 以下为旧版详细参考
+
 The current root UI is a park-centric engineering preview. The accepted navigation is:
 当前首页是以园区为中心的研发预览，菜单为：
 

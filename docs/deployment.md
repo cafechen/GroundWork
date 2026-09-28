@@ -1,5 +1,51 @@
 # Deployment / 部署
 
+## Current Next.js deployment / 当前 Next.js 部署
+
+Follow the paired root README for database creation, Prisma generation/migrations,
+explicit empty-database seed, build, web and worker commands. No robots deployment
+was performed for this refactor. / 按根目录双语 README 完成独立库、客户端生成、迁移、
+显式空库初始化、构建、Web 与 worker 启动。本轮没有部署 robots。
+
+- Web: `npm start`, loopback port 4173; development: `npm run dev`.
+  Worker: `node --env-file=.env.local --import tsx workers/runner.ts`.
+  Web and worker need the SAME database, working directory and artifact directory.
+  两个进程须使用相同库、工程目录和轨迹目录；未启动 worker 时任务排队。
+- Next.js loads `.env.local`; Prisma CLI, worker and seed/import scripts do not
+  automatically do so. Use Node's `--env-file` or explicitly exported variables.
+  Next 自动加载本地环境文件，其他命令需显式加载。
+- Default artifact directory: `data/next-runs`; database and artifacts must be backed
+  up together while writes/workers are stopped. Retain immutable source files.
+  默认轨迹目录如上；停写并停止 worker 后同时备份数据库与文件，保留原始源文件。
+- On a separately authorized LAN deployment, use
+  `node node_modules/next/dist/bin/next start --hostname 0.0.0.0 --port <port>`
+  and set `GROUNDWORK_ALLOWED_HOSTS` to exact hostnames/IPs (comma-separated, no ports).
+  With a reverse proxy, set `GROUNDWORK_ORIGIN` to the external origin and enforce Host.
+  LAN监听需另获授权并设置主机白名单；代理部署配置外部 Origin 且限制 Host。
+- No login, users, roles or tenant isolation. Host/Origin checks do not authenticate.
+  Firewall/VPN must restrict access; never expose this preview publicly.
+  无登录、角色和租户隔离，来源检查不等于认证；需防火墙/VPN，禁止直接公网暴露。
+- Generate Prisma on the target OS. Run the provider's reviewed migration before
+  starting the new service. Do not use `db push` against existing data.
+  在目标系统生成 Prisma，启动前执行对应迁移，不能对现有数据 db push。
+- Optional `GROUNDWORK_CHRONO_PYTHON` and model gateway settings retain their explicit
+  dependency/data-sending boundaries. Next telemetry is disabled in package scripts.
+  Chrono 与模型网关仍需显式配置；模型调用会发送输入；包脚本禁用 Next 遥测。
+- A preview worker is not a multi-host HA scheduler. Expired running leases become
+  interrupted, never automatically successful. Reconcile cancelled/crashed artifacts
+  before manual cleanup; do not delete source evidence to retry.
+  预览 worker 不是多机高可用调度器；过期任务中断，清理前先核对证据。
+
+See [database migration/recovery](database/README.md) before cutover.
+切换前阅读数据库迁移与恢复流程。
+
+## Historical legacy service / 以下为历史旧服务
+
+The commands and robots state below belong to the old Node/SQLite service.
+For that runtime replace `npm start` with `npm run legacy:start`; these are not
+instructions for the new Next.js app. / 以下命令与 robots 状态属于旧 Node/SQLite 服务；
+旧服务启动改用 legacy:start，不适用于新 Next.js。
+
 Status below was last verified on 2026-09-28; it is not a live availability check.
 下述部署状态最后验证于 2026-09-28，不是实时在线承诺。
 

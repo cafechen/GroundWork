@@ -4,8 +4,12 @@ This is a direction, not a delivery promise. / 以下为方向，不是交付承
 
 ## Current · Park platform / 当前园区平台
 
+Next.js evidence and remaining UI parity gaps: [review](changes/nextjs-platform/review.md).
+Map graph/facility overlays and persistent paired-batch summaries are now ported.
+PG live integration remains pending. / 地图图层/设施与持久化配对汇总已平移，PG实库验收仍待补齐。
+
 - [x] Five menus, park-owned devices/operations/control/analysis / 五主菜单、园区业务闭环
-- [x] SQLite resources, immutable map/model versions and reference guards / 资源持久化与固定版本
+- [x] Next.js/React/shadcn + MySQL/Prisma resources, immutable versions / 新架构资源持久化与固定版本
 - [x] Scene overlays, explicit-route planar simulation, frozen replay and metrics / 场景图层、路线运动学、历史回放和统计
 - [x] Prechecked runnable synthetic tugger yard / 已预检的可运行合成牵引车物流园
 - [ ] Close unfinished-route saving and initial-pose/clearance guidance defects / 修复未完成路线保存与初始位置/净空引导缺陷
