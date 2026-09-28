@@ -6,3 +6,9 @@ artifacts/
 .env
 .env.*
 !.env.example
+dist/
+data/
+.tools/
+.venv-chrono/
+.venv-map-build/
+__pycache__/

@@ -1,0 +1,3836 @@
+{
+  "capabilities": {
+    "geometry": true,
+    "liveControl": false,
+    "navigation": true,
+    "simulation": false
+  },
+  "coordinateTransform": {
+    "referenceLevel": "L1",
+    "source": "wgs84"
+  },
+  "id": "campus",
+  "levels": [
+    {
+      "bounds": {
+        "h": 273.54752544,
+        "w": 346.46893544,
+        "x": -94.86498671999999,
+        "y": -221.25603972
+      },
+      "doors": [],
+      "elevation": 0.0,
+      "fiducials": [],
+      "floors": [],
+      "graphs": [
+        0
+      ],
+      "holes": [],
+      "id": "L1",
+      "lanes": [
+        {
+          "bidirectional": false,
+          "end": 10,
+          "graph": 0,
+          "id": 0,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 9
+        },
+        {
+          "bidirectional": false,
+          "end": 11,
+          "graph": 0,
+          "id": 1,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 10
+        },
+        {
+          "bidirectional": false,
+          "end": 13,
+          "graph": 0,
+          "id": 2,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 12
+        },
+        {
+          "bidirectional": false,
+          "end": 14,
+          "graph": 0,
+          "id": 3,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 13
+        },
+        {
+          "bidirectional": false,
+          "end": 15,
+          "graph": 0,
+          "id": 4,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 14
+        },
+        {
+          "bidirectional": false,
+          "end": 16,
+          "graph": 0,
+          "id": 5,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 15
+        },
+        {
+          "bidirectional": false,
+          "end": 17,
+          "graph": 0,
+          "id": 6,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 16
+        },
+        {
+          "bidirectional": false,
+          "end": 18,
+          "graph": 0,
+          "id": 7,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 17
+        },
+        {
+          "bidirectional": false,
+          "end": 19,
+          "graph": 0,
+          "id": 8,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 18
+        },
+        {
+          "bidirectional": false,
+          "end": 20,
+          "graph": 0,
+          "id": 9,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 19
+        },
+        {
+          "bidirectional": false,
+          "end": 21,
+          "graph": 0,
+          "id": 10,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 20
+        },
+        {
+          "bidirectional": false,
+          "end": 22,
+          "graph": 0,
+          "id": 11,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 21
+        },
+        {
+          "bidirectional": false,
+          "end": 23,
+          "graph": 0,
+          "id": 12,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 22
+        },
+        {
+          "bidirectional": false,
+          "end": 24,
+          "graph": 0,
+          "id": 13,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 23
+        },
+        {
+          "bidirectional": false,
+          "end": 25,
+          "graph": 0,
+          "id": 14,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 24
+        },
+        {
+          "bidirectional": false,
+          "end": 26,
+          "graph": 0,
+          "id": 15,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 25
+        },
+        {
+          "bidirectional": false,
+          "end": 27,
+          "graph": 0,
+          "id": 16,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 26
+        },
+        {
+          "bidirectional": false,
+          "end": 28,
+          "graph": 0,
+          "id": 17,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 27
+        },
+        {
+          "bidirectional": false,
+          "end": 29,
+          "graph": 0,
+          "id": 18,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 28
+        },
+        {
+          "bidirectional": false,
+          "end": 30,
+          "graph": 0,
+          "id": 19,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 29
+        },
+        {
+          "bidirectional": false,
+          "end": 31,
+          "graph": 0,
+          "id": 20,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 30
+        },
+        {
+          "bidirectional": true,
+          "end": 43,
+          "graph": 0,
+          "id": 21,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 39
+        },
+        {
+          "bidirectional": true,
+          "end": 44,
+          "graph": 0,
+          "id": 22,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 43
+        },
+        {
+          "bidirectional": false,
+          "end": 56,
+          "graph": 0,
+          "id": 23,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 55
+        },
+        {
+          "bidirectional": false,
+          "end": 57,
+          "graph": 0,
+          "id": 24,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 56
+        },
+        {
+          "bidirectional": false,
+          "end": 58,
+          "graph": 0,
+          "id": 25,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 57
+        },
+        {
+          "bidirectional": false,
+          "end": 59,
+          "graph": 0,
+          "id": 26,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 58
+        },
+        {
+          "bidirectional": false,
+          "end": 60,
+          "graph": 0,
+          "id": 27,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 59
+        },
+        {
+          "bidirectional": false,
+          "end": 61,
+          "graph": 0,
+          "id": 28,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 60
+        },
+        {
+          "bidirectional": false,
+          "end": 62,
+          "graph": 0,
+          "id": 29,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 61
+        },
+        {
+          "bidirectional": false,
+          "end": 63,
+          "graph": 0,
+          "id": 30,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 62
+        },
+        {
+          "bidirectional": false,
+          "end": 64,
+          "graph": 0,
+          "id": 31,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 63
+        },
+        {
+          "bidirectional": false,
+          "end": 65,
+          "graph": 0,
+          "id": 32,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 64
+        },
+        {
+          "bidirectional": false,
+          "end": 66,
+          "graph": 0,
+          "id": 33,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 65
+        },
+        {
+          "bidirectional": false,
+          "end": 67,
+          "graph": 0,
+          "id": 34,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 66
+        },
+        {
+          "bidirectional": false,
+          "end": 68,
+          "graph": 0,
+          "id": 35,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 67
+        },
+        {
+          "bidirectional": false,
+          "end": 69,
+          "graph": 0,
+          "id": 36,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 68
+        },
+        {
+          "bidirectional": false,
+          "end": 70,
+          "graph": 0,
+          "id": 37,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 69
+        },
+        {
+          "bidirectional": false,
+          "end": 71,
+          "graph": 0,
+          "id": 38,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 70
+        },
+        {
+          "bidirectional": false,
+          "end": 73,
+          "graph": 0,
+          "id": 39,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 72
+        },
+        {
+          "bidirectional": false,
+          "end": 74,
+          "graph": 0,
+          "id": 40,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 73
+        },
+        {
+          "bidirectional": false,
+          "end": 75,
+          "graph": 0,
+          "id": 41,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 74
+        },
+        {
+          "bidirectional": false,
+          "end": 76,
+          "graph": 0,
+          "id": 42,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 75
+        },
+        {
+          "bidirectional": false,
+          "end": 77,
+          "graph": 0,
+          "id": 43,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 76
+        },
+        {
+          "bidirectional": false,
+          "end": 78,
+          "graph": 0,
+          "id": 44,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 77
+        },
+        {
+          "bidirectional": false,
+          "end": 79,
+          "graph": 0,
+          "id": 45,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 78
+        },
+        {
+          "bidirectional": false,
+          "end": 80,
+          "graph": 0,
+          "id": 46,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 79
+        },
+        {
+          "bidirectional": false,
+          "end": 81,
+          "graph": 0,
+          "id": 47,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 80
+        },
+        {
+          "bidirectional": false,
+          "end": 82,
+          "graph": 0,
+          "id": 48,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 81
+        },
+        {
+          "bidirectional": true,
+          "end": 42,
+          "graph": 0,
+          "id": 49,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 82
+        },
+        {
+          "bidirectional": false,
+          "end": 72,
+          "graph": 0,
+          "id": 50,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 31
+        },
+        {
+          "bidirectional": true,
+          "end": 17,
+          "graph": 0,
+          "id": 51,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 97
+        },
+        {
+          "bidirectional": false,
+          "end": 41,
+          "graph": 0,
+          "id": 52,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 42
+        },
+        {
+          "bidirectional": false,
+          "end": 40,
+          "graph": 0,
+          "id": 53,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 41
+        },
+        {
+          "bidirectional": false,
+          "end": 39,
+          "graph": 0,
+          "id": 54,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 40
+        },
+        {
+          "bidirectional": false,
+          "end": 38,
+          "graph": 0,
+          "id": 55,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 39
+        },
+        {
+          "bidirectional": false,
+          "end": 37,
+          "graph": 0,
+          "id": 56,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 38
+        },
+        {
+          "bidirectional": false,
+          "end": 36,
+          "graph": 0,
+          "id": 57,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 37
+        },
+        {
+          "bidirectional": false,
+          "end": 35,
+          "graph": 0,
+          "id": 58,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 36
+        },
+        {
+          "bidirectional": false,
+          "end": 34,
+          "graph": 0,
+          "id": 59,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 35
+        },
+        {
+          "bidirectional": false,
+          "end": 33,
+          "graph": 0,
+          "id": 60,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 34
+        },
+        {
+          "bidirectional": false,
+          "end": 32,
+          "graph": 0,
+          "id": 61,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 33
+        },
+        {
+          "bidirectional": false,
+          "end": 83,
+          "graph": 0,
+          "id": 62,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 32
+        },
+        {
+          "bidirectional": false,
+          "end": 84,
+          "graph": 0,
+          "id": 63,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 83
+        },
+        {
+          "bidirectional": false,
+          "end": 85,
+          "graph": 0,
+          "id": 64,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 84
+        },
+        {
+          "bidirectional": false,
+          "end": 86,
+          "graph": 0,
+          "id": 65,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 85
+        },
+        {
+          "bidirectional": false,
+          "end": 87,
+          "graph": 0,
+          "id": 66,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 86
+        },
+        {
+          "bidirectional": false,
+          "end": 88,
+          "graph": 0,
+          "id": 67,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 87
+        },
+        {
+          "bidirectional": false,
+          "end": 89,
+          "graph": 0,
+          "id": 68,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 88
+        },
+        {
+          "bidirectional": false,
+          "end": 90,
+          "graph": 0,
+          "id": 69,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 89
+        },
+        {
+          "bidirectional": false,
+          "end": 91,
+          "graph": 0,
+          "id": 70,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 90
+        },
+        {
+          "bidirectional": false,
+          "end": 92,
+          "graph": 0,
+          "id": 71,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 91
+        },
+        {
+          "bidirectional": false,
+          "end": 93,
+          "graph": 0,
+          "id": 72,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 92
+        },
+        {
+          "bidirectional": false,
+          "end": 94,
+          "graph": 0,
+          "id": 73,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 93
+        },
+        {
+          "bidirectional": false,
+          "end": 95,
+          "graph": 0,
+          "id": 74,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 94
+        },
+        {
+          "bidirectional": false,
+          "end": 96,
+          "graph": 0,
+          "id": 75,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 95
+        },
+        {
+          "bidirectional": false,
+          "end": 97,
+          "graph": 0,
+          "id": 76,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 96
+        },
+        {
+          "bidirectional": true,
+          "end": 79,
+          "graph": 0,
+          "id": 77,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 39
+        },
+        {
+          "bidirectional": false,
+          "end": 99,
+          "graph": 0,
+          "id": 78,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 97
+        },
+        {
+          "bidirectional": false,
+          "end": 100,
+          "graph": 0,
+          "id": 79,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 99
+        },
+        {
+          "bidirectional": false,
+          "end": 101,
+          "graph": 0,
+          "id": 80,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 100
+        },
+        {
+          "bidirectional": false,
+          "end": 102,
+          "graph": 0,
+          "id": 81,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 101
+        },
+        {
+          "bidirectional": false,
+          "end": 102,
+          "graph": 0,
+          "id": 82,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 99
+        },
+        {
+          "bidirectional": false,
+          "end": 103,
+          "graph": 0,
+          "id": 83,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 102
+        },
+        {
+          "bidirectional": true,
+          "end": 16,
+          "graph": 0,
+          "id": 84,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 103
+        },
+        {
+          "bidirectional": false,
+          "end": 104,
+          "graph": 0,
+          "id": 85,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 103
+        },
+        {
+          "bidirectional": false,
+          "end": 105,
+          "graph": 0,
+          "id": 86,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 104
+        },
+        {
+          "bidirectional": false,
+          "end": 106,
+          "graph": 0,
+          "id": 87,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 105
+        },
+        {
+          "bidirectional": false,
+          "end": 107,
+          "graph": 0,
+          "id": 88,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 106
+        },
+        {
+          "bidirectional": false,
+          "end": 108,
+          "graph": 0,
+          "id": 89,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 107
+        },
+        {
+          "bidirectional": false,
+          "end": 109,
+          "graph": 0,
+          "id": 90,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 108
+        },
+        {
+          "bidirectional": false,
+          "end": 110,
+          "graph": 0,
+          "id": 91,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 109
+        },
+        {
+          "bidirectional": true,
+          "end": 4,
+          "graph": 0,
+          "id": 92,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 110
+        },
+        {
+          "bidirectional": false,
+          "end": 14,
+          "graph": 0,
+          "id": 93,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 0
+        },
+        {
+          "bidirectional": false,
+          "end": 3,
+          "graph": 0,
+          "id": 94,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 4
+        },
+        {
+          "bidirectional": false,
+          "end": 2,
+          "graph": 0,
+          "id": 95,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 3
+        },
+        {
+          "bidirectional": false,
+          "end": 1,
+          "graph": 0,
+          "id": 96,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 2
+        },
+        {
+          "bidirectional": false,
+          "end": 0,
+          "graph": 0,
+          "id": 97,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 1
+        },
+        {
+          "bidirectional": true,
+          "end": 5,
+          "graph": 0,
+          "id": 98,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 111
+        },
+        {
+          "bidirectional": false,
+          "end": 4,
+          "graph": 0,
+          "id": 99,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 5
+        },
+        {
+          "bidirectional": false,
+          "end": 6,
+          "graph": 0,
+          "id": 100,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 8
+        },
+        {
+          "bidirectional": false,
+          "end": 5,
+          "graph": 0,
+          "id": 101,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 6
+        },
+        {
+          "bidirectional": false,
+          "end": 112,
+          "graph": 0,
+          "id": 102,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 111
+        },
+        {
+          "bidirectional": false,
+          "end": 9,
+          "graph": 0,
+          "id": 103,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 0
+        },
+        {
+          "bidirectional": false,
+          "end": 111,
+          "graph": 0,
+          "id": 104,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 110
+        },
+        {
+          "bidirectional": false,
+          "end": 114,
+          "graph": 0,
+          "id": 105,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 112
+        },
+        {
+          "bidirectional": false,
+          "end": 115,
+          "graph": 0,
+          "id": 106,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 114
+        },
+        {
+          "bidirectional": false,
+          "end": 116,
+          "graph": 0,
+          "id": 107,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 115
+        },
+        {
+          "bidirectional": false,
+          "end": 117,
+          "graph": 0,
+          "id": 108,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 116
+        },
+        {
+          "bidirectional": false,
+          "end": 118,
+          "graph": 0,
+          "id": 109,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 117
+        },
+        {
+          "bidirectional": false,
+          "end": 119,
+          "graph": 0,
+          "id": 110,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 118
+        },
+        {
+          "bidirectional": false,
+          "end": 120,
+          "graph": 0,
+          "id": 111,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 119
+        },
+        {
+          "bidirectional": false,
+          "end": 121,
+          "graph": 0,
+          "id": 112,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 120
+        },
+        {
+          "bidirectional": false,
+          "end": 122,
+          "graph": 0,
+          "id": 113,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 121
+        },
+        {
+          "bidirectional": false,
+          "end": 123,
+          "graph": 0,
+          "id": 114,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 122
+        },
+        {
+          "bidirectional": false,
+          "end": 124,
+          "graph": 0,
+          "id": 115,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 123
+        },
+        {
+          "bidirectional": false,
+          "end": 125,
+          "graph": 0,
+          "id": 116,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 124
+        },
+        {
+          "bidirectional": false,
+          "end": 55,
+          "graph": 0,
+          "id": 117,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 125
+        },
+        {
+          "bidirectional": true,
+          "end": 71,
+          "graph": 0,
+          "id": 118,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 125
+        },
+        {
+          "bidirectional": false,
+          "end": 54,
+          "graph": 0,
+          "id": 119,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 71
+        },
+        {
+          "bidirectional": false,
+          "end": 53,
+          "graph": 0,
+          "id": 120,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 54
+        },
+        {
+          "bidirectional": false,
+          "end": 52,
+          "graph": 0,
+          "id": 121,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 53
+        },
+        {
+          "bidirectional": false,
+          "end": 51,
+          "graph": 0,
+          "id": 122,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 52
+        },
+        {
+          "bidirectional": false,
+          "end": 50,
+          "graph": 0,
+          "id": 123,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 51
+        },
+        {
+          "bidirectional": false,
+          "end": 49,
+          "graph": 0,
+          "id": 124,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 50
+        },
+        {
+          "bidirectional": false,
+          "end": 48,
+          "graph": 0,
+          "id": 125,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 49
+        },
+        {
+          "bidirectional": false,
+          "end": 47,
+          "graph": 0,
+          "id": 126,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 48
+        },
+        {
+          "bidirectional": false,
+          "end": 46,
+          "graph": 0,
+          "id": 127,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 47
+        },
+        {
+          "bidirectional": false,
+          "end": 45,
+          "graph": 0,
+          "id": 128,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 46
+        },
+        {
+          "bidirectional": false,
+          "end": 113,
+          "graph": 0,
+          "id": 129,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 45
+        },
+        {
+          "bidirectional": false,
+          "end": 8,
+          "graph": 0,
+          "id": 130,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 113
+        },
+        {
+          "bidirectional": false,
+          "end": 126,
+          "graph": 0,
+          "id": 131,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 57
+        },
+        {
+          "bidirectional": false,
+          "end": 127,
+          "graph": 0,
+          "id": 132,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 126
+        },
+        {
+          "bidirectional": false,
+          "end": 59,
+          "graph": 0,
+          "id": 133,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 127
+        },
+        {
+          "bidirectional": false,
+          "end": 128,
+          "graph": 0,
+          "id": 134,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 11
+        },
+        {
+          "bidirectional": false,
+          "end": 12,
+          "graph": 0,
+          "id": 135,
+          "parameters": {
+            "bidirectional": false,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 128
+        },
+        {
+          "bidirectional": true,
+          "end": 129,
+          "graph": 0,
+          "id": 136,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 55
+        },
+        {
+          "bidirectional": true,
+          "end": 130,
+          "graph": 0,
+          "id": 137,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 101
+        },
+        {
+          "bidirectional": true,
+          "end": 131,
+          "graph": 0,
+          "id": 138,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 130
+        },
+        {
+          "bidirectional": true,
+          "end": 134,
+          "graph": 0,
+          "id": 139,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 132
+        },
+        {
+          "bidirectional": true,
+          "end": 133,
+          "graph": 0,
+          "id": 140,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 131
+        },
+        {
+          "bidirectional": true,
+          "end": 132,
+          "graph": 0,
+          "id": 141,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 131
+        },
+        {
+          "bidirectional": true,
+          "end": 136,
+          "graph": 0,
+          "id": 142,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 134
+        },
+        {
+          "bidirectional": true,
+          "end": 135,
+          "graph": 0,
+          "id": 143,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 136
+        },
+        {
+          "bidirectional": true,
+          "end": 137,
+          "graph": 0,
+          "id": 144,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 136
+        },
+        {
+          "bidirectional": true,
+          "end": 138,
+          "graph": 0,
+          "id": 145,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 137
+        },
+        {
+          "bidirectional": true,
+          "end": 139,
+          "graph": 0,
+          "id": 146,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 130
+        },
+        {
+          "bidirectional": true,
+          "end": 140,
+          "graph": 0,
+          "id": 147,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 139
+        },
+        {
+          "bidirectional": true,
+          "end": 141,
+          "graph": 0,
+          "id": 148,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 139
+        },
+        {
+          "bidirectional": true,
+          "end": 142,
+          "graph": 0,
+          "id": 149,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 140
+        },
+        {
+          "bidirectional": true,
+          "end": 143,
+          "graph": 0,
+          "id": 150,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 142
+        },
+        {
+          "bidirectional": true,
+          "end": 144,
+          "graph": 0,
+          "id": 151,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 143
+        },
+        {
+          "bidirectional": true,
+          "end": 145,
+          "graph": 0,
+          "id": 152,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 143
+        },
+        {
+          "bidirectional": true,
+          "end": 146,
+          "graph": 0,
+          "id": 153,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 145
+        }
+      ],
+      "measurements": [],
+      "models": [
+        {
+          "id": 0,
+          "model": "NCS_robotmanager/Campus",
+          "name": "Campus",
+          "position": [
+            83.738535,
+            -50.318368,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "model_name": "NCS_robotmanager/Campus",
+            "name": "Campus",
+            "static": true,
+            "x": 103.7801583,
+            "y": 1.30069369999994,
+            "yaw": 0,
+            "z": 0
+          },
+          "yaw": 0.0
+        }
+      ],
+      "transform": {
+        "coordinateQuantumMetres": 1e-06,
+        "crs": "EPSG:3414",
+        "formula": "project(lon,lat) - offset",
+        "kind": "wgs84",
+        "offset": [
+          22000.0,
+          31500.0
+        ],
+        "rotation": 0
+      },
+      "vertices": [
+        {
+          "id": 0,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 128.808052,
+          "y": -27.166755,
+          "z": 0.0
+        },
+        {
+          "id": 1,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 118.444354,
+          "y": -22.852156,
+          "z": 0.0
+        },
+        {
+          "id": 2,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 113.894798,
+          "y": -19.807417,
+          "z": 0.0
+        },
+        {
+          "id": 3,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 111.42076,
+          "y": -16.175639,
+          "z": 0.0
+        },
+        {
+          "id": 4,
+          "name": "campus_5",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 106.761403,
+          "y": -5.53977,
+          "z": 0.0
+        },
+        {
+          "id": 5,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 105.311471,
+          "y": 2.74087,
+          "z": 0.0
+        },
+        {
+          "id": 6,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 103.387353,
+          "y": 11.915799,
+          "z": 0.0
+        },
+        {
+          "id": 7,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 101.439176,
+          "y": 20.814252,
+          "z": 0.0
+        },
+        {
+          "id": 8,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 100.961646,
+          "y": 26.080948,
+          "z": 0.0
+        },
+        {
+          "id": 9,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 135.020869,
+          "y": -25.118919,
+          "z": 0.0
+        },
+        {
+          "id": 10,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 150.827863,
+          "y": -17.596386,
+          "z": 0.0
+        },
+        {
+          "id": 11,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 175.431803,
+          "y": -5.363712,
+          "z": 0.0
+        },
+        {
+          "id": 12,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 188.2556,
+          "y": -22.669293,
+          "z": 0.0
+        },
+        {
+          "id": 13,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 174.41411,
+          "y": -32.260315,
+          "z": 0.0
+        },
+        {
+          "id": 14,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 158.552024,
+          "y": -45.080255,
+          "z": 0.0
+        },
+        {
+          "id": 15,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 167.486208,
+          "y": -50.678216,
+          "z": 0.0
+        },
+        {
+          "id": 16,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 178.207221,
+          "y": -57.832668,
+          "z": 0.0
+        },
+        {
+          "id": 17,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 203.772726,
+          "y": -74.271542,
+          "z": 0.0
+        },
+        {
+          "id": 18,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 211.909667,
+          "y": -81.316715,
+          "z": 0.0
+        },
+        {
+          "id": 19,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 217.297637,
+          "y": -86.259252,
+          "z": 0.0
+        },
+        {
+          "id": 20,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 223.895158,
+          "y": -91.939082,
+          "z": 0.0
+        },
+        {
+          "id": 21,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 230.49265,
+          "y": -99.038836,
+          "z": 0.0
+        },
+        {
+          "id": 22,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 233.021689,
+          "y": -101.76951,
+          "z": 0.0
+        },
+        {
+          "id": 23,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 234.767238,
+          "y": -105.483193,
+          "z": 0.0
+        },
+        {
+          "id": 24,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 235.976729,
+          "y": -109.196864,
+          "z": 0.0
+        },
+        {
+          "id": 25,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 237.62604,
+          "y": -114.002794,
+          "z": 0.0
+        },
+        {
+          "id": 26,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 237.84584,
+          "y": -119.900943,
+          "z": 0.0
+        },
+        {
+          "id": 27,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 236.821691,
+          "y": -126.741132,
+          "z": 0.0
+        },
+        {
+          "id": 28,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 234.649847,
+          "y": -132.639232,
+          "z": 0.0
+        },
+        {
+          "id": 29,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 230.553663,
+          "y": -139.957217,
+          "z": 0.0
+        },
+        {
+          "id": 30,
+          "name": "campus_2",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 223.289146,
+          "y": -151.685093,
+          "z": 0.0
+        },
+        {
+          "id": 31,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 214.601975,
+          "y": -165.228804,
+          "z": 0.0
+        },
+        {
+          "id": 32,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 202.616077,
+          "y": -174.239613,
+          "z": 0.0
+        },
+        {
+          "id": 33,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 197.007875,
+          "y": -184.288191,
+          "z": 0.0
+        },
+        {
+          "id": 34,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 190.190117,
+          "y": -193.790619,
+          "z": 0.0
+        },
+        {
+          "id": 35,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 184.911912,
+          "y": -198.268732,
+          "z": 0.0
+        },
+        {
+          "id": 36,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 178.369179,
+          "y": -201.763795,
+          "z": 0.0
+        },
+        {
+          "id": 37,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 169.902178,
+          "y": -203.156238,
+          "z": 0.0
+        },
+        {
+          "id": 38,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 156.377106,
+          "y": -198.759653,
+          "z": 0.0
+        },
+        {
+          "id": 39,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 141.120235,
+          "y": -190.45824,
+          "z": 0.0
+        },
+        {
+          "id": 40,
+          "name": "campus_3",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 116.04952,
+          "y": -175.220839,
+          "z": 0.0
+        },
+        {
+          "id": 41,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 100.710202,
+          "y": -165.881786,
+          "z": 0.0
+        },
+        {
+          "id": 42,
+          "name": "dead_end",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 86.195577,
+          "y": -157.1981,
+          "z": 0.0
+        },
+        {
+          "id": 43,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 152.721462,
+          "y": -172.381756,
+          "z": 0.0
+        },
+        {
+          "id": 44,
+          "name": "side_road",
+          "parameters": {
+            "is_charger": false
+          },
+          "sourceZ": 0.0,
+          "x": 160.04784,
+          "y": -160.449086,
+          "z": 0.0
+        },
+        {
+          "id": 45,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 92.219907,
+          "y": 32.197723,
+          "z": 0.0
+        },
+        {
+          "id": 46,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 82.625946,
+          "y": 36.949206,
+          "z": 0.0
+        },
+        {
+          "id": 47,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 73.870362,
+          "y": 38.246436,
+          "z": 0.0
+        },
+        {
+          "id": 48,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 63.190446,
+          "y": 38.533377,
+          "z": 0.0
+        },
+        {
+          "id": 49,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 50.709884,
+          "y": 36.895269,
+          "z": 0.0
+        },
+        {
+          "id": 50,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 33.281039,
+          "y": 32.581257,
+          "z": 0.0
+        },
+        {
+          "id": 51,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 12.993201,
+          "y": 27.448121,
+          "z": 0.0
+        },
+        {
+          "id": 52,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -1.686621,
+          "y": 23.570953,
+          "z": 0.0
+        },
+        {
+          "id": 53,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -18.730589,
+          "y": 20.02151,
+          "z": 0.0
+        },
+        {
+          "id": 54,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -29.28687,
+          "y": 17.045359,
+          "z": 0.0
+        },
+        {
+          "id": 55,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -35.142556,
+          "y": 3.856583,
+          "z": 0.0
+        },
+        {
+          "id": 56,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -40.420846,
+          "y": -4.553618,
+          "z": 0.0
+        },
+        {
+          "id": 57,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -47.314239,
+          "y": -15.602247,
+          "z": 0.0
+        },
+        {
+          "id": 58,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -48.943086,
+          "y": -18.179237,
+          "z": 0.0
+        },
+        {
+          "id": 59,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -60.159447,
+          "y": -35.736893,
+          "z": 0.0
+        },
+        {
+          "id": 60,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -63.403344,
+          "y": -38.440139,
+          "z": 0.0
+        },
+        {
+          "id": 61,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -70.358425,
+          "y": -41.744041,
+          "z": 0.0
+        },
+        {
+          "id": 62,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -74.784322,
+          "y": -40.952065,
+          "z": 0.0
+        },
+        {
+          "id": 63,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -79.814949,
+          "y": -37.647904,
+          "z": 0.0
+        },
+        {
+          "id": 64,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -81.106878,
+          "y": -32.623531,
+          "z": 0.0
+        },
+        {
+          "id": 65,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -79.952181,
+          "y": -27.517293,
+          "z": 0.0
+        },
+        {
+          "id": 66,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -70.027867,
+          "y": -10.478428,
+          "z": 0.0
+        },
+        {
+          "id": 67,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -57.601923,
+          "y": 7.816468,
+          "z": 0.0
+        },
+        {
+          "id": 68,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -50.619345,
+          "y": 11.529963,
+          "z": 0.0
+        },
+        {
+          "id": 69,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -41.987383,
+          "y": 14.096561,
+          "z": 0.0
+        },
+        {
+          "id": 70,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -37.973795,
+          "y": 15.297948,
+          "z": 0.0
+        },
+        {
+          "id": 71,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -32.915588,
+          "y": 16.22625,
+          "z": 0.0
+        },
+        {
+          "id": 72,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 207.014447,
+          "y": -176.970327,
+          "z": 0.0
+        },
+        {
+          "id": 73,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 201.296292,
+          "y": -186.691228,
+          "z": 0.0
+        },
+        {
+          "id": 74,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 194.58849,
+          "y": -196.412109,
+          "z": 0.0
+        },
+        {
+          "id": 75,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 187.550883,
+          "y": -202.419335,
+          "z": 0.0
+        },
+        {
+          "id": 76,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 179.523677,
+          "y": -206.078204,
+          "z": 0.0
+        },
+        {
+          "id": 77,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 170.012049,
+          "y": -207.497931,
+          "z": 0.0
+        },
+        {
+          "id": 78,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 154.892552,
+          "y": -202.855557,
+          "z": 0.0
+        },
+        {
+          "id": 79,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 139.168353,
+          "y": -194.281072,
+          "z": 0.0
+        },
+        {
+          "id": 80,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 114.042654,
+          "y": -179.207507,
+          "z": 0.0
+        },
+        {
+          "id": 81,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 98.297857,
+          "y": -169.827486,
+          "z": 0.0
+        },
+        {
+          "id": 82,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 83.968798,
+          "y": -160.802475,
+          "z": 0.0
+        },
+        {
+          "id": 83,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 209.853099,
+          "y": -162.812105,
+          "z": 0.0
+        },
+        {
+          "id": 84,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 218.615876,
+          "y": -148.845149,
+          "z": 0.0
+        },
+        {
+          "id": 85,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 226.753219,
+          "y": -136.502901,
+          "z": 0.0
+        },
+        {
+          "id": 86,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 231.041841,
+          "y": -128.857245,
+          "z": 0.0
+        },
+        {
+          "id": 87,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 232.801322,
+          "y": -123.477955,
+          "z": 0.0
+        },
+        {
+          "id": 88,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 233.461179,
+          "y": -118.917829,
+          "z": 0.0
+        },
+        {
+          "id": 89,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 232.884007,
+          "y": -113.046978,
+          "z": 0.0
+        },
+        {
+          "id": 90,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 231.866939,
+          "y": -109.715598,
+          "z": 0.0
+        },
+        {
+          "id": 91,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 230.574956,
+          "y": -107.066868,
+          "z": 0.0
+        },
+        {
+          "id": 92,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 228.403303,
+          "y": -103.680851,
+          "z": 0.0
+        },
+        {
+          "id": 93,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 226.286613,
+          "y": -101.114023,
+          "z": 0.0
+        },
+        {
+          "id": 94,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 223.042851,
+          "y": -97.373003,
+          "z": 0.0
+        },
+        {
+          "id": 95,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 215.895567,
+          "y": -89.75442,
+          "z": 0.0
+        },
+        {
+          "id": 96,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 210.150244,
+          "y": -83.917596,
+          "z": 0.0
+        },
+        {
+          "id": 97,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 201.566584,
+          "y": -77.036251,
+          "z": 0.0
+        },
+        {
+          "id": 98,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 226.850351,
+          "y": -91.898184,
+          "z": 0.0
+        },
+        {
+          "id": 99,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 198.322781,
+          "y": -75.302239,
+          "z": 0.0
+        },
+        {
+          "id": 100,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 190.110081,
+          "y": -76.046164,
+          "z": 0.0
+        },
+        {
+          "id": 101,
+          "name": "campus_1",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 182.138038,
+          "y": -71.103573,
+          "z": 0.0
+        },
+        {
+          "id": 102,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 178.097157,
+          "y": -62.775091,
+          "z": 0.0
+        },
+        {
+          "id": 103,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 176.117897,
+          "y": -61.300514,
+          "z": 0.0
+        },
+        {
+          "id": 104,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 165.066996,
+          "y": -54.446424,
+          "z": 0.0
+        },
+        {
+          "id": 105,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 156.270267,
+          "y": -48.684628,
+          "z": 0.0
+        },
+        {
+          "id": 106,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 126.636263,
+          "y": -30.361537,
+          "z": 0.0
+        },
+        {
+          "id": 107,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 116.519989,
+          "y": -25.446206,
+          "z": 0.0
+        },
+        {
+          "id": 108,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 111.778012,
+          "y": -21.937258,
+          "z": 0.0
+        },
+        {
+          "id": 109,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 108.699205,
+          "y": -17.622811,
+          "z": 0.0
+        },
+        {
+          "id": 110,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 104.424732,
+          "y": -5.922008,
+          "z": 0.0
+        },
+        {
+          "id": 111,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 102.912941,
+          "y": 2.024133,
+          "z": 0.0
+        },
+        {
+          "id": 112,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 101.208741,
+          "y": 11.062525,
+          "z": 0.0
+        },
+        {
+          "id": 113,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 98.102729,
+          "y": 28.866242,
+          "z": 0.0
+        },
+        {
+          "id": 114,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 96.755611,
+          "y": 24.087683,
+          "z": 0.0
+        },
+        {
+          "id": 115,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 90.405492,
+          "y": 29.084853,
+          "z": 0.0
+        },
+        {
+          "id": 116,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 81.251379,
+          "y": 34.136696,
+          "z": 0.0
+        },
+        {
+          "id": 117,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 73.829063,
+          "y": 35.229101,
+          "z": 0.0
+        },
+        {
+          "id": 118,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 63.63022,
+          "y": 35.311235,
+          "z": 0.0
+        },
+        {
+          "id": 119,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 51.287113,
+          "y": 33.836961,
+          "z": 0.0
+        },
+        {
+          "id": 120,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 33.885758,
+          "y": 29.522949,
+          "z": 0.0
+        },
+        {
+          "id": 121,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 13.35049,
+          "y": 23.570631,
+          "z": 0.0
+        },
+        {
+          "id": 122,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -1.35681,
+          "y": 20.239587,
+          "z": 0.0
+        },
+        {
+          "id": 123,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -20.105193,
+          "y": 15.54332,
+          "z": 0.0
+        },
+        {
+          "id": 124,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -29.067037,
+          "y": 12.976728,
+          "z": 0.0
+        },
+        {
+          "id": 125,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -32.833209,
+          "y": 11.966479,
+          "z": 0.0
+        },
+        {
+          "id": 126,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -45.506945,
+          "y": -24.132066,
+          "z": 0.0
+        },
+        {
+          "id": 127,
+          "name": "campus_4",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -50.125453,
+          "y": -31.675309,
+          "z": 0.0
+        },
+        {
+          "id": 128,
+          "name": "dover_drive",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 181.768101,
+          "y": -14.142792,
+          "z": 0.0
+        },
+        {
+          "id": 129,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": -16.916832,
+          "y": -7.612419,
+          "z": 0.0
+        },
+        {
+          "id": 130,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 176.282431,
+          "y": -80.906385,
+          "z": 0.0
+        },
+        {
+          "id": 131,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 195.415335,
+          "y": -92.812294,
+          "z": 0.0
+        },
+        {
+          "id": 132,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 189.697188,
+          "y": -102.205517,
+          "z": 0.0
+        },
+        {
+          "id": 133,
+          "name": "room_1",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 211.854244,
+          "y": -102.806711,
+          "z": 0.0
+        },
+        {
+          "id": 134,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 182.851915,
+          "y": -112.991334,
+          "z": 0.0
+        },
+        {
+          "id": 135,
+          "name": "room_2",
+          "parameters": {
+            "is_charger": true,
+            "spawn_robot_name": "deliveryRobot_3",
+            "spawn_robot_type": "Open-RMF/DeliveryRobot"
+          },
+          "sourceZ": 0.0,
+          "x": 218.547451,
+          "y": -134.263622,
+          "z": 0.0
+        },
+        {
+          "id": 136,
+          "name": "before_room_2",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 213.159441,
+          "y": -131.259826,
+          "z": 0.0
+        },
+        {
+          "id": 137,
+          "name": "before_room_3",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 203.908704,
+          "y": -145.650017,
+          "z": 0.0
+        },
+        {
+          "id": 138,
+          "name": "room_3",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 209.90149,
+          "y": -149.063419,
+          "z": 0.0
+        },
+        {
+          "id": 139,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 162.894883,
+          "y": -73.260365,
+          "z": 0.0
+        },
+        {
+          "id": 140,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 157.864004,
+          "y": -81.943639,
+          "z": 0.0
+        },
+        {
+          "id": 141,
+          "name": "room_4",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 144.160565,
+          "y": -62.501324,
+          "z": 0.0
+        },
+        {
+          "id": 142,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 151.980909,
+          "y": -91.60992,
+          "z": 0.0
+        },
+        {
+          "id": 143,
+          "name": "before_room_5",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 124.546067,
+          "y": -75.471369,
+          "z": 0.0
+        },
+        {
+          "id": 144,
+          "name": "room_5",
+          "parameters": {
+            "is_charger": true,
+            "spawn_robot_name": "deliveryRobot_1",
+            "spawn_robot_type": "Open-RMF/DeliveryRobot"
+          },
+          "sourceZ": 0.0,
+          "x": 119.377977,
+          "y": -72.65872,
+          "z": 0.0
+        },
+        {
+          "id": 145,
+          "name": "before_room_6",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 115.63895,
+          "y": -90.107318,
+          "z": 0.0
+        },
+        {
+          "id": 146,
+          "name": "room_6",
+          "parameters": {
+            "is_charger": true,
+            "spawn_robot_name": "deliveryRobot_2",
+            "spawn_robot_type": "Open-RMF/DeliveryRobot"
+          },
+          "sourceZ": 0.0,
+          "x": 109.921072,
+          "y": -86.530083,
+          "z": 0.0
+        },
+        {
+          "id": 147,
+          "name": "campus_1_0",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 129.659899,
+          "y": -43.768954,
+          "z": 0.0
+        },
+        {
+          "id": 148,
+          "name": "campus_1_1",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 98.430092,
+          "y": -90.95345,
+          "z": 0.0
+        },
+        {
+          "id": 149,
+          "name": "campus_1_6",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 209.049092,
+          "y": -158.893644,
+          "z": 0.0
+        },
+        {
+          "id": 150,
+          "name": "campus_1_9",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 225.544318,
+          "y": -104.06308,
+          "z": 0.0
+        },
+        {
+          "id": 151,
+          "name": "campus_1_8",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 215.647487,
+          "y": -122.19421,
+          "z": 0.0
+        },
+        {
+          "id": 152,
+          "name": "campus_1_7",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 225.323872,
+          "y": -129.621702,
+          "z": 0.0
+        },
+        {
+          "id": 153,
+          "name": "campus_1_2",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 112.284963,
+          "y": -99.036383,
+          "z": 0.0
+        },
+        {
+          "id": 154,
+          "name": "campus_1_3",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 124.820823,
+          "y": -82.434462,
+          "z": 0.0
+        },
+        {
+          "id": 155,
+          "name": "campus_1_4",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 207.730068,
+          "y": -134.427236,
+          "z": 0.0
+        },
+        {
+          "id": 156,
+          "name": "campus_1_5",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 197.17348,
+          "y": -152.121455,
+          "z": 0.0
+        }
+      ],
+      "walls": []
+    }
+  ],
+  "lifts": [],
+  "name": {
+    "en": "Campus",
+    "zh": "校园"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "files": {
+      "source/campus/campus.building.yaml": "8568f968d514d20bc2bf8a9b56ed9ef004c2fece5839c417bcbb9c133c946a24",
+      "source/campus/campus_reference.png": "d2f65554dc1b4ea3ef7347a0486b3dc725d481b27ebb01d701e046e69d86735a",
+      "source/campus/campus_sim.png": "9307c305b5a6b22d41ec5e0a7f954cd6785b8f8d36d37d7f3820dbb39bfdc292"
+    },
+    "license": "Apache-2.0",
+    "repository": "https://github.com/open-rmf/rmf_demos",
+    "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+    "yaml": "/assets/maps/rmf/source/campus/campus.building.yaml"
+  },
+  "units": {
+    "angle": "rad",
+    "length": "m"
+  },
+  "warnings": [
+    "STATIC_MAP_ONLY",
+    "EXTERNAL_MODELS_ARE_POSITION_MARKERS",
+    "WALL_DISPLAY_HEIGHT_2_5_M_NOT_CALIBRATED",
+    "CAMPUS_EXTERNAL_ENVIRONMENT_MESH_NOT_INCLUDED"
+  ]
+}

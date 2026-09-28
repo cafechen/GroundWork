@@ -1,0 +1,138 @@
+{
+  "maps": [
+    {
+      "available": true,
+      "id": "hotel",
+      "levels": [
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "name": {
+        "en": "Hotel",
+        "zh": "酒店"
+      },
+      "simulation": false,
+      "source": {
+        "files": {
+          "source/hotel/hotel.building.yaml": "c16bea84f1e2affdae1215c0d80fb788b61e407b36ccdb8534f392a79883ec7f",
+          "source/hotel/hotel_L1.png": "c537a5e98b5c39947a571ad49c8e66522f141e5aea00e90e5fbb731d68ce5c88",
+          "source/hotel/hotel_L2.png": "b3384299aaeea167ddf4370feed5828a7cfec50ef2e5d944193733360f75616a",
+          "source/hotel/hotel_L3.png": "30908791da4267bedc7dfee3e4317fc2ab404b6522e2d984ba241fc662238d16"
+        },
+        "license": "Apache-2.0",
+        "repository": "https://github.com/open-rmf/rmf_demos",
+        "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+        "yaml": "/assets/maps/rmf/source/hotel/hotel.building.yaml"
+      },
+      "url": "/assets/maps/rmf/hotel.json"
+    },
+    {
+      "available": true,
+      "id": "office",
+      "levels": [
+        "L1"
+      ],
+      "name": {
+        "en": "Office",
+        "zh": "办公室"
+      },
+      "simulation": false,
+      "source": {
+        "files": {
+          "source/office/office.building.yaml": "e650f465b7dcb1825bf3327d9bc20a44c778c7a36798e7e830b3c898eb90ac07",
+          "source/office/office.png": "4c9972c0be2b913769e62224d3cf8e7adec8da35cbca494c02cb01531a64eced",
+          "source/office/office_scan.png": "fbf6c6ba0f99e1552f33f6a311a527b03e9a9ee757d895c5545b4ee6977dad72"
+        },
+        "license": "Apache-2.0",
+        "repository": "https://github.com/open-rmf/rmf_demos",
+        "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+        "yaml": "/assets/maps/rmf/source/office/office.building.yaml"
+      },
+      "url": "/assets/maps/rmf/office.json"
+    },
+    {
+      "available": true,
+      "id": "airport_terminal",
+      "levels": [
+        "L1"
+      ],
+      "name": {
+        "en": "Airport Terminal",
+        "zh": "机场航站楼"
+      },
+      "simulation": false,
+      "source": {
+        "files": {
+          "source/airport_terminal/airport_terminal.building.yaml": "be473fc1657b8c333332ca3fe27e1e8225e3ebf9e14d7cf1df696787ffd08c47",
+          "source/airport_terminal/airport_terminal.png": "a97dcb271c51e4d689f7d1418d009a47843f2080cd56007db17ead89439c729e"
+        },
+        "license": "Apache-2.0",
+        "repository": "https://github.com/open-rmf/rmf_demos",
+        "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+        "yaml": "/assets/maps/rmf/source/airport_terminal/airport_terminal.building.yaml"
+      },
+      "url": "/assets/maps/rmf/airport_terminal.json"
+    },
+    {
+      "available": true,
+      "id": "clinic",
+      "levels": [
+        "L1",
+        "L2"
+      ],
+      "name": {
+        "en": "Clinic",
+        "zh": "诊所"
+      },
+      "simulation": false,
+      "source": {
+        "files": {
+          "source/clinic/clinic.building.yaml": "780bfabff950c4fb3132dd1933994255afe3b93cbc25a8265e0214adb62ff7f0",
+          "source/clinic/clinic.png": "9f73e7b1692d56dda0d790463ca4bd3e0dfe3913be0582691f7d813ad35a542d"
+        },
+        "license": "Apache-2.0",
+        "repository": "https://github.com/open-rmf/rmf_demos",
+        "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+        "yaml": "/assets/maps/rmf/source/clinic/clinic.building.yaml"
+      },
+      "url": "/assets/maps/rmf/clinic.json"
+    },
+    {
+      "available": true,
+      "id": "campus",
+      "levels": [
+        "L1"
+      ],
+      "name": {
+        "en": "Campus",
+        "zh": "校园"
+      },
+      "simulation": false,
+      "source": {
+        "files": {
+          "source/campus/campus.building.yaml": "8568f968d514d20bc2bf8a9b56ed9ef004c2fece5839c417bcbb9c133c946a24",
+          "source/campus/campus_reference.png": "d2f65554dc1b4ea3ef7347a0486b3dc725d481b27ebb01d701e046e69d86735a",
+          "source/campus/campus_sim.png": "9307c305b5a6b22d41ec5e0a7f954cd6785b8f8d36d37d7f3820dbb39bfdc292"
+        },
+        "license": "Apache-2.0",
+        "repository": "https://github.com/open-rmf/rmf_demos",
+        "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+        "yaml": "/assets/maps/rmf/source/campus/campus.building.yaml"
+      },
+      "url": "/assets/maps/rmf/campus.json"
+    },
+    {
+      "available": false,
+      "id": "manufacturing_logistics",
+      "name": {
+        "en": "Manufacturing & Logistics",
+        "zh": "制造与物流"
+      },
+      "reason": "SOURCE_NOT_AVAILABLE",
+      "reference": "https://github.com/open-rmf/rmf_demos/issues/314#issuecomment-3043337631",
+      "simulation": false
+    }
+  ],
+  "schemaVersion": 1
+}

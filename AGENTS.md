@@ -11,7 +11,7 @@ Scope: this repository. These are working instructions, not an installed securit
 
 ## Working loop
 
-1. State the request, affected A/B/C/D modules, exclusions, assumptions and measurable acceptance cases. For feature/model/contract changes, prepare `intent.md`, `spec.md`, `plan.md` in the change directory and get maintainer acceptance before implementation. Record who accepted what and where; silence is not approval.
+1. State the request, affected product domains/engine components, exclusions, assumptions and measurable acceptance cases. For feature/model/contract changes, prepare `intent.md`, `spec.md`, `plan.md` in the change directory and get maintainer acceptance before implementation. Record who accepted what and where; silence is not approval.
 2. The plan must identify files, risks, verification and recovery. For a small documentation correction, the explicit request can authorize the bounded edit; record scope and verification without inventing a design sign-off.
 3. Implement the smallest coherent change. Keep the plan aligned with any deviation; return to the maintainer for material scope or model decisions. Prefer no new dependencies.
 4. Reproduce bugs before fixing them. Add a regression test, demonstrate its intended failure, then fix the implementation. Do not skip tests, weaken assertions or alter expected metrics to hide failures. Legitimate acceptance changes require rationale and review.
@@ -20,21 +20,24 @@ Scope: this repository. These are working instructions, not an installed securit
 
 ## Commands and evidence
 
-- `npm start`: loopback preview; expected URL `http://127.0.0.1:4173`. Node >=20; no application dependency installation or build step.
+- `npm ci && npm run build`: install standalone workspaces and build contracts/engine. Node >=22.19. `npm start`: loopback preview at `http://127.0.0.1:4173`; `/classic` preserves the original lab.
 - `npm test`: all Node core tests must pass, zero failures/skips. Baseline at adoption: 13 tests; this is not a permanent required count.
-- `npm run check`: listed JavaScript files must parse, exit 0. This is **not** a linter, type checker or complete-file scan.
-- For UI/interaction changes: start the app, run `node scripts/browser-smoke.mjs` with Playwright/Chromium available, inspect relevant screenshots and the two language layouts. `PLAYWRIGHT_MODULE` and `CHROME_PATH` can select existing installations. Do not invent success if dependencies are unavailable.
+- `npm run test:engines`: portable copied TS suites; six private-map suites are explicitly excluded, never count them as passing. `npm run check`: scan maintained JS in src/server/scripts/tests for parse errors; **not** a linter or type checker.
+- For UI/interaction changes: run `scripts/platform-smoke.mjs` (park platform), `scripts/maps-smoke.mjs`, `scripts/workbench-smoke.mjs` (legacy unified) and `scripts/browser-smoke.mjs` (classic) with Playwright/Chromium available. Inspect both languages and small screens. `BASE_URL`, `PLAYWRIGHT_MODULE`, `CHROME_PATH` select target/dependencies. Do not invent success if unavailable.
 - Check changed files and local Markdown links. `git diff --check` does not cover untracked files; audit those separately until the first commit exists.
 - Capture the exact command, runtime, result and evidence location in the change record. Distinguish this run from historical results. Browser outputs under `artifacts/` are ignored; retain a textual verification summary for review.
 
 ## GroundWork invariants
 
-- A: template config and input validation; B: geometry/motion; C: resource/device state; D: replay/experiments. `src/core` must remain DOM-free and deterministic for a fixed validated configuration in the tested runtime.
+- Product navigation is park-centric: overview, maps, device models, gateways, parks. Instances, operations, controls and analysis live inside a park. A/B/C/D describe historical engine components, not new product navigation. `src/core` must remain DOM-free and deterministic for a fixed validated configuration in the tested runtime.
+- Pin map/model revisions in parks and immutable run inputs. Real instances cannot enter a simulation or resolve real control from replay. Unsupported model/engine/channel combinations must fail explicitly, never fall back to an unrelated synthetic scene.
 - Keep metres/seconds/radians and axle-reference conventions explicit. Do not substitute an on-axle trailer for a different industrial cart topology without agreement and tests.
 - Preserve full tractor/trailer/drawbar clearance before resource release. Distinguish frame state from full-run metrics, contact episodes from accidents, and sampled footprints from continuous swept volumes.
 - No fabricated scores, safety certification, manufacturer calibration or untested vendor compatibility claims. Simulation tests alone do not validate real vehicles.
 - Synchronize `README.md` / `README.zh-CN.md` and `src/i18n.js` where relevant. Document new schema/version semantics.
-- No customer logs, maps, secrets, telemetry, external uploads or real vehicle control without specific authorization. Keep the development server loopback-only.
+- No customer logs, maps, secrets, telemetry, external uploads or real vehicle control without specific authorization. Default to loopback. The maintainer explicitly authorized the isolated `robots:5180` trusted-LAN preview in this change; that exception does not authorize public exposure or changes to other services.
+- Keep copied engines inside this repository. No runtime import, symlink or service dependency on Strategist/Robots. Different engines retain their model identities; Chrono ground contacts are not accidents; incomplete horizons are not successful safety evaluations.
+- Job state writes must serialize per job; reserve the worker slot before awaited I/O. Cancellation tests must cover cancellation before spawn and must not leave a successful result after cancellation.
 - Do not commit, push, publish, change repository protections, buy services or start recurring/background agents without authorization for that action. Model/reviewer output is not maintainer approval. Respect the active execution environment's permission policy.
 - Do not start subagents merely because the reference article describes them; follow the current task's delegation authorization.
 - Turn repeated, verified mistakes into a targeted test and a concise instruction; keep experimental agent rules labeled unverified until evaluated.

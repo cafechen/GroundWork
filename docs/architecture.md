@@ -1,5 +1,50 @@
 # Architecture / 架构
 
+## Park platform / 园区平台
+
+`/` serves `platform.html` and `src/platform.js/css`: five global menus, seven
+park tabs. `server/platform-contracts.mjs` validates resource JSON;
+`server/platform-store.mjs` owns SQLite transactions, immutable revisions and audit;
+`server/http.mjs` serves `/api/platform/*`. Parks pin map/model versions and aggregate
+business objects, devices and tasks. `src/park-viewer.js` adds overlays and replay.
+
+`compileParkRun` resolves the chosen floor/model/device/task into a frozen request;
+`simulatePark` runs `park-planar-1` in the existing worker. No synthetic fallback.
+Physical instances, unsupported models and park Chrono requests fail explicitly.
+See [product contracts](park-platform.md). The old three-engine UI is `/workbench`;
+its history remains separate. Sections below document the preserved legacy components.
+
+## Static map library / 静态地图层
+
+`/maps` is an independent inspection view linked from the workbench toolbar.
+`engines/maps/import_rmf.py` converts pinned RMF source assets at build time to
+`assets/maps/rmf/*.json`; `src/map-data.js` validates the separate map schema,
+and `src/map-library.js` / `src/map-viewer.js` handle selection and rendering.
+No ROS or Python runs when browsing. Selecting a map does not mutate experiment
+inputs or results; the existing three engines retain their synthetic scenes.
+See [map library](map-library.md) for coordinate, provenance and mesh limitations.
+
+地图是独立数据契约和查看页面，不把静态导入误认为仿真接入。当前五张可用、一张待源码；
+车辆、门禁、电梯仿真另行接入。所有原始资源保留许可与哈希，转换结果单独标识。
+
+## v0.2 integration / 集成层
+
+`server/http.mjs` serves the unified UI and a bounded same-origin API.
+`server/jobs.mjs` owns persistent job state and one cancellable subprocess at a
+time. Yard/road use `server/worker.mjs`; Chrono uses copied Python workers.
+`server/domain.mjs` normalizes results without merging engine meanings.
+`src/viewer.js` renders locally installed Three.js geometry proxies or 2D SVG.
+See [unified workbench](unified-workbench.md) for model/data/export contracts,
+and [deployment](deployment.md) for the explicitly authorized LAN preview.
+
+Unified runs use `schemaVersion:2`, `engine`, `engineVersion`, `caseKey`,
+`request`, `validity`, `verdict`, `frames`, `metrics`, `events`, `provenance`.
+Job status (`queued/running/completed/failed/cancelled/interrupted`) is separate
+from model verdict. Results persist under the GroundWork-owned data directory.
+
+下面的原始数据契约只描述 `yard` / `/classic`。其“无任意地图导入、无持久化”
+边界不适用于新增集成层；不会用道路车辆模型替代叉车，也不会把刚体接触算成事故。
+
 ## Boundaries / 职责边界
 
 The DOM is an adapter, not the source of truth. `src/core` is dependency-free and runs in both Node and the browser. / DOM 只负责交互和显示；`src/core` 不依赖浏览器，可在 Node 中独立测试。

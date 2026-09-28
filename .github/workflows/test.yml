@@ -1,4 +1,4 @@
-name: Core tests
+name: Standalone core and migrated engine tests
 on: [push, pull_request]
 permissions:
   contents: read
@@ -7,11 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20, 22, 24]
+        node: [22, 24]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
       - run: npm run check
       - run: npm test
+      - run: npm run test:engines
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r engines/maps/requirements.txt -r engines/maps/requirements-rmf.txt
+      - run: python -m unittest discover -s engines/maps -v

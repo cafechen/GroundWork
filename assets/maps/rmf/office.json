@@ -1,0 +1,3545 @@
+{
+  "capabilities": {
+    "geometry": true,
+    "liveControl": false,
+    "navigation": true,
+    "simulation": false
+  },
+  "coordinateTransform": {
+    "referenceLevel": "L1",
+    "source": "reference_image"
+  },
+  "id": "office",
+  "levels": [
+    {
+      "bounds": {
+        "h": 17.335303291514553,
+        "w": 28.249247900400654,
+        "x": -1.292669090096942,
+        "y": -15.730477542033292
+      },
+      "doors": [
+        {
+          "end": 13,
+          "id": 0,
+          "parameters": {
+            "motion_axis": "start",
+            "motion_degrees": 90,
+            "motion_direction": 1,
+            "name": "main_door",
+            "plugin": "normal",
+            "right_left_ratio": 1,
+            "type": "double_hinged"
+          },
+          "start": 31
+        },
+        {
+          "end": 37,
+          "id": 1,
+          "parameters": {
+            "motion_axis": "start",
+            "motion_degrees": 90,
+            "motion_direction": 1,
+            "name": "coe_door",
+            "plugin": "normal",
+            "right_left_ratio": 1,
+            "type": "hinged"
+          },
+          "start": 35
+        },
+        {
+          "end": 17,
+          "id": 2,
+          "parameters": {
+            "motion_axis": "start",
+            "motion_degrees": 90,
+            "motion_direction": 1,
+            "name": "hardware_door",
+            "plugin": "normal",
+            "right_left_ratio": 1,
+            "type": "hinged"
+          },
+          "start": 18
+        }
+      ],
+      "drawing": "/assets/maps/rmf/source/office/office.png",
+      "elevation": 0.0,
+      "fiducials": [],
+      "floors": [
+        {
+          "parameters": {
+            "ceiling_scale": 1,
+            "ceiling_texture": "blue_linoleum_high_contrast",
+            "indoor": 0,
+            "texture_name": "blue_linoleum_high_contrast",
+            "texture_rotation": 0,
+            "texture_scale": 1
+          },
+          "vertices": [
+            27,
+            36,
+            33,
+            6,
+            7,
+            8,
+            9,
+            16,
+            15,
+            14,
+            13,
+            31,
+            30,
+            29,
+            28
+          ]
+        },
+        {
+          "parameters": {
+            "ceiling_scale": 1,
+            "ceiling_texture": "concrete2",
+            "indoor": 0,
+            "texture_name": "concrete2",
+            "texture_rotation": 0,
+            "texture_scale": 10
+          },
+          "vertices": [
+            6,
+            68,
+            69,
+            9,
+            8,
+            7
+          ]
+        },
+        {
+          "parameters": {
+            "ceiling_scale": 1,
+            "ceiling_texture": "blue_linoleum_high_contrast",
+            "indoor": 0,
+            "texture_name": "blue_linoleum_high_contrast",
+            "texture_rotation": 0,
+            "texture_scale": 1
+          },
+          "vertices": [
+            36,
+            34,
+            37,
+            38,
+            25,
+            26
+          ]
+        },
+        {
+          "parameters": {
+            "ceiling_scale": 1,
+            "ceiling_texture": "black_concrete",
+            "indoor": 0,
+            "texture_name": "black_concrete",
+            "texture_rotation": 0,
+            "texture_scale": 1
+          },
+          "vertices": [
+            6,
+            33,
+            34,
+            35,
+            37,
+            38,
+            24,
+            23,
+            22,
+            19,
+            20,
+            21,
+            15,
+            16,
+            9,
+            69,
+            68
+          ]
+        }
+      ],
+      "graphs": [
+        0
+      ],
+      "holes": [],
+      "id": "L1",
+      "lanes": [
+        {
+          "bidirectional": true,
+          "end": 40,
+          "graph": 0,
+          "id": 0,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 39
+        },
+        {
+          "bidirectional": true,
+          "end": 45,
+          "graph": 0,
+          "id": 1,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 43
+        },
+        {
+          "bidirectional": true,
+          "end": 44,
+          "graph": 0,
+          "id": 2,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 43
+        },
+        {
+          "bidirectional": true,
+          "end": 40,
+          "graph": 0,
+          "id": 3,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 48
+        },
+        {
+          "bidirectional": true,
+          "end": 49,
+          "graph": 0,
+          "id": 4,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 40
+        },
+        {
+          "bidirectional": true,
+          "end": 41,
+          "graph": 0,
+          "id": 5,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 49
+        },
+        {
+          "bidirectional": true,
+          "end": 51,
+          "graph": 0,
+          "id": 6,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 49
+        },
+        {
+          "bidirectional": true,
+          "end": 46,
+          "graph": 0,
+          "id": 7,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 55
+        },
+        {
+          "bidirectional": true,
+          "end": 56,
+          "graph": 0,
+          "id": 8,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 51
+        },
+        {
+          "bidirectional": true,
+          "end": 57,
+          "graph": 0,
+          "id": 9,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 56
+        },
+        {
+          "bidirectional": true,
+          "end": 58,
+          "graph": 0,
+          "id": 10,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 39
+        },
+        {
+          "bidirectional": true,
+          "end": 48,
+          "graph": 0,
+          "id": 11,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 59
+        },
+        {
+          "bidirectional": true,
+          "end": 47,
+          "graph": 0,
+          "id": 12,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 59
+        },
+        {
+          "bidirectional": true,
+          "end": 42,
+          "graph": 0,
+          "id": 13,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 41
+        },
+        {
+          "bidirectional": true,
+          "end": 60,
+          "graph": 0,
+          "id": 14,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 41
+        },
+        {
+          "bidirectional": true,
+          "end": 61,
+          "graph": 0,
+          "id": 15,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 60
+        },
+        {
+          "bidirectional": true,
+          "end": 43,
+          "graph": 0,
+          "id": 16,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 61
+        },
+        {
+          "bidirectional": true,
+          "end": 62,
+          "graph": 0,
+          "id": 17,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 54
+        },
+        {
+          "bidirectional": true,
+          "end": 63,
+          "graph": 0,
+          "id": 18,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 53
+        },
+        {
+          "bidirectional": true,
+          "end": 64,
+          "graph": 0,
+          "id": 19,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 49
+        },
+        {
+          "bidirectional": true,
+          "end": 52,
+          "graph": 0,
+          "id": 20,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 64
+        },
+        {
+          "bidirectional": true,
+          "end": 46,
+          "graph": 0,
+          "id": 21,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 45
+        },
+        {
+          "bidirectional": true,
+          "end": 65,
+          "graph": 0,
+          "id": 22,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 55
+        },
+        {
+          "bidirectional": true,
+          "end": 66,
+          "graph": 0,
+          "id": 23,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 46
+        },
+        {
+          "bidirectional": true,
+          "end": 50,
+          "graph": 0,
+          "id": 24,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 66
+        },
+        {
+          "bidirectional": true,
+          "end": 54,
+          "graph": 0,
+          "id": 25,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 57
+        },
+        {
+          "bidirectional": true,
+          "end": 53,
+          "graph": 0,
+          "id": 26,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 54
+        },
+        {
+          "bidirectional": true,
+          "end": 65,
+          "graph": 0,
+          "id": 27,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 53
+        },
+        {
+          "bidirectional": true,
+          "end": 67,
+          "graph": 0,
+          "id": 28,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 59
+        },
+        {
+          "bidirectional": true,
+          "end": 45,
+          "graph": 0,
+          "id": 29,
+          "parameters": {
+            "bidirectional": true,
+            "demo_mock_floor_name": "",
+            "demo_mock_lift_name": "",
+            "graph_idx": 0,
+            "mutex": "",
+            "orientation": "",
+            "speed_limit": 0
+          },
+          "start": 59
+        }
+      ],
+      "measurements": [
+        {
+          "end": 0,
+          "id": 0,
+          "parameters": {
+            "distance": 9.315
+          },
+          "start": 1
+        },
+        {
+          "end": 4,
+          "id": 1,
+          "parameters": {
+            "distance": 8.409
+          },
+          "start": 5
+        },
+        {
+          "end": 3,
+          "id": 2,
+          "parameters": {
+            "distance": 20.089
+          },
+          "start": 2
+        }
+      ],
+      "models": [
+        {
+          "id": 0,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            6.562113035969731,
+            -6.72165375308089,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 775.16,
+            "y": 794.006,
+            "yaw": 4.2503,
+            "z": 0
+          },
+          "yaw": 4.2503
+        },
+        {
+          "id": 1,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            6.239069750128609,
+            -7.483497502189539,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 737,
+            "y": 884,
+            "yaw": 4.2239,
+            "z": 0
+          },
+          "yaw": 4.2239
+        },
+        {
+          "id": 2,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            5.758449741995906,
+            -8.260443694221157,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 680.226,
+            "y": 975.778,
+            "yaw": 4.247,
+            "z": 0
+          },
+          "yaw": 4.247
+        },
+        {
+          "id": 3,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            5.395881060410753,
+            -9.02572443426407,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 637.397,
+            "y": 1066.178,
+            "yaw": 4.2458,
+            "z": 0
+          },
+          "yaw": 4.2458
+        },
+        {
+          "id": 4,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            3.8721597002138073,
+            -8.264828820585564,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 457.405,
+            "y": 976.296,
+            "yaw": 1.0926,
+            "z": 0
+          },
+          "yaw": 1.0926
+        },
+        {
+          "id": 5,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            4.26201267190027,
+            -7.489812761393875,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 503.457,
+            "y": 884.746,
+            "yaw": 1.1213,
+            "z": 0
+          },
+          "yaw": 1.1213
+        },
+        {
+          "id": 6,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            4.652678331098282,
+            -6.752375034116462,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 549.605,
+            "y": 797.635,
+            "yaw": 1.0613,
+            "z": 0
+          },
+          "yaw": 1.0613
+        },
+        {
+          "id": 7,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            5.0126227092607225,
+            -6.058839363452574,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 592.124,
+            "y": 715.71,
+            "yaw": 1.0779,
+            "z": 0
+          },
+          "yaw": 1.0779
+        },
+        {
+          "id": 8,
+          "model": "OpenRobotics/Fridge",
+          "name": "Fridge",
+          "position": [
+            15.905877648581944,
+            -5.753531289452046,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Fridge",
+            "name": "Fridge",
+            "static": true,
+            "x": 1878.907,
+            "y": 679.645,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 9,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            14.25575798385424,
+            -5.546939351620108,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 1683.984,
+            "y": 655.241,
+            "yaw": 0.0166,
+            "z": 0
+          },
+          "yaw": 0.0166
+        },
+        {
+          "id": 10,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            11.788455629778278,
+            -5.979746244489952,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 1392.53,
+            "y": 706.367,
+            "yaw": 3.1613,
+            "z": 0
+          },
+          "yaw": 3.1613
+        },
+        {
+          "id": 11,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            8.395375217623192,
+            -4.354184980501898,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 991.717,
+            "y": 514.345,
+            "yaw": 1.099,
+            "z": 0
+          },
+          "yaw": 1.099
+        },
+        {
+          "id": 12,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            14.244879822892347,
+            -5.941482207487806,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 1682.699,
+            "y": 701.847,
+            "yaw": 3.1594,
+            "z": 0
+          },
+          "yaw": 3.1594
+        },
+        {
+          "id": 13,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            10.225911509914997,
+            -8.526615785243605,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1207.952,
+            "y": 1007.22,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 14,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            10.183296208528093,
+            -9.890381619078704,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1202.918,
+            "y": 1168.317,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 15,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            13.810743847321321,
+            -9.831106223705028,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1631.416,
+            "y": 1161.315,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 16,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            9.391493072925952,
+            -8.541963727519024,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1109.385,
+            "y": 1009.033,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 17,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            9.36992299189023,
+            -9.890178447200816,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1106.837,
+            "y": 1168.293,
+            "yaw": 4.7124,
+            "z": 0
+          },
+          "yaw": 4.7124
+        },
+        {
+          "id": 18,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            12.9440464782329,
+            -9.827406802428492,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1529.036,
+            "y": 1160.878,
+            "yaw": 4.7124,
+            "z": 0
+          },
+          "yaw": 4.7124
+        },
+        {
+          "id": 19,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            12.955153207557416,
+            -8.471810171183453,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1530.348,
+            "y": 1000.746,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 20,
+          "model": "OpenRobotics/SmallCubicle",
+          "name": "SmallCubicle",
+          "position": [
+            13.810743847321321,
+            -8.460694976364024,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SmallCubicle",
+            "name": "SmallCubicle",
+            "static": true,
+            "x": 1631.416,
+            "y": 999.433,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 21,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            6.734191151045531,
+            -9.675341117324612,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 795.487,
+            "y": 1142.915,
+            "yaw": 1.0878,
+            "z": 0
+          },
+          "yaw": 1.0878
+        },
+        {
+          "id": 22,
+          "model": "OpenRobotics/Drawer",
+          "name": "Drawer",
+          "position": [
+            6.166080252997525,
+            -10.553500766523852,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "Drawer",
+            "static": true,
+            "x": 728.378,
+            "y": 1246.649,
+            "yaw": 1.1104,
+            "z": 0
+          },
+          "yaw": 1.1104
+        },
+        {
+          "id": 23,
+          "model": "OpenRobotics/BigCubicle",
+          "name": "BigCubicle",
+          "position": [
+            17.404769712202054,
+            -8.093766564899202,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/BigCubicle",
+            "name": "BigCubicle",
+            "static": true,
+            "x": 2055.966,
+            "y": 956.089,
+            "yaw": 1.6279,
+            "z": 0
+          },
+          "yaw": 1.6279
+        },
+        {
+          "id": 24,
+          "model": "OpenRobotics/BigCubicle",
+          "name": "BigCubicle",
+          "position": [
+            17.37541984134222,
+            -9.551473995772533,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/BigCubicle",
+            "name": "BigCubicle",
+            "static": true,
+            "x": 2052.499,
+            "y": 1128.283,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 25,
+          "model": "OpenRobotics/BigCubicle",
+          "name": "BigCubicle",
+          "position": [
+            16.495355455787788,
+            -9.581348727316906,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/BigCubicle",
+            "name": "BigCubicle",
+            "static": true,
+            "x": 1948.54,
+            "y": 1131.812,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 26,
+          "model": "OpenRobotics/BigCubicle",
+          "name": "BigCubicle",
+          "position": [
+            16.513429287424863,
+            -8.135924729560857,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/BigCubicle",
+            "name": "BigCubicle",
+            "static": true,
+            "x": 1950.675,
+            "y": 961.069,
+            "yaw": 1.6108,
+            "z": 0
+          },
+          "yaw": 1.6108
+        },
+        {
+          "id": 27,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            22.074836169849544,
+            -10.32024251971918,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 2607.625,
+            "y": 1219.095,
+            "yaw": 4.6088,
+            "z": 0
+          },
+          "yaw": 4.6088
+        },
+        {
+          "id": 28,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            22.382768547272782,
+            -7.585083441133288,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 2644,
+            "y": 896,
+            "yaw": 4.5816,
+            "z": 0
+          },
+          "yaw": 4.5816
+        },
+        {
+          "id": 29,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            19.933099819098473,
+            -7.193799800806701,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 2354.629,
+            "y": 849.779,
+            "yaw": 1.5733,
+            "z": 0
+          },
+          "yaw": 1.5733
+        },
+        {
+          "id": 30,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            7.47503200727756,
+            -3.868731174774456,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 883,
+            "y": 457,
+            "yaw": 4.2286,
+            "z": 0
+          },
+          "yaw": 4.2286
+        },
+        {
+          "id": 31,
+          "model": "OpenRobotics/AdjTable",
+          "name": "AdjTable",
+          "position": [
+            13.006471037713835,
+            -5.565732750324702,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "AdjTable",
+            "static": true,
+            "x": 1536.41,
+            "y": 657.461,
+            "yaw": 1.5914,
+            "z": 0
+          },
+          "yaw": 1.5914
+        },
+        {
+          "id": 32,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            22.657389202217384,
+            -3.444372845826767,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 2676.44,
+            "y": 406.872,
+            "yaw": 1.8623,
+            "z": 0
+          },
+          "yaw": 1.8623
+        },
+        {
+          "id": 33,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            22.423335198890985,
+            -4.614642862458759,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 2648.792,
+            "y": 545.112,
+            "yaw": 1.4219,
+            "z": 0
+          },
+          "yaw": 1.4219
+        },
+        {
+          "id": 34,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            14.205616857490586,
+            -8.518074100877419,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 1678.061,
+            "y": 1006.211,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 35,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            21.993355781321743,
+            -7.517359481837455,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 2598,
+            "y": 888,
+            "yaw": 1.419,
+            "z": 0
+          },
+          "yaw": 1.419
+        },
+        {
+          "id": 36,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            21.731416437755286,
+            -10.29278045422472,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 2567.058,
+            "y": 1215.851,
+            "yaw": 1.4599,
+            "z": 0
+          },
+          "yaw": 1.4599
+        },
+        {
+          "id": 37,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            8.87747668736549,
+            -8.63695504592634,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1048.666,
+            "y": 1020.254,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 38,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            8.853637853693357,
+            -9.784393622780726,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1045.85,
+            "y": 1155.797,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 39,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            10.702933682710107,
+            -8.503742017991438,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1264.301,
+            "y": 1004.518,
+            "yaw": 4.7124,
+            "z": 0
+          },
+          "yaw": 4.7124
+        },
+        {
+          "id": 40,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            10.698159143579753,
+            -9.870411516581347,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1263.737,
+            "y": 1165.958,
+            "yaw": 4.7124,
+            "z": 0
+          },
+          "yaw": 4.7124
+        },
+        {
+          "id": 41,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            12.456662539665526,
+            -8.470294847594209,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1471.463,
+            "y": 1000.567,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 42,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            14.310741373307545,
+            -9.832181341558849,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1690.479,
+            "y": 1161.442,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 43,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            16.02188879085571,
+            -9.773041394103762,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1892.611,
+            "y": 1154.456,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 44,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            16.041003878366954,
+            -8.435044526780727,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 1894.869,
+            "y": 996.403,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 45,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            17.804290279077996,
+            -8.544952047222951,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 2103.16,
+            "y": 1009.386,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 46,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OfficeChairBlue",
+          "position": [
+            17.83296291034487,
+            -9.72525367532564,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OfficeChairBlue",
+            "static": true,
+            "x": 2106.547,
+            "y": 1148.811,
+            "yaw": -1.5708,
+            "z": 0
+          },
+          "yaw": -1.5708
+        },
+        {
+          "id": 47,
+          "model": "OpenRobotics/OfficeChairBlack",
+          "name": "OfficeChairBlack",
+          "position": [
+            12.394542738001423,
+            -9.712716277360999,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlack",
+            "name": "OfficeChairBlack",
+            "static": true,
+            "x": 1464.125,
+            "y": 1147.33,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 48,
+          "model": "OpenRobotics/OfficeChairGrey",
+          "name": "OfficeChairGrey",
+          "position": [
+            11.842888762062305,
+            -5.564640701481056,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairGrey",
+            "name": "OfficeChairGrey",
+            "static": true,
+            "x": 1398.96,
+            "y": 657.332,
+            "yaw": 0.016,
+            "z": 0
+          },
+          "yaw": 0.016
+        },
+        {
+          "id": 49,
+          "model": "OpenRobotics/Drawer",
+          "name": "Drawer",
+          "position": [
+            17.944157186013715,
+            -7.932151801534608,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "Drawer",
+            "static": true,
+            "x": 2119.682,
+            "y": 936.998,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 50,
+          "model": "OpenRobotics/Drawer",
+          "name": "Drawer",
+          "position": [
+            22.225716685665745,
+            -9.267287331577394,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "Drawer",
+            "static": true,
+            "x": 2625.448,
+            "y": 1094.713,
+            "yaw": 4.6217,
+            "z": 0
+          },
+          "yaw": 4.6217
+        },
+        {
+          "id": 51,
+          "model": "OpenRobotics/ConfTable",
+          "name": "ConfTable",
+          "position": [
+            5.248606845427052,
+            -7.381911563245789,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/ConfTable",
+            "name": "ConfTable",
+            "static": true,
+            "x": 620,
+            "y": 872,
+            "yaw": 1.1017,
+            "z": 0
+          },
+          "yaw": 1.1017
+        },
+        {
+          "id": 52,
+          "model": "OpenRobotics/WhiteCabinet",
+          "name": "WhiteCabinet",
+          "position": [
+            15.03369463879056,
+            -2.9190973520333747,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/WhiteCabinet",
+            "name": "WhiteCabinet",
+            "static": true,
+            "x": 1775.879,
+            "y": 344.823,
+            "yaw": -0.0357,
+            "z": 0
+          },
+          "yaw": -0.0357
+        },
+        {
+          "id": 53,
+          "model": "OpenRobotics/TeleportDispenser",
+          "name": "coke_dispenser",
+          "position": [
+            17.75523273606308,
+            -5.500954783258237,
+            1.08
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TeleportDispenser",
+            "name": "coke_dispenser",
+            "static": true,
+            "x": 2097.365,
+            "y": 649.809,
+            "yaw": 1.5708,
+            "z": 1.08
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 54,
+          "model": "OpenRobotics/TeleportDispenser",
+          "name": "coke_dispenser_2",
+          "position": [
+            17.737472127737746,
+            -5.839032788063036,
+            0.63
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TeleportDispenser",
+            "name": "coke_dispenser_2",
+            "static": true,
+            "x": 2095.267,
+            "y": 689.745,
+            "yaw": 1.5708,
+            "z": 0.63
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 55,
+          "model": "OpenRobotics/Coke",
+          "name": "Coke",
+          "position": [
+            17.766119362519884,
+            -5.5069991466253905,
+            1.08
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Coke",
+            "name": "Coke",
+            "static": false,
+            "x": 2098.651,
+            "y": 650.523,
+            "yaw": 1.5708,
+            "z": 1.08
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 56,
+          "model": "OpenRobotics/TeleportIngestor",
+          "name": "coke_ingestor",
+          "position": [
+            22.542656349675333,
+            -7.610446063889577,
+            0.805
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TeleportIngestor",
+            "name": "coke_ingestor",
+            "static": true,
+            "x": 2662.887,
+            "y": 898.996,
+            "yaw": 1.5708,
+            "z": 0.805
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 57,
+          "model": "OpenRobotics/TeleportIngestor",
+          "name": "coke_ingestor_2",
+          "position": [
+            5.661375911840242,
+            -5.958557110725269,
+            0.8
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TeleportIngestor",
+            "name": "coke_ingestor_2",
+            "static": true,
+            "x": 668.759,
+            "y": 703.864,
+            "yaw": 1.5708,
+            "z": 0.8
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 58,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            16.474310235436608,
+            -10.48782545699672,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 1946.054,
+            "y": 1238.891,
+            "yaw": 0.0093,
+            "z": 0
+          },
+          "yaw": 0.0093
+        },
+        {
+          "id": 59,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            17.385485314792568,
+            -10.477751518051464,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 2053.688,
+            "y": 1237.701,
+            "yaw": 0.0172,
+            "z": 0
+          },
+          "yaw": 0.0172
+        },
+        {
+          "id": 60,
+          "model": "OpenRobotics/SquareShelf",
+          "name": "OpenRobotics/SquareShelf",
+          "position": [
+            20.748470892535565,
+            -3.0699101438902825,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SquareShelf",
+            "name": "OpenRobotics/SquareShelf",
+            "static": true,
+            "x": 2450.946,
+            "y": 362.638,
+            "yaw": -0.0083,
+            "z": 0
+          },
+          "yaw": -0.0083
+        },
+        {
+          "id": 61,
+          "model": "OpenRobotics/Fridge",
+          "name": "OpenRobotics/Fridge",
+          "position": [
+            15.881073748489847,
+            -5.114826629333046,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Fridge",
+            "name": "OpenRobotics/Fridge",
+            "static": true,
+            "x": 1875.977,
+            "y": 604.197,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 62,
+          "model": "OpenRobotics/AdjTable",
+          "name": "OpenRobotics/AdjTable",
+          "position": [
+            22.852434204989382,
+            -4.62764586264356,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/AdjTable",
+            "name": "OpenRobotics/AdjTable",
+            "static": true,
+            "x": 2699.48,
+            "y": 546.648,
+            "yaw": -1.7435,
+            "z": 0
+          },
+          "yaw": -1.7435
+        },
+        {
+          "id": 63,
+          "model": "OpenRobotics/CoffeeTable",
+          "name": "OpenRobotics/CoffeeTable",
+          "position": [
+            23.134165875660052,
+            -3.3360145109534343,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/CoffeeTable",
+            "name": "OpenRobotics/CoffeeTable",
+            "static": true,
+            "x": 2732.76,
+            "y": 394.072,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 64,
+          "model": "OpenRobotics/Drawer",
+          "name": "OpenRobotics/Drawer",
+          "position": [
+            8.732538948977497,
+            -3.365973897446928,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "OpenRobotics/Drawer",
+            "static": true,
+            "x": 1031.545,
+            "y": 397.611,
+            "yaw": 1.178,
+            "z": 0
+          },
+          "yaw": 1.178
+        },
+        {
+          "id": 65,
+          "model": "OpenRobotics/SquareShelf",
+          "name": "OpenRobotics/SquareShelf",
+          "position": [
+            22.52421850175704,
+            -5.690514145327274,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/SquareShelf",
+            "name": "OpenRobotics/SquareShelf",
+            "static": true,
+            "x": 2660.709,
+            "y": 672.201,
+            "yaw": 0.0286,
+            "z": 0
+          },
+          "yaw": 0.0286
+        },
+        {
+          "id": 66,
+          "model": "OpenRobotics/TrashBin",
+          "name": "OpenRobotics/TrashBin",
+          "position": [
+            12.793360668799671,
+            -7.634267966571886,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TrashBin",
+            "name": "OpenRobotics/TrashBin",
+            "static": true,
+            "x": 1511.236,
+            "y": 901.81,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 67,
+          "model": "OpenRobotics/TrashBin",
+          "name": "OpenRobotics/TrashBin",
+          "position": [
+            13.18875853965348,
+            -7.634267966571886,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TrashBin",
+            "name": "OpenRobotics/TrashBin",
+            "static": true,
+            "x": 1557.943,
+            "y": 901.81,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 68,
+          "model": "OpenRobotics/TrashBin",
+          "name": "OpenRobotics/TrashBin",
+          "position": [
+            13.584147945012376,
+            -7.63886473030909,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/TrashBin",
+            "name": "OpenRobotics/TrashBin",
+            "static": true,
+            "x": 1604.649,
+            "y": 902.353,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 69,
+          "model": "OpenRobotics/WhiteCabinet",
+          "name": "OpenRobotics/WhiteCabinet",
+          "position": [
+            17.727423585277226,
+            -5.139376564577785,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/WhiteCabinet",
+            "name": "OpenRobotics/WhiteCabinet",
+            "static": true,
+            "x": 2094.08,
+            "y": 607.097,
+            "yaw": -1.564,
+            "z": 0
+          },
+          "yaw": -1.564
+        },
+        {
+          "id": 70,
+          "model": "OpenRobotics/Drawer",
+          "name": "OpenRobotics/Drawer",
+          "position": [
+            17.746597931252857,
+            -5.807727387878537,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "OpenRobotics/Drawer",
+            "static": true,
+            "x": 2096.345,
+            "y": 686.047,
+            "yaw": -1.5751,
+            "z": 0
+          },
+          "yaw": -1.5751
+        },
+        {
+          "id": 71,
+          "model": "OpenRobotics/MetalCabinetYellow",
+          "name": "OpenRobotics/MetalCabinetYellow",
+          "position": [
+            21.690604286784634,
+            -3.4578245172419018,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinetYellow",
+            "name": "OpenRobotics/MetalCabinetYellow",
+            "static": true,
+            "x": 2562.237,
+            "y": 408.461,
+            "yaw": -0.0435,
+            "z": 0
+          },
+          "yaw": -0.0435
+        },
+        {
+          "id": 72,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            6.425048207849878,
+            -3.986537001969557,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 758.969,
+            "y": 470.916,
+            "yaw": 2.6834,
+            "z": 0
+          },
+          "yaw": 2.6834
+        },
+        {
+          "id": 73,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            5.894811934038065,
+            -3.145168393657777,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 696.334,
+            "y": 371.528,
+            "yaw": 1.1071,
+            "z": 0
+          },
+          "yaw": 1.1071
+        },
+        {
+          "id": 74,
+          "model": "OpenRobotics/OfficeChairBlue",
+          "name": "OpenRobotics/OfficeChairBlue",
+          "position": [
+            7.135413282398781,
+            -9.977906370973656,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/OfficeChairBlue",
+            "name": "OpenRobotics/OfficeChairBlue",
+            "static": true,
+            "x": 842.882,
+            "y": 1178.656,
+            "yaw": -2.0863,
+            "z": 0
+          },
+          "yaw": -2.0863
+        },
+        {
+          "id": 75,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            20.85271499688168,
+            -6.417945657618727,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 2463.26,
+            "y": 758.13,
+            "yaw": -0.0145,
+            "z": 0
+          },
+          "yaw": -0.0145
+        },
+        {
+          "id": 76,
+          "model": "OpenRobotics/MetalCabinet",
+          "name": "OpenRobotics/MetalCabinet",
+          "position": [
+            21.687717553019652,
+            -6.425674654473364,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/MetalCabinet",
+            "name": "OpenRobotics/MetalCabinet",
+            "static": true,
+            "x": 2561.896,
+            "y": 759.043,
+            "yaw": -0.0244,
+            "z": 0
+          },
+          "yaw": -0.0244
+        },
+        {
+          "id": 77,
+          "model": "OpenRobotics/Drawer",
+          "name": "OpenRobotics/Drawer",
+          "position": [
+            19.808961801709213,
+            -9.023447216132748,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "OpenRobotics/Drawer",
+            "static": true,
+            "x": 2339.965,
+            "y": 1065.909,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        },
+        {
+          "id": 78,
+          "model": "OpenRobotics/Drawer",
+          "name": "OpenRobotics/Drawer",
+          "position": [
+            19.808961801709213,
+            -9.44867749105637,
+            0.0
+          ],
+          "representation": "position-marker-only",
+          "source": {
+            "dispensable": false,
+            "model_name": "OpenRobotics/Drawer",
+            "name": "OpenRobotics/Drawer",
+            "static": true,
+            "x": 2339.965,
+            "y": 1116.14,
+            "yaw": 1.5708,
+            "z": 0
+          },
+          "yaw": 1.5708
+        }
+      ],
+      "transform": {
+        "kind": "reference_image",
+        "rotation": 0,
+        "scale": 0.008465494911979116,
+        "translation": [
+          0,
+          0
+        ],
+        "yFlip": true
+      },
+      "vertices": [
+        {
+          "id": 0,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 0.6795252765845636,
+          "y": -8.676912181910883,
+          "z": 0.0
+        },
+        {
+          "id": 1,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 4.916717117402911,
+          "y": -0.3673686172002457,
+          "z": 0.0
+        },
+        {
+          "id": 2,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 2.190235171101797,
+          "y": -12.079279241984409,
+          "z": 0.0
+        },
+        {
+          "id": 3,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 22.21738663867236,
+          "y": -13.758283175351787,
+          "z": 0.0
+        },
+        {
+          "id": 4,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 23.782216442161875,
+          "y": -11.427825546527968,
+          "z": 0.0
+        },
+        {
+          "id": 5,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 24.984384443622204,
+          "y": -3.120118994213231,
+          "z": 0.0
+        },
+        {
+          "id": 6,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.580057024062732,
+          "y": -4.711640503160217,
+          "z": 0.0
+        },
+        {
+          "id": 7,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.49013719345465,
+          "y": -4.63487539529839,
+          "z": 0.0
+        },
+        {
+          "id": 8,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.07074173143254,
+          "y": -4.588349035262152,
+          "z": 0.0
+        },
+        {
+          "id": 9,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.111765519775993,
+          "y": -6.102919195459249,
+          "z": 0.0
+        },
+        {
+          "id": 10,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 17.412414054107572,
+          "y": -6.12110307853018,
+          "z": 0.0
+        },
+        {
+          "id": 11,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 16.20561542693039,
+          "y": -6.139523995458646,
+          "z": 0.0
+        },
+        {
+          "id": 12,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.511639550531077,
+          "y": -6.148734453922879,
+          "z": 0.0
+        },
+        {
+          "id": 13,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 14.079464052312275,
+          "y": -2.5592799562946147,
+          "z": 0.0
+        },
+        {
+          "id": 14,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 23.683364858074697,
+          "y": -2.8822216561967937,
+          "z": 0.0
+        },
+        {
+          "id": 15,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 23.1498185757523,
+          "y": -6.032037606561247,
+          "z": 0.0
+        },
+        {
+          "id": 16,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 19.429004993574853,
+          "y": -6.1162777464303515,
+          "z": 0.0
+        },
+        {
+          "id": 17,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 19.452403621511564,
+          "y": -9.874534212603479,
+          "z": 0.0
+        },
+        {
+          "id": 18,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 19.44772220282524,
+          "y": -10.763783660137415,
+          "z": 0.0
+        },
+        {
+          "id": 19,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 19.461766458884213,
+          "y": -11.540704455684297,
+          "z": 0.0
+        },
+        {
+          "id": 20,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 22.494580804070203,
+          "y": -11.2739313145231,
+          "z": 0.0
+        },
+        {
+          "id": 21,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 22.780071154481785,
+          "y": -8.681068739912664,
+          "z": 0.0
+        },
+        {
+          "id": 22,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 13.709716631041763,
+          "y": -12.004054854196562,
+          "z": 0.0
+        },
+        {
+          "id": 23,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.789239403337737,
+          "y": -11.952567714141905,
+          "z": 0.0
+        },
+        {
+          "id": 24,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 7.887470919389182,
+          "y": -11.50794299037494,
+          "z": 0.0
+        },
+        {
+          "id": 25,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 5.0034207162914015,
+          "y": -10.693384604449395,
+          "z": 0.0
+        },
+        {
+          "id": 26,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 2.277641406067981,
+          "y": -9.52562037431135,
+          "z": 0.0
+        },
+        {
+          "id": 27,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 6.53267851016078,
+          "y": -1.1435613801846989,
+          "z": 0.0
+        },
+        {
+          "id": 28,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 8.487429009296054,
+          "y": -1.9423062216146643,
+          "z": 0.0
+        },
+        {
+          "id": 29,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.123115005198834,
+          "y": -2.370169265455913,
+          "z": 0.0
+        },
+        {
+          "id": 30,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 11.8122859979555,
+          "y": -2.608608395146717,
+          "z": 0.0
+        },
+        {
+          "id": 31,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 12.184437619781013,
+          "y": -2.599694229004403,
+          "z": 0.0
+        },
+        {
+          "id": 32,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 8.492152755456939,
+          "y": -3.026101207720791,
+          "z": 0.0
+        },
+        {
+          "id": 33,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 7.516377484427665,
+          "y": -4.939700936088934,
+          "z": 0.0
+        },
+        {
+          "id": 34,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 8.337649007818408,
+          "y": -5.354400135342055,
+          "z": 0.0
+        },
+        {
+          "id": 35,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 8.256337929188849,
+          "y": -5.492633201759762,
+          "z": 0.0
+        },
+        {
+          "id": 36,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 5.189085950700927,
+          "y": -3.7721398778287742,
+          "z": 0.0
+        },
+        {
+          "id": 37,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 7.899034785438945,
+          "y": -6.30405088907296,
+          "z": 0.0
+        },
+        {
+          "id": 38,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 5.566960247086938,
+          "y": -10.854085094363494,
+          "z": 0.0
+        },
+        {
+          "id": 39,
+          "name": "presupplies",
+          "parameters": {
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 7.034165963251511,
+          "y": -2.1109896732307605,
+          "z": 0.0
+        },
+        {
+          "id": 40,
+          "name": "patrol_D2",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.247854072726847,
+          "y": -3.09205587858002,
+          "z": 0.0
+        },
+        {
+          "id": 41,
+          "name": "patrol_A1",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.086146188918223,
+          "y": -6.979436538645566,
+          "z": 0.0
+        },
+        {
+          "id": 42,
+          "name": "tinyRobot1_charger",
+          "parameters": {
+            "is_charger": true,
+            "is_holding_point": true,
+            "is_parking_spot": true,
+            "spawn_robot_name": "tinyRobot1",
+            "spawn_robot_type": "Open-RMF/TinyRobot"
+          },
+          "sourceZ": 0.0,
+          "x": 10.433053704916215,
+          "y": -5.5750955876973505,
+          "z": 0.0
+        },
+        {
+          "id": 43,
+          "name": "patrol_D1",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 16.85582469463477,
+          "y": -6.881363780090288,
+          "z": 0.0
+        },
+        {
+          "id": 44,
+          "name": "pantry",
+          "parameters": {
+            "is_holding_point": true,
+            "is_parking_spot": false,
+            "pickup_dispenser": "coke_dispenser"
+          },
+          "sourceZ": 0.0,
+          "x": 16.84633487483844,
+          "y": -5.404067193990636,
+          "z": 0.0
+        },
+        {
+          "id": 45,
+          "name": "",
+          "parameters": {
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 18.7395242949738,
+          "y": -6.873981868527042,
+          "z": 0.0
+        },
+        {
+          "id": 46,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.794423029477986,
+          "y": -10.372406899366796,
+          "z": 0.0
+        },
+        {
+          "id": 47,
+          "name": "lounge",
+          "parameters": {
+            "is_holding_point": true,
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 20.64214427644111,
+          "y": -3.9893052188057747,
+          "z": 0.0
+        },
+        {
+          "id": 48,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 13.130566727628535,
+          "y": -3.964806076530507,
+          "z": 0.0
+        },
+        {
+          "id": 49,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 8.91185506220304,
+          "y": -6.181352005818735,
+          "z": 0.0
+        },
+        {
+          "id": 50,
+          "name": "hardware_2",
+          "parameters": {
+            "dropoff_ingestor": "coke_ingestor",
+            "is_holding_point": true,
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 20.948248106963362,
+          "y": -7.497347051865536,
+          "z": 0.0
+        },
+        {
+          "id": 51,
+          "name": "",
+          "parameters": {
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 7.914645158056635,
+          "y": -7.918869440017712,
+          "z": 0.0
+        },
+        {
+          "id": 52,
+          "name": "coe",
+          "parameters": {
+            "dropoff_ingestor": "coke_ingestor_2",
+            "is_holding_point": true,
+            "is_parking_spot": false
+          },
+          "sourceZ": 0.0,
+          "x": 5.346484897599354,
+          "y": -4.976813665783051,
+          "z": 0.0
+        },
+        {
+          "id": 53,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.157189278566513,
+          "y": -11.22709173117512,
+          "z": 0.0
+        },
+        {
+          "id": 54,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 11.553368836072618,
+          "y": -11.315970962255989,
+          "z": 0.0
+        },
+        {
+          "id": 55,
+          "name": "patrol_C",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.813842874806067,
+          "y": -11.078979432195132,
+          "z": 0.0
+        },
+        {
+          "id": 56,
+          "name": "patrol_B",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 7.988303429285765,
+          "y": -10.780257513236124,
+          "z": 0.0
+        },
+        {
+          "id": 57,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 9.376500681436838,
+          "y": -11.142885453285663,
+          "z": 0.0
+        },
+        {
+          "id": 58,
+          "name": "supplies",
+          "parameters": {
+            "is_parking_spot": true
+          },
+          "sourceZ": 0.0,
+          "x": 6.525838390271901,
+          "y": -3.2459585760798007,
+          "z": 0.0
+        },
+        {
+          "id": 59,
+          "name": "patrol_A2",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.949764861112804,
+          "y": -4.039082328888211,
+          "z": 0.0
+        },
+        {
+          "id": 60,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 11.565889303047436,
+          "y": -6.996807734204947,
+          "z": 0.0
+        },
+        {
+          "id": 61,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.298605371071123,
+          "y": -6.928838275556667,
+          "z": 0.0
+        },
+        {
+          "id": 62,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 11.556323293796899,
+          "y": -9.484427276069658,
+          "z": 0.0
+        },
+        {
+          "id": 63,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.162488678381411,
+          "y": -9.403514075700963,
+          "z": 0.0
+        },
+        {
+          "id": 64,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 6.517305171400626,
+          "y": -5.232928748850067,
+          "z": 0.0
+        },
+        {
+          "id": 65,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 17.067495929413894,
+          "y": -11.09788288233358,
+          "z": 0.0
+        },
+        {
+          "id": 66,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 20.89365413027601,
+          "y": -10.308373895852586,
+          "z": 0.0
+        },
+        {
+          "id": 67,
+          "name": "tinyRobot2_charger",
+          "parameters": {
+            "is_charger": true,
+            "is_holding_point": true,
+            "is_parking_spot": true,
+            "spawn_robot_name": "tinyRobot2",
+            "spawn_robot_type": "Open-RMF/TinyRobot"
+          },
+          "sourceZ": 0.0,
+          "x": 20.423692180237488,
+          "y": -5.312098057266895,
+          "z": 0.0
+        },
+        {
+          "id": 68,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.624399286411677,
+          "y": -6.978979401920319,
+          "z": 0.0
+        },
+        {
+          "id": 69,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.130034057796042,
+          "y": -6.765496551230029,
+          "z": 0.0
+        },
+        {
+          "id": 70,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 10.599959402600794,
+          "y": -4.708305098164897,
+          "z": 0.0
+        },
+        {
+          "id": 71,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 15.495622834157613,
+          "y": -4.628483946639846,
+          "z": 0.0
+        },
+        {
+          "id": 72,
+          "name": "",
+          "parameters": {},
+          "sourceZ": 0.0,
+          "x": 18.080595567510084,
+          "y": -4.582093034522201,
+          "z": 0.0
+        }
+      ],
+      "walls": [
+        {
+          "end": 7,
+          "id": 0,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 6
+        },
+        {
+          "end": 12,
+          "id": 1,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 7
+        },
+        {
+          "end": 11,
+          "id": 2,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 12
+        },
+        {
+          "end": 8,
+          "id": 3,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 7
+        },
+        {
+          "end": 9,
+          "id": 4,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 8
+        },
+        {
+          "end": 10,
+          "id": 5,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 9
+        },
+        {
+          "end": 13,
+          "id": 6,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 14
+        },
+        {
+          "end": 15,
+          "id": 7,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 14
+        },
+        {
+          "end": 16,
+          "id": 8,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 15
+        },
+        {
+          "end": 17,
+          "id": 9,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 16
+        },
+        {
+          "end": 21,
+          "id": 10,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 20
+        },
+        {
+          "end": 21,
+          "id": 11,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 15
+        },
+        {
+          "end": 19,
+          "id": 12,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 18
+        },
+        {
+          "end": 20,
+          "id": 13,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 19
+        },
+        {
+          "end": 19,
+          "id": 14,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 22
+        },
+        {
+          "end": 23,
+          "id": 15,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 24
+        },
+        {
+          "end": 22,
+          "id": 16,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 23
+        },
+        {
+          "end": 25,
+          "id": 17,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 26
+        },
+        {
+          "end": 30,
+          "id": 18,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 31
+        },
+        {
+          "end": 29,
+          "id": 19,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 30
+        },
+        {
+          "end": 28,
+          "id": 20,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 29
+        },
+        {
+          "end": 27,
+          "id": 21,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 28
+        },
+        {
+          "end": 34,
+          "id": 22,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 35
+        },
+        {
+          "end": 33,
+          "id": 23,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 34
+        },
+        {
+          "end": 32,
+          "id": 24,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 33
+        },
+        {
+          "end": 33,
+          "id": 25,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 36
+        },
+        {
+          "end": 36,
+          "id": 26,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 27
+        },
+        {
+          "end": 36,
+          "id": 27,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 26
+        },
+        {
+          "end": 38,
+          "id": 28,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 25
+        },
+        {
+          "end": 24,
+          "id": 29,
+          "parameters": {
+            "alpha": 0.5,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 38
+        },
+        {
+          "end": 38,
+          "id": 30,
+          "parameters": {
+            "alpha": 0.8,
+            "texture_height": 2.5,
+            "texture_name": "wall_white",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 37
+        },
+        {
+          "end": 71,
+          "id": 31,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "blue_linoleum_high_contrast",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 70
+        },
+        {
+          "end": 72,
+          "id": 32,
+          "parameters": {
+            "alpha": 1,
+            "texture_height": 2.5,
+            "texture_name": "blue_linoleum_high_contrast",
+            "texture_scale": 1,
+            "texture_width": 1
+          },
+          "start": 71
+        }
+      ]
+    }
+  ],
+  "lifts": [],
+  "name": {
+    "en": "Office",
+    "zh": "办公室"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "files": {
+      "source/office/office.building.yaml": "e650f465b7dcb1825bf3327d9bc20a44c778c7a36798e7e830b3c898eb90ac07",
+      "source/office/office.png": "4c9972c0be2b913769e62224d3cf8e7adec8da35cbca494c02cb01531a64eced",
+      "source/office/office_scan.png": "fbf6c6ba0f99e1552f33f6a311a527b03e9a9ee757d895c5545b4ee6977dad72"
+    },
+    "license": "Apache-2.0",
+    "repository": "https://github.com/open-rmf/rmf_demos",
+    "revision": "7851a5792d19a037833292a3e2a823b0f9e0c111",
+    "yaml": "/assets/maps/rmf/source/office/office.building.yaml"
+  },
+  "units": {
+    "angle": "rad",
+    "length": "m"
+  },
+  "warnings": [
+    "STATIC_MAP_ONLY",
+    "EXTERNAL_MODELS_ARE_POSITION_MARKERS",
+    "WALL_DISPLAY_HEIGHT_2_5_M_NOT_CALIBRATED"
+  ]
+}

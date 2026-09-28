@@ -7,10 +7,11 @@ const context=await browser.newContext({viewport:{width:1440,height:1100},accept
 const page=await context.newPage();
 const errors=[], externalRequests=[];
 page.on('pageerror',error=>errors.push(error.message));
-page.on('request',request=>{if(new URL(request.url()).hostname!=='127.0.0.1')externalRequests.push(request.url());});
+const origin=new URL(process.env.BASE_URL || 'http://127.0.0.1:4173/classic').origin;
+page.on('request',request=>{if(new URL(request.url()).origin!==origin)externalRequests.push(request.url());});
 await mkdir('artifacts',{recursive:true});
 try {
-  await page.goto(process.env.BASE_URL || 'http://127.0.0.1:4173');
+  await page.goto(process.env.BASE_URL || 'http://127.0.0.1:4173/classic');
   await page.locator('#map svg').waitFor();
   assert.equal(await page.locator('h1').textContent(),'给想法一个验证的地方。');
   assert.ok(await page.locator('.metric-caption').textContent().then(s=>s.includes('PASS')));
@@ -78,10 +79,10 @@ try {
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'320px horizontal overflow');
   assert.deepEqual(errors,[]);
   assert.deepEqual(externalRequests,[],'The workbench must not call external services');
-  const base=process.env.BASE_URL || 'http://127.0.0.1:4173';
+  const base=origin;
   assert.equal((await context.request.get(`${base}/.git/config`)).status(),404);
   assert.equal((await context.request.get(`${base}/README.md`)).status(),404);
-  assert.equal((await context.request.post(base)).status(),405);
+  assert.equal((await context.request.post(base,{headers:{Origin:origin}})).status(),405);
   console.log(`Verified in Chromium ${browser.version()}; no browser errors or external requests.`);
   console.log('Browser smoke passed: A/B/C/D, playback, presets, bilingual UI, batch, JSON/HTML downloads, import validation, 390/320px layout.');
 } finally {await browser.close();}

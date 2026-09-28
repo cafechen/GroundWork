@@ -6,28 +6,74 @@ An open-source, local-first simulation and validation workbench for industrial v
 
 [简体中文](README.zh-CN.md) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [Contributing](CONTRIBUTING.md)
 
-> **v0.1 research prototype.** Runs synthetic, deterministic scenarios with simplified planar kinematics. Not production fleet control, a digital twin of a specific vehicle, or a safety certification tool. No customer data or hardware required.
+> **Park-centric engineering preview.** Five menus: Overview, Maps, Device models, Gateways, Parks. Persistent resources and park-owned devices/tasks, editable business overlays, selected-map planar simulation and evidence. Legacy engines and the separate Chrono lab remain available. No Strategist/Robots runtime dependency; not production fleet control or safety certification.
 
-![GroundWork local workbench](docs/images/workbench-en.png)
+![GroundWork standalone Chrono workbench](docs/images/unified-chrono-en.png)
 
 ## Run locally
 
-Requires Node.js 20 or later and a modern browser. No third-party runtime dependencies, account, API key, build step or `npm install` required.
+Requires Node.js **22.19+** and a modern browser. Install and build the vendored workspace packages first. No account, hardware or model API key is required for template/structured-plan experiments.
 
 ```sh
 git clone https://github.com/cafechen/GroundWork.git
 cd GroundWork
+npm ci
+npm run build
 npm start
 ```
 
-Open **http://127.0.0.1:4173**. The UI starts in Chinese; select **EN** at the top right for English. The server binds to loopback only. Stop it with `Ctrl+C`. Set `PORT=4174 npm start` if the default port is occupied (POSIX shells).
+Open **http://127.0.0.1:4173** for the park platform; `/workbench` retains the three-engine lab and `/classic` the v0.1 lab. The UI supports Chinese/English. Default binding is loopback; stop with `Ctrl+C`. LAN deployment requires an explicit `HOST` override and host allowlist; it has **no user authentication** and must not be exposed publicly. See [deployment](docs/deployment.md).
+
+## Park platform
+
+Create reusable maps/models/gateways, then a park with one or more of each.
+Inside a park: Overview, Scene editor, Devices, Operations, Control panel,
+Analytics, Settings. Resource versions, instances and scene edits persist in SQLite;
+jobs/results retain their existing filesystem history.
+
+Virtual tugger/forklift/AMR simulations use the selected map floor, explicit route,
+walls, restricted/speed zones and supported model parameters. Status refreshes
+automatically; completed runs replay frozen inputs. See the [product guide](docs/park-platform.md).
+
+Physical devices/gateways are **registration only**: no real telemetry, video,
+point-cloud ingestion or takeover. Quadrupeds are definition-only. Vendor/URDF
+imports, sensor simulation and arbitrary-park Chrono dynamics are not connected.
+The screenshot and A/B/C/D details below describe the retained legacy laboratory,
+not the new navigation. Chrono stays in its separate synthetic mechanics lab.
 
 ```sh
 npm test
+npm run test:engines
 npm run check
 ```
 
-Optional browser QA: with Playwright and its Chromium browser installed, start the app and run `node scripts/browser-smoke.mjs`. `PLAYWRIGHT_MODULE` and `CHROME_PATH` can point to existing installations. This checks all four modules, language switching, replay, imports, exports, batch runs and small-screen overflow. Screenshots are saved to the ignored `artifacts/` folder. Playwright is a QA-only dependency, not an application dependency.
+Optional browser QA: `BASE_URL=http://127.0.0.1:4173 node scripts/workbench-smoke.mjs`. `PLAYWRIGHT_MODULE` and `CHROME_PATH` can select existing Playwright/Chrome installations. The older `scripts/browser-smoke.mjs` covers `/classic`. Screenshots go to ignored `artifacts/`. Chrono and map conversion need separately installed Python dependencies; their availability is not implied by Node tests.
+
+## Unified workbench: migrated capabilities
+
+**Map library:** open `/maps` (or the workbench toolbar link) to inspect five
+bundled Open-RMF worlds: Hotel, Office, Airport Terminal, Clinic and Campus.
+Includes floor selection, 2D/3D geometry/topology, graph filters, facility markers
+and source/JSON downloads. Manufacturing & Logistics is explicitly awaiting
+source. The `/maps` viewer is static; parks can use selected-floor walls for a
+**partial planar simulation**, not a complete digital twin. External Gazebo
+meshes are not included, and Campus currently shows navigation topology only.
+No ROS/Python service is needed to browse. See the [map manual](docs/map-library.md).
+
+| Module | Available now | Boundary |
+| --- | --- | --- |
+| A | Copied schema contracts, movement catalog, editable structured plans, plan compilation/validation; local-metre road GeoJSON import; optional model gateway; standalone GeoJSON→AEQD/SDF/RMF converter | Default cases are synthetic. No private site data copied. Natural language is disabled until a real gateway is configured. |
+| B | Existing tugger/forklift kinematics; copied road following/braking/lane-change engine; copied Chrono torque tractor and dynamic 0–3 trailer composition; local 2D/3D replay | These are different vehicle models, not interchangeable backends for one calibrated vehicle. No Chrono forklift/forklift lifting model. |
+| C | Existing full-body FIFO/gate behavior; Chrono station phases, stationary attach/detach, following logic and illustrative charging | Synthetic Chrono demo uses separate loops. No live RMF dispatch, physical door, PLC or real robot connection. |
+| D | Durable file-backed jobs, serial workers, progress/cancellation, restart recovery, run provenance, pair comparison, 12-run yard regression, JSON/HTML and map/trajectory exports | No accounts, cloud service, MCAP pipeline or production data management. XOSC is a trajectory catalog; downstream interoperability is unverified. |
+
+The full copied behavior/template/search library is also available as `@groundwork/scenario-engine`; not every SDK capability has a dedicated GUI. See the [integration manual](docs/unified-workbench.md), [source provenance](docs/source-provenance.md), and [change record](docs/changes/unified-workbench/intent.md).
+
+For a full Chrono service cycle, select **Chrono**, **1 vehicle**, **3 trailers**, **120 s**, then run and replay. `MISSION_COMPLETE` means the modeled operational cycle completed; `NOT_EVALUATED` means the horizon ended without that evidence. Neither means certified safe. Ground-inclusive contact totals are never labeled accident counts.
+
+## Preserved classic lab
+
+The following v0.1 table, demos and kinematic contracts apply specifically to **`/classic` and the `yard` engine**, not to Chrono or the road engine.
 
 ## Four modules, one reproducible experiment
 
@@ -48,7 +94,7 @@ All four screens use the **same simulation output**. Metrics are calculated, not
 
 Then open **D**, run the **12 paired trials** and inspect candidates. Each of six conditions (two seeds × three door timings) is run with FIFO and with no lock. The comparison changes only the policy within each pair. It intentionally illustrates regressions; it is not a benchmark against commercial planners.
 
-## Model and metric contract
+## Legacy `/classic` model and metric contract
 
 - Coordinates: metres, seconds, radians; +x east, +y north; counterclockwise heading. Fixed integration step defaults to 0.1 s; maximum horizon 90 s by default.
 - Tractor state is referenced to its rear axle. The trailer hitch is at that axle; its parameter is **hitch-to-trailer axle distance**, not body length. Trailer body size is fixed at 2.3 × 1.65 m. This topology does **not** represent every industrial towing cart.
@@ -75,7 +121,7 @@ src/
     geometry.js          B: polygon geometry and distances
     simulation.js        B/C: motion, resources, events and frames
     experiments.js       D: paired experiments and report export
-scripts/serve.mjs         Loopback-only static server
+scripts/serve.mjs         Standalone HTTP/API entry point (loopback default)
 tests/core.test.js        Node built-in regression tests
 docs/                    Architecture and roadmap (bilingual)
 ```
@@ -83,7 +129,7 @@ docs/                    Architecture and roadmap (bilingual)
 - **Scene JSON** imports/exports template configuration only. It is not an arbitrary geometry format. Only schema version 1 / `crossing-yard` is accepted.
 - **Run JSON** includes engine version, full scenario/configuration, seed, time step, metrics, task results, frames and events. Run-bundle import is not yet supported.
 - **HTML report** is a standalone, script-free result summary, event table and configuration; a computed batch is included when present.
-- Runs live in memory until download; refresh loses unsaved runs. No telemetry, external fonts, CDN dependencies, upload or cloud service. The GitHub link navigates to an external website only when clicked.
+- In `/classic`, runs live in browser memory until download. Unified workbench jobs/results persist under `data/runs/` (or `GROUNDWORK_DATA`). No telemetry, external fonts or CDN. Explicit model-gateway use sends the entered prompt and movement catalog to the administrator-configured endpoint.
 - Re-run a saved configuration with the same engine version to reproduce it. The output is deterministic in the tested runtime; bit-identical floating-point results across all browsers/architectures are not promised.
 
 ## Direction
@@ -92,7 +138,7 @@ Start with a small, inspectable engineering loop:
 
 **Scene → vehicle motion → operational interactions → reproducible evidence.**
 
-The next useful work is validated vehicle topology, input contracts and independent reference tests—not a larger animated fleet. Chrono, ROS and MCAP are potential future adapters, not current integrations. We make no SEER, Multiway or coScene compatibility claim.
+The next useful work is validated vehicle topology, richer yard scenarios and independent reference tests. Chrono is integrated; live ROS/RMF and MCAP remain future adapters. We make no SEER, Multiway or coScene compatibility claim.
 
 ## Development principles: AI-native SDLC
 
@@ -101,7 +147,7 @@ GroundWork adopts Anthropic's [The AI-native SDLC playbook](https://claude.com/b
 Our project rules are:
 
 - Before changing simulation behavior, record the intended outcome, model assumptions, affected modules and acceptance cases; obtain the maintainer's agreement on unresolved modeling choices.
-- Keep numerical logic in `src/core`, UI copy in both languages, and scenario evidence reproducible with explicit units, seed and engine version.
+- Keep numerical logic in DOM-free core/engine adapters (`src/core`, `packages/`, `engines/`, `server/park-simulation.mjs`), not in the UI; maintain both languages and explicit units, inputs and engine versions.
 - A fix needs a demonstrated failing case and a passing regression. Never relax a clearance criterion or delete an assertion merely to obtain PASS.
 - Review simulation correctness, local-data exposure and agreement with the requested scope separately. Report uncertainty; self-review is not independent validation.
 - Require explicit authorization for remote writes and releases. Feed reproduced defects into future tests; do not add telemetry or background agents to this local-only prototype by default.
@@ -110,4 +156,4 @@ The operative instructions are in [AGENTS.md](AGENTS.md); the workflow, acceptan
 
 ## License
 
-[MIT](LICENSE). Contributions are welcome; do not upload customer maps, robot logs, credentials or other data without permission.
+[MIT](LICENSE) for original GroundWork code; see [third-party notices](THIRD_PARTY_NOTICES.md) and [source provenance](docs/source-provenance.md) for migrated code/dependencies and publication review. Do not upload customer maps, robot logs, credentials or other data without permission.
