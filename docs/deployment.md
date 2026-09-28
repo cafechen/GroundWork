@@ -1,60 +1,206 @@
 # Deployment / 部署
 
-## Current Next.js deployment / 当前 Next.js 部署
+## Current status / 当前状态
 
-Follow the paired root README for database creation, Prisma generation/migrations,
-explicit empty-database seed, build, web and worker commands. No robots deployment
-was performed for this refactor. / 按根目录双语 README 完成独立库、客户端生成、迁移、
-显式空库初始化、构建、Web 与 worker 启动。本轮没有部署 robots。
+Next.js/MySQL implementation is locally committed as `03c88d2`. **It has not
+been deployed on robots**; the user confirmed the machine was powered off.
+VPN address: `10.9.0.20`. Local default: `127.0.0.1:4173`; `5180` is the
+historical robots preview port, proposed for reuse only after checking occupancy.
+The following is an **unexecuted manual runbook**, not a verified remote release.
+新版已本地提交，但 **robots 尚未部署**，用户确认已关机，VPN 地址如上。
+本机默认 4173；5180 是旧预览端口，仅在核实占用后考虑复用。
+以下为**尚未在远端执行的手工操作手册**，不是远端验收成功记录。
 
-- Web: `npm start`, loopback port 4173; development: `npm run dev`.
-  Worker: `node --env-file=.env.local --import tsx workers/runner.ts`.
-  Web and worker need the SAME database, working directory and artifact directory.
-  两个进程须使用相同库、工程目录和轨迹目录；未启动 worker 时任务排队。
-- Next.js loads `.env.local`; Prisma CLI, worker and seed/import scripts do not
-  automatically do so. Use Node's `--env-file` or explicitly exported variables.
-  Next 自动加载本地环境文件，其他命令需显式加载。
-- Default artifact directory: `data/next-runs`; database and artifacts must be backed
-  up together while writes/workers are stopped. Retain immutable source files.
-  默认轨迹目录如上；停写并停止 worker 后同时备份数据库与文件，保留原始源文件。
-- On a separately authorized LAN deployment, use
-  `node node_modules/next/dist/bin/next start --hostname 0.0.0.0 --port <port>`
-  and set `GROUNDWORK_ALLOWED_HOSTS` to exact hostnames/IPs (comma-separated, no ports).
-  With a reverse proxy, set `GROUNDWORK_ORIGIN` to the external origin and enforce Host.
-  LAN监听需另获授权并设置主机白名单；代理部署配置外部 Origin 且限制 Host。
-- No login, users, roles or tenant isolation. Host/Origin checks do not authenticate.
-  Firewall/VPN must restrict access; never expose this preview publicly.
-  无登录、角色和租户隔离，来源检查不等于认证；需防火墙/VPN，禁止直接公网暴露。
-- Generate Prisma on the target OS. Run the provider's reviewed migration before
-  starting the new service. Do not use `db push` against existing data.
-  在目标系统生成 Prisma，启动前执行对应迁移，不能对现有数据 db push。
-- Optional `GROUNDWORK_CHRONO_PYTHON` and model gateway settings retain their explicit
-  dependency/data-sending boundaries. Next telemetry is disabled in package scripts.
-  Chrono 与模型网关仍需显式配置；模型调用会发送输入；包脚本禁用 Next 遥测。
-- A preview worker is not a multi-host HA scheduler. Expired running leases become
-  interrupted, never automatically successful. Reconcile cancelled/crashed artifacts
-  before manual cleanup; do not delete source evidence to retry.
-  预览 worker 不是多机高可用调度器；过期任务中断，清理前先核对证据。
+## Prerequisites and configuration / 前提与配置
 
-See [database migration/recovery](database/README.md) before cutover.
-切换前阅读数据库迁移与恢复流程。
+Use Node >=22.19 and a dedicated MySQL 8+ database, with permissions scoped to
+GroundWork. Do not reuse another application's business schema. Provisioning
+the server/database and firewall changes require the corresponding authorization.
+Use a new release directory, not an overwrite of the live release. Install/build
+on the target OS; do not copy macOS `node_modules`, generated Prisma binaries,
+`.next`, local secrets or test data to Linux.
+使用独立 MySQL 库和限定权限，不能复用其他应用业务库。安装服务/建库/修改防火墙需
+对应授权；新建 release，不覆盖运行版本。在目标系统安装构建，不复制 macOS
+依赖、Prisma 二进制、.next、本机秘密或测试数据。
+
+Create a protected `.env.local` in the new release, based on [.env.example](../.env.example).
+Example values below are placeholders, not credentials or an existing database.
+Keep artifacts outside releases; Web and worker must share the same working
+directory, database and artifact path. Restrict filesystem permissions to the
+runtime account (for example, `chmod 600 .env.local`).
+按模板创建受保护的环境文件；下方只是占位值，不是现有连接信息。
+轨迹目录放在 release 外，Web/worker 使用相同工作目录、库和轨迹路径，
+文件仅运行账户可读写（例如设置权限 600）。
+
+```dotenv
+DATABASE_PROVIDER=mysql
+DATABASE_URL="mysql://groundwork:REPLACE_WITH_URL_ENCODED_PASSWORD@127.0.0.1:3306/groundwork_robots"
+GROUNDWORK_ARTIFACTS=/home/steven/src/groundwork/data/next-runs
+GROUNDWORK_ALLOWED_HOSTS=10.9.0.20
+GROUNDWORK_ORIGIN=http://10.9.0.20:5180
+NEXT_TELEMETRY_DISABLED=1
+```
+
+Next.js and `scripts/prisma-provider.mjs` load `.env.local`; direct Prisma CLI,
+worker, seed and import commands require explicit loading as below. Add
+`GROUNDWORK_CHRONO_PYTHON` only for a verified independent PyChrono installation.
+No login/roles/tenant isolation exists. Host/Origin checks are not authentication;
+limit access through the trusted VPN/firewall, never expose publicly. Gateway
+URLs are configuration only; optional model-gateway calls have a separate
+data-sending boundary and must not be enabled implicitly.
+Next 与 provider 生成脚本会加载本地环境文件，直接 Prisma CLI、worker、seed 和
+导入需显式加载。仅在已验证的独立 PyChrono 环境配置 Python 路径。
+无登录/角色/租户隔离，Host/Origin 不是认证；只允许可信 VPN 访问，禁止公网暴露。
+设备网关地址仅作配置，可选模型网关会发送数据，不得默认开启。
+
+## Prepare the new release / 准备新版本
+
+Run from the new release directory on robots, after configuring the dedicated
+database and environment. These commands create schema/data; do not run them
+against a production or unrelated database. Never use `db push` on existing data.
+在 robots 新 release 目录、配置独立库后执行；这些命令会建表/写数据，不能指向生产或
+无关库，不对现有数据执行 db push。
+
+```sh
+npm ci
+node --env-file=.env.local scripts/prisma-provider.mjs --generate
+node --env-file=.env.local node_modules/prisma/build/index.js migrate deploy --schema prisma/mysql/schema.prisma
+npm run build
+```
+
+Choose **one** initialization path before starting Web/worker:
+启动前**二选一**：
+
+- Fresh preview: `node --env-file=.env.local --import tsx scripts/seed-next.ts`.
+  This requires empty resource tables and creates no parks.
+  全新预览显式 seed，要求资源表为空，不创建园区。
+- Preserve legacy data: stop writes/legacy service, back up SQLite (including
+  WAL/SHM if present) and runs, then follow the [import procedure](database/README.md).
+  Use copied sources and a new empty `groundwork_*` target; do not seed first.
+  Import resources before run files; never point the destination at the old runs
+  directory. Review counts, revisions and hashes before cutover.
+  保留旧数据则先停写停旧服务，备份 SQLite（存在的 WAL/SHM 一并保留）和实验目录；
+  使用副本与新的空目标库，先资源后实验，不先 seed，目标轨迹目录不得等于旧目录，
+  切换前核对数量、版本及哈希。
+
+Retain original data and the old release. New writes cannot be rolled back to
+SQLite by merely switching a symlink or connection string; export/reconciliation
+would be required. PostgreSQL is not a verified deployment alternative yet.
+保留原始数据和旧版本；已有新写入后，不能靠软链或连接串切回 SQLite，须导出核对。
+PG 尚未实库验证，不能作为已验证的替代部署方案。
+
+## Start, verify and stop / 启停与验收
+
+First check the VPN address is present and inspect port `5180` (for example,
+`ss -ltnp 'sport = :5180'`). If occupied, identify the owner; only stop a confirmed
+GroundWork legacy process during the approved cutover window. Never blanket-kill
+Node/Python or change the other 5173–5176 demos. `scripts/service.py` is
+**legacy-only**; no new Next.js system service/autostart has been installed.
+先核实 VPN 地址和 5180 占用，确认进程身份；仅在获准切换窗口停止已确认的旧
+GroundWork，不能批量杀进程或改其他演示服务。现有 service.py **仅适用旧版**，
+没有安装新版系统服务或开机自启。
+
+In two foreground SSH terminals, use the same new release directory:
+在两个前台 SSH 终端进入同一新 release 目录：
+
+```sh
+# Terminal 1: Web / 终端一：Web
+node --env-file=.env.local node_modules/next/dist/bin/next start --hostname 10.9.0.20 --port 5180
+```
+
+```sh
+# Terminal 2: worker / 终端二：worker
+node --env-file=.env.local --import tsx workers/runner.ts
+```
+
+This binds Web to the VPN IP, not all interfaces; it will fail if that IP is
+unavailable. Keep both terminals open. Ctrl+C in each stops its process; wait for
+worker/child exit before backup or release replacement. This is a manual preview,
+not a durable process supervisor. Schedule systemd/log rotation separately.
+仅监听 VPN 地址，地址不可用则启动失败。保持两个终端；分别 Ctrl+C 停止，
+等 worker/子进程退出后再备份或换版本。此为手工预览，不是进程守护；
+systemd/日志轮转另行设计部署。
+
+Verify `http://10.9.0.20:5180`, resource inventory and history, then use a synthetic
+fixture under the authorized preview. The [ready-yard command](quickstart.md)
+with that `BASE_URL` writes new resources and a run; it is not a read-only health
+check. Confirm queued→running→completed, nonzero motion, zero sampled contacts,
+2D/3D replay and JSON export; inspect both terminals. Test scripts must target a
+separate disposable database, not retained user data.
+验收页面、资源及历史，再在获准预览用合成示例；远端 ready-yard --apply 会创建资源
+和任务，不是只读健康检查。确认状态流转、非零运动、零采样接触、二维三维回放及 JSON，
+并检查两终端。自动化写测试只能使用独立测试库，不能指向需保留的用户数据。
+
+Without a worker, jobs stay queued. Queued jobs are claimed after restart; expired
+running leases become `interrupted` on a worker tick. A live lease blocks the
+single preview slot until released/expired. Interrupted runs are not automatically
+retried; preserve their evidence and create a new execution when appropriate.
+没有 worker 就一直排队；重启后仍领取排队任务，运行任务租约过期后标记中断，
+有效租约占据单执行槽直到释放或过期。中断任务不自动重试，保留证据再按需新建执行。
+
+## MySQL backup and recovery / MySQL 备份恢复
+
+This procedure is documentation, **not a completed restore drill**. Choose a
+new protected backup directory and verified database name. Freeze writes and stop
+Web/worker first; keep database dump and artifacts from the same window. Configure
+a local MySQL login path interactively with `mysql_config_editor` (for example
+`groundwork-backup`), not a password in command arguments or shell history.
+该流程**尚未实际演练恢复**。选择新的受保护备份目录和已核实库名；停 Web/worker、
+冻结写入，数据库与轨迹同窗口备份。用 mysql_config_editor 交互配置本地登录项，
+不要把密码写进命令参数或历史。
+
+Example commands, after replacing `/secure/backup/NEW_BACKUP` and confirming the
+database/artifact paths; the directory must already exist and files must be new:
+下方替换备份目录并确认库名/轨迹路径后使用；目录须已建立，目标文件不得已存在：
+
+```sh
+mysqldump --login-path=groundwork-backup --single-transaction --no-tablespaces --set-gtid-purged=OFF --result-file=/secure/backup/NEW_BACKUP/groundwork.sql groundwork_robots
+tar -czf /secure/backup/NEW_BACKUP/next-runs.tar.gz -C /home/steven/src/groundwork/data next-runs
+```
+
+Check command exit codes and retain the release commit, configuration securely,
+database dump (including Prisma migration history), artifacts and checksums.
+Never commit backups or secrets. This assumes MySQL tooling and authorized
+permissions; resolve privilege/tool-version errors rather than dropping data.
+检查退出码，并保存代码提交号、受保护配置、包含 Prisma 迁移历史的库备份、轨迹及校验和；
+不得提交备份或秘密。命令需 MySQL 工具及获准权限，遇权限/版本错误先解决，不能删库绕过。
+
+For a restore drill, provision a **new empty** `groundwork_recovery_*` database
+and a separate artifact directory. Restore there, never over the active database:
+恢复演练先建**新的空** groundwork_recovery_* 库和独立轨迹目录，不覆盖活动库：
+
+```sh
+mysql --login-path=groundwork-backup groundwork_recovery_REPLACE < /secure/backup/NEW_BACKUP/groundwork.sql
+tar -xzf /secure/backup/NEW_BACKUP/next-runs.tar.gz -C /absolute/new-recovery-data
+```
+
+Use the matching release, point a separate protected environment at the restored
+database and extracted `next-runs` directory, and regenerate the Prisma client.
+Do not seed. Verify resource counts/revisions, artifact hashes and representative
+historical replays with Web on an unused loopback port. Keep the worker stopped
+until queued executions have been reviewed: starting it can run restored queued
+jobs. Apply later reviewed migrations only as part of a separately checked upgrade.
+恢复时用匹配代码版本及独立环境文件，指向恢复库和解压的 next-runs 并生成 Prisma 客户端；
+不要 seed。在未占用本机端口启动 Web，核对数量、版本、文件哈希和历史回放；
+审查恢复的排队任务前不启动 worker，否则会执行它们。后续迁移只在另行核验的升级中应用。
 
 ## Historical legacy service / 以下为历史旧服务
 
 The commands and robots state below belong to the old Node/SQLite service.
-For that runtime replace `npm start` with `npm run legacy:start`; these are not
-instructions for the new Next.js app. / 以下命令与 robots 状态属于旧 Node/SQLite 服务；
-旧服务启动改用 legacy:start，不适用于新 Next.js。
+They are not instructions for the new Next.js app. The helper starts
+`scripts/serve.mjs`, not Next.js or its worker. / 以下命令与 robots 状态属于旧 Node/SQLite 服务；
+助手启动 scripts/serve.mjs，不会启动 Next.js 或其 worker。
 
-Status below was last verified on 2026-09-28; it is not a live availability check.
-下述部署状态最后验证于 2026-09-28，不是实时在线承诺。
+Status below records the earlier legacy deployment on 2026-09-28; later the user
+confirmed the machine was powered off. It is not a live availability check.
+下述状态记录 2026-09-28 较早的旧版部署；之后用户确认机器已关机，不是实时在线承诺。
 
 ## Local / 本机
 
 ```sh
 npm ci
-npm run build
-npm start
+npm run build:engines
+npm run legacy:start
 ```
 
 Node >=22.19. Defaults to `127.0.0.1:4173`. The `yard` and `road` engines work

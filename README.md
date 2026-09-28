@@ -12,7 +12,7 @@ The application is standalone: no Strategist/Robots runtime imports, services or
 
 ## Start locally
 
-Requires Node.js **22.19+**, a dedicated MySQL 8+ database and a modern browser. Configure `.env.local` using [.env.example](.env.example). Never use another application's business database or commit credentials. Next.js reads `.env.local`; scripts and worker need explicit environment loading:
+Requires Node.js **22.19+**, a dedicated MySQL 8+ database and a modern browser. Configure `.env.local` using [.env.example](.env.example). Never use another application's business database or commit credentials. Next.js and the Prisma provider generator read `.env.local`; direct Prisma CLI, seed/import scripts and worker need explicit environment loading:
 
 ```sh
 npm ci
@@ -37,7 +37,7 @@ Five menus: **Overview, Maps, Device models, Gateways, Parks**. Each park contai
 4. Create a virtual device; pick its spawn or use a saved route's start. Full-body clearance still requires validation.
 5. Create a same-map/floor task, simulate, replay frozen results in 2D/3D and inspect metrics.
 
-[Prechecked yard example](docs/quickstart.md) · [Troubleshooting](docs/troubleshooting.md). `completed` means computation ended, not a safety verdict.
+[Park manual](docs/park-platform.md) · [Prechecked yard example](docs/quickstart.md) · [Troubleshooting](docs/troubleshooting.md). `completed` means computation ended, not a safety verdict.
 
 Five bundled RMF maps: Hotel, Office, Airport Terminal, Clinic and Campus. Manufacturing & Logistics awaits source. Campus is topology-only; external meshes are absent. React map preview supports floor selection, 2D/3D, graph/layer filters, facility overlays and JSON export.
 
@@ -60,13 +60,13 @@ Old JavaScript UI/server files remain as explicit compatibility and regression b
 SQLite/run importers default to dry-run and require explicit source paths. Apply only to dedicated empty targets after backup; source files remain unchanged. No robots/production data was migrated or deployed in this change.
 
 ```sh
+npm run build
 npm test
 npm run test:next
 npm run test:engines
 npm run check
 npm run lint
-npm run build
-# Explicit isolated groundwork_* test database required:
+# Explicit isolated groundwork_* test database required; stop the normal worker:
 node --env-file=.env.local --import tsx --test tests-next/database.integration.js
 ```
 

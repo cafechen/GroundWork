@@ -12,7 +12,7 @@ TypeScript、Next.js App Router、React、真实 shadcn/ui（Radix）、Tailwind
 
 ## 本地启动
 
-需要 **Node.js 22.19+**、独立 MySQL 8+ 数据库和现代浏览器。参照 [.env.example](.env.example) 配置 `.env.local`，不要使用其他应用的业务库，不提交凭证。Next.js 自动读取该文件；脚本和 worker 要显式加载：
+需要 **Node.js 22.19+**、独立 MySQL 8+ 数据库和现代浏览器。参照 [.env.example](.env.example) 配置 `.env.local`，不要使用其他应用的业务库，不提交凭证。Next.js 与 Prisma provider 生成脚本自动读取该文件；直接 Prisma CLI、seed/导入脚本和 worker 要显式加载：
 
 ```sh
 npm ci
@@ -37,7 +37,7 @@ node --env-file=.env.local --import tsx workers/runner.ts
 4. 创建虚拟设备，点击初始位置或使用已保存路线起点；整车净空仍需验证。
 5. 创建同地图同楼层任务，仿真后在 2D/3D 回放冻结结果并查看指标。
 
-[已预检园区示例](docs/quickstart.md) · [故障排查](docs/troubleshooting.md)。`completed` 仅表示计算结束，不是安全判定。
+[园区操作手册](docs/park-platform.md) · [已预检园区示例](docs/quickstart.md) · [故障排查](docs/troubleshooting.md)。`completed` 仅表示计算结束，不是安全判定。
 
 内置五张 RMF 地图：酒店、办公室、机场、诊所、校园；制造与物流待补源码。校园只有拓扑，外部网格未包含。React 地图预览支持楼层选择、2D/3D、导航图/图层筛选、设施叠层及 JSON 导出。
 
@@ -60,13 +60,13 @@ Chrono 仍使用独立合成力学世界，不接任意园区地图。`GROUNDWOR
 SQLite 和实验文件导入器默认 dry-run，必须显式指定源路径；备份后仅向独立空目标应用，不修改源文件。本轮未迁移 robots/生产数据，未部署。
 
 ```sh
+npm run build
 npm test
 npm run test:next
 npm run test:engines
 npm run check
 npm run lint
-npm run build
-# 必须显式使用独立 groundwork_* 测试库：
+# 必须显式使用独立 groundwork_* 测试库，并停止平时运行的 worker：
 node --env-file=.env.local --import tsx --test tests-next/database.integration.js
 ```
 

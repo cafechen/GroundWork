@@ -1,8 +1,11 @@
 # Documentation / 文档中心
 
-Current work: approved Next.js/MySQL refactor, not deployed or committed; see
+Current implementation: Next.js/MySQL refactor committed locally as `03c88d2`,
+not pushed or deployed at this checkpoint. robots is powered off; its VPN IP is
+`10.9.0.20`. See the current [documentation alignment](changes/nextjs-docs-alignment.md) and
 [implementation review](changes/nextjs-platform/review.md).
-当前为已批准的 Next.js/MySQL 重构工作区，尚未提交或部署，证据见实施自检。
+当前重构已本地提交03c88d2，截至本次记录未推送或部署；robots关机，VPN地址10.9.0.20。
+本次文档对齐与实施证据见上述记录。
 
 Documents use either paired English/Chinese files or bilingual sections in one
 file. Historical change records describe their original stage, not today's feature
@@ -20,7 +23,7 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | [Troubleshooting / 故障排查](troubleshooting.md) | Route saving, initial pose, contact and replay / 路线保存、初始位姿、接触与回放 |
 | [Maps / 地图库](map-library.md) | Five RMF maps, coordinates, missing geometry / 五张 RMF 地图、坐标与几何缺口 |
 | [Deployment / 部署与恢复](deployment.md) | Local/LAN setup, data and release boundaries / 本地与局域网、数据和发布边界 |
-| [Legacy workbench / 旧版实验室](unified-workbench.md) | Yard, road and independent Chrono / 园区、道路与独立 Chrono |
+| [Laboratories / 实验室](unified-workbench.md) | Current React/batch guide, then explicitly historical reference / 当前React与批次说明，下附标明历史的详细参考 |
 
 ## Develop and verify / 开发与验证
 
@@ -34,7 +37,8 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | [Contributing / 贡献](../CONTRIBUTING.md) | Change and verification requirements / 修改和验证要求 |
 | [Agent instructions / 代理说明](../AGENTS.md) | Working entry point / 工作入口 |
 | [Development policy / 开发政策](development-policy.md) | Project-specific AI-native SDLC rules / 项目 SDLC 约定 |
-| [Current SDLC audit / 当前 SDLC 自检](audits/2026-09-28-park-sdlc.md) | Evidence, gaps and next actions / 证据、缺口和后续行动 |
+| [Next.js implementation review / 当前实现自检](changes/nextjs-platform/review.md) | Current implementation evidence and remaining limits / 当前实现证据及剩余边界 |
+| [Historical park SDLC audit / 历史园区自检](audits/2026-09-28-park-sdlc.md) | Pre-Next.js findings; not current UI status / Next.js迁移前发现，不代表当前UI状态 |
 | [Initial SDLC audit / 初始自检](audits/2026-09-28-ai-native-sdlc.md) | Historical adoption snapshot / 采用原则时的历史快照 |
 | [Source provenance / 源码来源](source-provenance.md) | Copied-code origins and redistribution caveats / 平移来源和再分发限制 |
 | [Third-party notices / 第三方说明](../THIRD_PARTY_NOTICES.md) | Dependency and asset notices / 依赖及资源声明 |
@@ -49,9 +53,10 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | Runnable example / 可运行示例 | [Record / 记录](changes/ready-yard-demo.md) |
 | Documentation and audit / 文档与审计 | [Record / 记录](changes/bilingual-docs-and-sdlc.md) |
 | Next.js refactor / Next.js 重构 | [Intent / 意图](changes/nextjs-platform/intent.md) · [Spec / 规格](changes/nextjs-platform/spec.md) · [Plan / 计划](changes/nextjs-platform/plan.md) · [Review / 自检](changes/nextjs-platform/review.md) |
+| Next.js documentation alignment / 文档对齐 | [Record / 记录](changes/nextjs-docs-alignment.md) |
 
 Historical records that say “not committed” describe the moment they were written.
-Their implementation and records were subsequently committed together as `a634805`;
+The pre-Next.js park implementation and its records were subsequently committed as `a634805`;
 this does not establish separate pre-implementation approval commits or a release
-built from that later commit. / 历史“未提交”指撰写当时；后续统一进入 `a634805`，
+built from that later commit. / 历史“未提交”指撰写当时；迁移前园区实现与记录后续进入 `a634805`，
 不能据此倒推成分阶段事前审批，也不能称旧部署由这个后来的提交构建。

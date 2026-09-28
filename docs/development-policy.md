@@ -60,8 +60,9 @@ Track useful signals when records exist: first-pass check results, review-discov
 
 ## 6. Enforced today versus required next / 现有保障与后续要求
 
-For dated evidence after the park refactor, see the [current audit](audits/2026-09-28-park-sdlc.md).
-园区重构后的带日期证据见[当前自检](audits/2026-09-28-park-sdlc.md)，不把原始采用记录当成现状。
+For current dated evidence, see the [Next.js review](changes/nextjs-platform/review.md).
+The [pre-Next.js park audit](audits/2026-09-28-park-sdlc.md) is historical evidence.
+当前带日期证据见 Next.js 自检；迁移前园区审计保留为历史，不把原始采用记录当成现状。
 
 - Present: local validation in application code; runnable core tests; a browser-smoke script; a CI workflow file for core checks. / 已有：输入校验、核心测试、浏览器验收脚本、核心检查 CI 配置。
 - Not verified: hosted CI runs and GitHub branch protection. A workflow file is not proof that remote checks ran or that merging is blocked on failure. / 未验证：远端 CI 运行及分支保护；配置文件不等于检查已运行或失败必然阻止合并。

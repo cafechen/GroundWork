@@ -1,7 +1,10 @@
 # Implementation review / 实施自检
 
 Date / 日期：2026-09-28. Same-session self-review, **not independent approval**.
-本记录为同会话自检，不是独立审查。本轮未提交、推送或部署。
+The initial review preceded commit; implementation was later locally committed as
+`03c88d2`. No push or robots deployment. See [documentation alignment](../nextjs-docs-alignment.md).
+本记录为同会话自检，不是独立审查。首轮撰写时未提交，后续已本地提交 03c88d2；
+未推送或部署 robots，文档校对见上述记录。
 
 ## Approval and scope / 批准与范围
 

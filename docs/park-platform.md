@@ -1,23 +1,10 @@
 # Park platform / 园区平台
 
-## Next.js transition / Next.js 迁移说明
+This manual describes the current React/Next.js application at `03c88d2`, not the
+retained legacy UI. Start Web **and** worker using the [README](../README.md).
+本文对应当前 React/Next.js 应用，不是保留的旧界面。按 README 同时启动 Web 和 worker。
 
-The current default is React/Next.js + MySQL/Prisma; see the root README and
-[implementation review](changes/nextjs-platform/review.md). Five menus and seven
-park tabs are retained. Old hash URLs become `/parks/<id>/<tab>`.
-当前默认 React/Next.js + MySQL/Prisma；五主菜单和七子页保留，旧 hash URL 改为页面路径。
-
-Current React includes map graph/layer filters and facility overlays alongside
-scene/device/task editing and replay. The standalone lab also has persistent
-six-pair regression summaries. Detailed screenshots below describe the legacy
-layout, not an exact React layout. No new Gazebo or live-device support.
-当前 React 已有地图导航图/图层筛选、设施叠层、场景/设备/任务编辑和回放；独立实验室
-具备持久化六组配对汇总。下方截图仍是旧布局，不是 React 精确布局；未新增 Gazebo 或实机接入。
-
-## Legacy detailed reference / 以下为旧版详细参考
-
-The current root UI is a park-centric engineering preview. The accepted navigation is:
-当前首页是以园区为中心的研发预览，菜单为：
+## Navigation / 导航
 
 ```text
 总览 / Overview
@@ -34,90 +21,132 @@ The current root UI is a park-centric engineering preview. The accepted navigati
   园区配置 / Settings
 ```
 
-## First experiment / 第一个实验
+Main paths: `/`, `/maps`, `/models`, `/gateways`, `/parks`.
+Park pages use `/parks/<id>/<tab>`, not legacy hash URLs.
+主页面路径如上；园区使用独立页面路径，不再使用旧版 hash 地址。
 
-For a no-setup moving example, use the [ready yard](quickstart.md). The manual
-steps below use an empty map; do not reuse their coordinates blindly in Hotel.
-无需手工配置的演示见[可运行示例](quickstart.md)。下面的坐标适用于新建空白地图，
-不能直接搬到酒店地图；已有障碍物的场景需要检查完整车体余量。
+## Resource management / 资源管理
 
-1. Maps → Create a blank map, e.g. 60 × 40 m. The five RMF maps can also be selected;
-   they contain real imported topology, but not all obstacle meshes. Manufacturing
-   & Logistics remains unavailable. / 创建 60 × 40 m 空白地图，或选择已有五张 RMF
-   地图；第六张仍待源码，不伪造。RMF 拓扑可用不等于环境碰撞几何完整。
-2. Models → use a generic tugger/forklift/AMR or clone/edit/import normalized JSON.
-   These are uncalibrated internal models, not vendor-validated robots. / 使用、复制、
-   编辑或导入设备模型；内置为通用未标定模型，不是厂商认证模型。
-3. Parks → Create → select map(s), model version(s), local simulation gateway.
-   / 创建园区并选择地图、设备模型版本、本地仿真网关。
-4. Scene editor → 2D → Add Route → click (8,10), (28,10), Finish route → save the
-   object dialog → Save scene. Edit exact points in the dialog. A blue unfinished
-   route is not saved by Save scene alone. Undo/redo applies to the scene draft.
-   / 2D 中切换“添加 路线”，点击两点，“完成路线”并保存对象弹窗，最后“保存场景”。
-   可在弹窗修改准确坐标；只点“保存场景”不会保存蓝色未完成路线。撤销/重做针对场景草稿。
-5. Devices → virtual tugger, selected model/map/floor, spawn (8,10,0), local gateway,
-   channels `["state","events"]`. / 创建设备实例，类型选虚拟，指定同一地图楼层，
-   初始位姿 (8,10,0)，绑定本地仿真网关及通道。
-6. Operations → task for that device/route, speed 1 m/s, duration 30 s → Run simulation.
-   Control panel refreshes status automatically, then starts playback. / 创建 30 秒、
-   1 m/s 的任务并运行；控制面板自动更新作业状态，完成后播放。
-7. Seek or switch 2D/3D; inspect Analytics and download JSON/HTML evidence.
-   / 拖动时间轴、切换 2D/3D、查看统计分析并下载 JSON/HTML 证据。
+| Area / 功能 | Current controls / 当前操作 | Boundary / 边界 |
+| --- | --- | --- |
+| Maps / 地图 | Create/edit normalized JSON, choose a JSON file (up to 4 MiB), view floors and layers, download JSON, clone/archive / 创建编辑规范化 JSON、选择 JSON 文件（最大 4 MiB）、楼层图层预览、下载、克隆归档 | No blank-map drawing wizard, CAD/SDF/URDF/mesh importer / 无空白地图绘制向导或 CAD/SDF/URDF/网格导入器 |
+| Device models / 设备模型 | Create/edit category, dimensions, wheelbase, limits, mass, trailer parameters and sensor declarations; view/download JSON, clone/archive / 编辑类型、尺寸、轴距、限制、质量、挂车及传感器声明，查看下载、克隆归档 | No full-model file-import UI or vendor calibration; declarations do not simulate sensors / 无整模型文件导入界面或厂商标定；声明不代表传感器仿真 |
+| Gateways / 网关 | Configure simulation/external adapter, location, endpoint and channels JSON; view/download, clone/archive / 配置适配器、位置、端点及通道，查看下载、克隆归档 | Configuration only; no connection/heartbeat/video/lidar / 仅配置，未实现连接、心跳、视频、雷达 |
+| Parks / 园区 | Create/edit name, description and map/model/gateway bindings; open, clone/archive / 创建编辑名称、说明及资源绑定，打开、克隆归档 | Maps/models pin revisions; multiple bindings are not spatial map stitching or cross-floor routing / 地图模型固定版本；多绑定不代表拼图或跨层导航 |
+
+Seed explicitly supplies Hotel, Office, Airport Terminal, Clinic and Campus maps,
+generic models and a simulation gateway, but no park. Manufacturing & Logistics
+awaits source; Campus is topology-only and external model meshes are absent.
+For a known moving example, use the [ready yard](quickstart.md).
+显式 seed 提供五张地图、通用模型和仿真网关，不自动建园区；第六张待源码，
+Campus 仅拓扑，外部模型网格缺失。先看能跑的示例请用快速入门。
+
+## Create and run a park / 创建园区并运行
+
+Scene tools include `select`, `route`, `charging`, `parking`, `loading`, `unloading`,
+`waypoint`, `door`, `restricted` and `speed`. In 2D, choose a non-route object tool
+and click to place it; edit name, position, heading and dimensions in its dialog,
+apply to the draft, then save the scene. Restricted/speed zones affect the current
+simulation; charging, door and loading stations do not perform equipment actions.
+场景工具包括选择、路线、充电、停靠、装货、卸货、路点、门、禁行区及限速区，
+下拉值为上述英文标识。二维中选择非路线对象工具并点击放置，在弹窗编辑名称、位置、
+朝向和尺寸，应用草稿后保存场景。禁行区/限速区影响当前仿真，充电、门、装卸站点不执行设备动作。
+
+1. **Parks → Create**: select map(s), model(s) and the local simulation gateway.
+   **园区管理 → 创建**：绑定地图、设备模型和本地仿真网关。
+2. **Scene editor → 2D**: choose the map/floor, select tool `route`, then click
+   at least two distinct points in clear space. The orange dashed line is a draft.
+   **场景编辑 → 2D**：选择地图楼层、工具 `route`，在空旷区域点击至少两个不同的点；
+   橙色虚线是未完成草稿。
+3. Click **Finish route**, edit its name/points in the dialog, then **Apply to draft**.
+   Click **Save scene** to persist. Save is disabled while unfinished route points
+   remain; finish or clear the draft first. Undo/redo changes the local scene draft.
+   点击**完成路线**，在弹窗编辑名称/坐标并**应用到草稿**，再**保存场景**。
+   有未完成路线点时不能保存，须先完成或清除；撤销/重做作用于本地场景草稿。
+4. **Devices → Create device**: choose a virtual instance, allowed model, same
+   map/floor, simulation gateway and its state/events channels. Click the embedded
+   2D map to set x/y (yaw stays unchanged), enter numeric pose, or **Use route start**
+   to copy the first point and first-segment heading. **Save device** persists it;
+   this does not guarantee whole-body/trailer clearance.
+   **设备实例 → 创建设备**：选择虚拟设备、模型、同图同层及仿真网关通道。
+   在弹窗二维地图点选 x/y（不改航向）、输入数值，或**使用路线起点**复制首点和首段航向，
+   最后**保存设备**。这不保证完整车身/挂车无碰撞。
+5. **Operations → Create task**: select device, same-map/floor route, speed and
+   duration. Missing-device/route notices identify prerequisites; save the scene
+   before running. Click **Start simulation**; this queues work, not live playback.
+   **作业管理 → 创建任务**：选择设备、同图同层路线、速度和时长；按缺少设备/路线提示补齐，
+   保存场景后点**开始仿真**。此时提交计算队列，不是直接播放动画。
+6. Open **Control panel**, wait for completion, then select **Replay** beside the run.
+   Playback starts when a result is loaded; use Play/Pause, timeline, speed and
+   2D/3D. JSON is downloadable here; HTML reports are available through the
+   [report API](api.md), not a current park-panel button.
+   打开**控制面板**等待完成，在对应记录旁点**回放**；结果加载后自动播放，
+   可播放暂停、拖动时间轴、调速和切换二维三维。面板可下载 JSON；
+   HTML 报告通过接口获取，当前园区面板没有该按钮。
+7. **Analytics** displays fetched runs and raw metrics (API caps the run list at
+   200). **Settings** edits the description and exports configuration JSON; save
+   drafts first when exporting persisted state. Change resource bindings through
+   the park list's **Edit** dialog.
+   **统计分析**展示已获取实验及原始指标（接口列表最多 200 条），不再是旧版最近 30 条。
+   **园区配置**可改说明、导出 JSON；需要导出已持久化状态时先保存草稿。
+   资源绑定在园区列表的**编辑**弹窗修改。
+
+Route start proximity (within 2 m) does not prove clearance. A `CONTACT` result
+with zero distance means the simulation found contact without movement; a finished
+worker job is not a successful route. See [troubleshooting](troubleshooting.md).
+距起点两米内只满足初始位置检查，不证明车体无碰撞。零距离且 CONTACT 表示未移动便检测到接触；
+进程 completed 不等于作业完成，详见排障。
 
 ## Implemented boundary / 已实现边界
 
-| Area / 功能 | Current behavior / 当前行为 | Not implemented / 未实现 |
-| --- | --- | --- |
-| Resources / 资源 | Create/edit/clone/import/export/archive; immutable saved versions, reference checks / 增改复制、JSON 导入导出、归档、版本与引用检查 | CAD/URDF/mesh import, vendor fidelity / CAD、URDF、网格及厂商标定 |
-| Parks / 园区 | Multiple map/model/gateway references; per-floor scene; object editor, undo/redo; persisted instances/tasks / 多资源绑定、分层编辑、撤销重做、设备任务持久化 | Cross-map routing, combined spatial map, concurrent multi-user editing / 跨图路径、空间拼图、多用户协作 |
-| Devices / 设备 | Explicit virtual/physical identity; versioned model; gateway/channel registration / 区分虚实、固定模型版本、登记网关与通道 | Actual heartbeat, video, lidar, protocol adapters / 真实心跳、视频、雷达及协议接入 |
-| Simulation / 仿真 | Single device, selected floor/route/model; forward-only pursuit; walls and restricted zones checked; speed zones / 单设备显式路线、选定模型、墙体禁行区采样接触、限速区 | Multi-device scheduling, route planning, perception, reverse docking, lift/load/door actuation / 多机调度、路径规划、感知、倒车、举升装卸门动作 |
-| Controls / 控制 | Queued/running/completed/failed/cancelled jobs, automatic feedback, replay/seek, historical snapshots / 队列状态、自动反馈、回放定位、历史快照 | Real operation or takeover / 实机作业和接管 |
-| Analysis / 分析 | Computed distance, path error, contacts, completion; latest 30 result rows, report/provenance / 实际距离、偏差、接触和完成指标、最近 30 次明细、报告溯源 | Physical telemetry, automatic diagnosis, unlike-case regression conclusions / 实测数据、自动诊断、非配对回归结论 |
+- Single virtual tugger/forklift/AMR, explicit route, forward planar tracking,
+  wall/restricted-zone sampled contact and speed zones. No multi-device scheduling,
+  obstacle avoidance, reverse docking, perception or load/door/lift actuation.
+  单虚拟牵引车/叉车/AMR、显式路线前进跟踪、墙体禁行区采样接触及限速；
+  无多机调度、避障、倒车对接、感知、装卸/门/电梯动作。
+- Quadruped/custom definitions can be stored but are rejected by the park simulator.
+  Physical instances only register assets; replay never controls real devices.
+  四足/自定义模型可登记但园区仿真拒绝运行；真实设备仅登记，回放不控制实机。
+- `/workbench` offers separate yard/road/optional Chrono experiments and persistent
+  six-pair yard regression. Chrono uses its own synthetic worlds, not arbitrary
+  park maps or edited park models. No Gazebo integration.
+  独立实验室提供 yard/road/可选 Chrono 与持久化六组配对回归；
+  Chrono 未连接任意园区地图或模型编辑参数，没有 Gazebo 接入。
+- Layer/graph filters change display only, not collision geometry. Imported lanes
+  are not automatically task routes. Facility markers are not complete meshes.
+  图层/导航图筛选仅改显示，不改碰撞；导入导航线不自动成为任务路线，设施标记不代表完整网格。
 
-Quadruped/custom types are **definition-only** and rejected by the current simulator.
-Chrono remains available at `/workbench` on its explicit synthetic scenarios; it does
-not consume arbitrary park maps or edited device parameters. Defining mass/sensors
-does not make them effective in planar kinematics. / 四足和自定义类型仅定义，运行明确
-拒绝。Chrono 仍在旧版力学实验室使用合成场景；未接通任意园区地图与设备参数。
-质量和传感器定义不参与当前平面运动学。
+## Data and execution / 数据与执行
 
-## Data contract and recovery / 数据契约与恢复
+Current contracts and persistence live in `src/contracts` and `src/server`;
+MySQL/Prisma uses 18 normalized tables with immutable snapshots. Dense artifacts
+default to `data/next-runs`. PostgreSQL schema/migrations exist, but live PG tests
+remain pending. SQLite and `data/runs` belong to the explicit legacy server.
+当前契约和存储位于上述目录，MySQL/Prisma 使用 18 张业务表及不可变快照；
+轨迹默认存 data/next-runs。PG 有结构及迁移但待实库验证，SQLite/data/runs 属旧服务。
 
-- `server/platform-contracts.mjs`: strict resource schemas and bounds. Imports are
-  JSON data only, limited to 4 MiB; no executable/plugin upload. / 严格结构与范围检查，
-  JSON 导入上限 4 MiB，不执行上传内容。
-- `server/platform-store.mjs`: Node SQLite (`user_version=1`), WAL, transactions,
-  optimistic `version` writes, immutable version records, metadata audit. Current
-  DB: `data/platform.sqlite`, or `GROUNDWORK_PLATFORM_DB`. Runs stay in `data/runs`
-  or `GROUNDWORK_DATA`; default database is a sibling of the runs directory.
-- Global records have generated IDs. Parks pin maps/models by `{id,version}`;
-  gateways are mutable configuration references. A saved park is a single revision
-  containing references, map transforms, business objects, devices and tasks.
-  Changes create versions; outdated writes return 409, no silent overwrite.
-- Archiving does not erase data/history. Referenced resources cannot be archived
-  while an active park uses them. Exported park JSON retains local resource IDs;
-  it is **not a self-contained portable asset bundle**. No hard deletion/restore UI.
-- Runs freeze effective model values, route, geometry, business objects and version
-  identities. Historical replay fetches the frozen map version, never latest.
-  UI names may be current labels outside replay; the pinned version remains explicit.
-- Back up the database with SQLite's backup mechanism, or stop GroundWork and copy
-  the database **and any WAL/SHM sidecars together** with run data. Never copy only a
-  live main database. There are no historical platform schema migrations yet.
+Parks pin map/model revisions; gateway references follow editable configuration.
+Stale writes return 409. Referenced resources cannot be archived while an active
+park uses them; archival retains history. Exported park JSON contains local IDs,
+not a self-contained portable asset bundle. No hard-delete/restore-resource UI.
+园区固定地图/模型版本，网关引用可编辑配置；旧版本写入返回 409。
+活动园区引用中的资源不能归档；归档保留历史。园区导出含本地 ID，不是独立资源包，
+没有资源硬删除/恢复界面。
 
-资源使用 Node SQLite，`user_version=1`，启用 WAL、事务、乐观版本写入、不可变历史
-和元数据审计。默认数据库 `data/platform.sqlite`，可由 `GROUNDWORK_PLATFORM_DB`
-覆盖；实验在 `data/runs` 或 `GROUNDWORK_DATA`，默认数据库位于实验目录的同级。
-全局资源 ID 自动生成，园区以 `{id,version}` 固定地图和模型，网关引用则跟随当前配置。
-园区作为一个版本整体保存地图变换、业务对象、实例和任务；过期资源写入返回 409。
+Runs freeze input and version identities; replay reads the frozen map revision.
+A separate worker claims queued jobs. Queued jobs survive restart; running jobs
+with expired leases become interrupted on the next worker tick, not successful
+or automatically resumed. Graceful worker shutdown interrupts its current job.
+The preview permits one active job, up to 12 queued and 200 stored runs.
+实验冻结输入和版本，回放读取历史地图。独立 worker 领取队列；排队任务重启后仍可执行，
+运行任务租约到期后在 worker 下一轮检查标记中断，不冒充成功或自动续算；
+worker 正常退出中断当前任务。预览限制单活动任务、最多 12 条排队及 200 条存储实验。
 
-归档不删除历史；活动园区引用中的资源不能归档。园区 JSON 含本地 ID，不是可独立
-移植的完整资源包，也没有硬删除或归档恢复界面。实验冻结有效模型、路线、几何、
-业务对象和版本，历史回放读取冻结的地图版本。回放外的资源名称可能显示新名称，
-但固定版本仍明确。备份用 SQLite 备份机制，或停服务后将数据库、存在的 WAL/SHM
-边文件和实验目录一起复制；不能只复制运行中的主数据库。尚无旧平台库升级迁移。
-
-Full endpoint/reference guide: [API and data](api.md). 完整接口与字段说明见[接口文档](api.md)。
+Back up the MySQL database and artifacts together after stopping writers/workers.
+Use reviewed migrations and explicit legacy import, not automatic seed or database
+replacement. See [database](database/README.md), [API](api.md) and [deployment](deployment.md).
+停写并停 worker 后一起备份 MySQL 与轨迹；使用审查后的迁移和显式旧数据导入，
+不是自动 seed 或替换现有数据库。操作见数据库、接口和部署文档。
 
 ## Numerical meaning / 数值含义
 

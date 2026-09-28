@@ -31,12 +31,12 @@ Current runtime: Next.js/React/shadcn + Prisma, default MySQL. Follow README for
 - Preserve JSON text envelopes for exact numerical snapshots; do not silently restore native JSON transport. Provider SQL histories remain independent.
 - Map/batch changes also require `tests-next/batch.integration.js` in an idle isolated DB and `scripts/next-layers-batches-smoke.mjs` (Web running, worker stopped). Do not count incomplete pairs as passing or treat hidden map layers as disabled collision geometry.
 
-The following legacy smoke scripts apply only to the retained old server.
+General checks below apply to this repository; the explicitly named legacy browser scripts apply only to the old server.
 
 - `npm ci && npm run build`: install standalone workspaces and build packages, Prisma client and Next.js. Node >=22.19. `npm start`: loopback preview at `http://127.0.0.1:4173`; `/classic` preserves the original lab.
 - `npm test`: all Node core tests must pass, zero failures/skips. Baseline at adoption: 13 tests; this is not a permanent required count.
 - `npm run test:engines`: portable copied TS suites; six private-map suites are explicitly excluded, never count them as passing. `npm run check`: scan maintained JS in src/server/scripts/tests for parse errors; then strict TypeScript; lint remains separate.
-- For UI/interaction changes: run `scripts/platform-smoke.mjs` (park platform), `scripts/maps-smoke.mjs`, `scripts/workbench-smoke.mjs` (legacy unified) and `scripts/browser-smoke.mjs` (classic) with Playwright/Chromium available. Inspect both languages and small screens. `BASE_URL`, `PLAYWRIGHT_MODULE`, `CHROME_PATH` select target/dependencies. Do not invent success if unavailable.
+- For legacy UI/interaction changes: run `scripts/platform-smoke.mjs` (park platform), `scripts/maps-smoke.mjs`, `scripts/workbench-smoke.mjs` (legacy unified) and `scripts/browser-smoke.mjs` (classic) with Playwright/Chromium available. Inspect both languages and small screens. `BASE_URL`, `PLAYWRIGHT_MODULE`, `CHROME_PATH` select target/dependencies. Do not invent success if unavailable.
 - Check changed files and local Markdown links. `git diff --check` does not cover untracked files; audit those separately until the first commit exists.
 - Capture the exact command, runtime, result and evidence location in the change record. Distinguish this run from historical results. Browser outputs under `artifacts/` are ignored; retain a textual verification summary for review.
 
@@ -47,7 +47,7 @@ The following legacy smoke scripts apply only to the retained old server.
 - Keep metres/seconds/radians and axle-reference conventions explicit. Do not substitute an on-axle trailer for a different industrial cart topology without agreement and tests.
 - Preserve full tractor/trailer/drawbar clearance before resource release. Distinguish frame state from full-run metrics, contact episodes from accidents, and sampled footprints from continuous swept volumes.
 - No fabricated scores, safety certification, manufacturer calibration or untested vendor compatibility claims. Simulation tests alone do not validate real vehicles.
-- Synchronize `README.md` / `README.zh-CN.md` and `src/i18n.js` where relevant. Document new schema/version semantics.
+- Synchronize `README.md` / `README.zh-CN.md` and relevant React bilingual strings; `src/i18n.js` belongs to the legacy UI only. Document new schema/version semantics.
 - No customer logs, maps, secrets, telemetry, external uploads or real vehicle control without specific authorization. Default to loopback. The maintainer explicitly authorized the isolated `robots:5180` trusted-LAN preview in this change; that exception does not authorize public exposure or changes to other services.
 - Keep copied engines inside this repository. No runtime import, symlink or service dependency on Strategist/Robots. Different engines retain their model identities; Chrono ground contacts are not accidents; incomplete horizons are not successful safety evaluations.
 - Job state writes must serialize per job; reserve the worker slot before awaited I/O. Cancellation tests must cover cancellation before spawn and must not leave a successful result after cancellation.
@@ -86,14 +86,14 @@ The following legacy smoke scripts apply only to the retained old server.
 - 保留 JSON 文本封装以维持快照数值精度，双数据库分别维护 SQL 历史。
 - 地图/批次变更另跑空闲隔离库 batch.integration.js 和 next-layers-batches-smoke.mjs（Web启动、worker停止）；未完成配对不能计通过，隐藏图层不等于关闭碰撞几何。
 
-下方旧浏览器脚本仅适用于保留的旧服务器。
+下方通用检查适用于本仓库；明确列名的旧浏览器脚本仅适用于保留的旧服务器。
 
 - `npm ci && npm run build` 安装并构建独立 workspace，Node >=22.19；`npm start`
   默认 `http://127.0.0.1:4173`，`/classic` 保留原始实验台。
 - `npm test` 全部 Node 核心测试必须通过、无失败/跳过；最初 13 项只是历史基线。
 - `npm run test:engines` 排除六个依赖私有地图的套件，不计通过。`npm run check`
   解析受维护 JS 后执行严格 TS，lint 单独执行。
-- 界面变更运行 platform/maps/workbench/browser 四类 smoke；后者针对 classic。
+- 旧版界面变更运行 platform/maps/workbench/browser 四类 smoke；后者针对 classic。
   明确 BASE_URL、PLAYWRIGHT_MODULE、CHROME_PATH，检查双语、小屏和实际截图，不虚构成功。
 - 检查改动文件和本地 Markdown 链接；`git diff --check` 不覆盖未跟踪文件，需另查。
 - 变更记录注明准确命令、运行时、结果和证据路径，区分本轮与历史。artifacts 被忽略，
@@ -108,7 +108,7 @@ The following legacy smoke scripts apply only to the retained old server.
 - 单位米/秒/弧度，明确车轴参考；不得未经确认和测试替换拖车拓扑。
 - 资源释放前车头/挂车/牵引杆完整离开；区分帧与全程指标、接触段与事故、采样与连续扫掠。
 - 不编造评分、安全认证、厂商标定或兼容性；仿真测试不证明实车有效。
-- 同步中英 README 和相关界面文案，记录新 schema 和版本语义。
+- 同步中英 README 和相关 React 界面文案；src/i18n.js 仅属于旧版界面。记录新 schema 和版本语义。
 - 客户数据、秘密、遥测、上传和实车控制需明确授权；默认本机。已获准的 robots:5180
   可信局域网预览不授权公网暴露或修改其他服务。
 - 平移引擎留在本仓库，不运行时依赖 Strategist/Robots 的导入、软链或服务；不同引擎
@@ -119,5 +119,6 @@ The following legacy smoke scripts apply only to the retained old server.
   维护者批准；遵守实际环境权限。不因文章提到子代理就擅自启动。
 - 重复且证实的错误转成针对性测试和简洁规则；未经代理评估的实验规则继续标为未验证。
 
-Current documentation and audit: [index](docs/README.md), [audit](docs/audits/2026-09-28-park-sdlc.md).
-当前文档与自检见以上链接；该链接不改变执行规则。
+Current documentation and self-review: [index](docs/README.md), [Next.js review](docs/changes/nextjs-platform/review.md).
+The [pre-Next.js audit](docs/audits/2026-09-28-park-sdlc.md) is historical.
+当前文档与自检见索引和 Next.js 自检；迁移前审计属于历史记录，链接不改变执行规则。

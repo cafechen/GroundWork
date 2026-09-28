@@ -4,11 +4,13 @@
 
 Engineering preview, not a stable public SDK. JSON requests; no authentication.
 Never expose publicly or store secrets. POST requires `Content-Type: application/json`
-and `Origin` exactly matching `http://<Host>`; platform bodies ≤4 MiB, batches ≤16 KiB, other run submissions ≤1 MiB.
+and `Origin` exactly matching `GROUNDWORK_ORIGIN` when set, otherwise `http://<Host>`;
+platform bodies ≤4 MiB, batches ≤16 KiB, other run submissions ≤1 MiB.
 Host allowlisting/origin checks are not identity checks. No real-device command API.
 
 这是工程预览，不是稳定公共 SDK。JSON 请求，无用户认证；不能公开部署或存放秘密。
-POST 需 JSON Content-Type，Origin 必须与 `http://<Host>` 完全一致；平台请求体最多
+POST 需 JSON Content-Type，Origin 必须与配置的 GROUNDWORK_ORIGIN 完全一致，
+未配置则与 `http://<Host>` 一致；平台请求体最多
 4 MiB，批次 16 KiB，其他实验提交 1 MiB。主机和来源检查不验证身份，没有真实设备命令接口。
 
 ## Current runtime / 当前运行时
@@ -101,7 +103,7 @@ a gateway and defined channel names. Do not include keys in URLs or descriptions
 | Endpoint / 接口 | Meaning / 含义 |
 | --- | --- |
 | `GET /api/capabilities` | Legacy engine availability/catalog/limits, not the full park capability matrix / 旧版引擎可用性，不是完整园区能力矩阵 |
-| `GET /api/runs` | All retained jobs / 全部保留实验 |
+| `GET /api/runs` | Retained jobs, newest first, at most 200 / 保留实验倒序，最多 200 条 |
 | `POST /api/runs` | Legacy yard/road/chrono requests; park requests must use park endpoint / 旧版实验，园区需专用接口 |
 | `GET /api/runs/:id` | Job state/progress/error / 状态、进度、错误 |
 | `GET /api/runs/:id/result` | Computed result JSON / 结果 JSON |
@@ -113,9 +115,14 @@ a gateway and defined channel names. Do not include keys in URLs or descriptions
 | `POST /api/compare` | `{baseline,candidate}` job IDs; compatible engine/version/fingerprint/case required / 要求兼容的引擎、版本、指纹和案例 |
 
 Job status `queued/running/completed/failed/cancelled/interrupted` is separate from
-engine verdict. On restart, unfinished jobs become interrupted, not automatically
-resumed. One worker, 12 queued jobs, 200 stored jobs, 10-minute worker timeout.
-任务状态与模型判定不同；重启时未完成任务标为 interrupted，不自动续跑。单 worker，
+engine verdict. Restart retains queued jobs, which the worker continues to claim.
+A running job with an expired lease becomes interrupted on the next worker tick;
+an unexpired lease reserves the slot until expiry. Graceful worker shutdown marks
+its active job interrupted. Interrupted jobs are not resumed/requeued automatically.
+One active preview slot, 12 queued jobs, 200 stored jobs, 10-minute child timeout.
+任务状态与模型判定不同；重启保留queued任务，worker继续领取。running租约过期后在
+下一轮worker检查中标interrupted；未过期租约仍占槽。worker正常退出会将其活动任务
+标为中断；中断任务不自动续跑或重新排队。单活动执行槽，
 最多 12 排队、200 保留任务，worker 超时 10 分钟。
 
 Typical errors: 400 validation/unsupported input, 403 host/origin, 404 missing

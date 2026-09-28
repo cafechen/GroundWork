@@ -1,6 +1,8 @@
 # Intent / 意图：Next.js platform refactor
 
-Date / 日期：2026-09-28. Status / 状态：**maintainer accepted; implementation in progress / 维护者已确认，实施中**。
+Date / 日期：2026-09-28. Status / 状态：**implemented and locally committed as 03c88d2 / 已实施并本地提交 03c88d2**。
+MySQL locally verified; PostgreSQL live tests and robots deployment remain pending. See [review](review.md).
+MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
 
 ## Request / 请求
 
@@ -36,9 +38,9 @@ migration. Python Chrono and map import tooling remain Python.
 In this conversation on 2026-09-28 the maintainer explicitly accepted MySQL +
 Prisma, the proposed schema and plan, with an additional requirement for future
 PostgreSQL support. This authorizes local implementation, not deployment or
-modification of existing databases. The initial proposal remains uncommitted.
+modification of existing databases. The initial proposal was uncommitted at that approval point.
 维护者于本对话明确确认：“采用 MySQL + Prisma，并按上述表结构和计划继续实施，但是要求
-将来能支持PGSQL”。据此进行本地实施；不授权部署或修改已有数据库。初始提案尚未提交。
+将来能支持PGSQL”。据此进行本地实施；不授权部署或修改已有数据库。当时初始提案尚未提交。
 
 Portability: one domain contract/repository API, provider-specific generated
 Prisma schemas and separate SQL migration histories. Avoid raw dialect SQL in

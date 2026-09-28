@@ -1,6 +1,8 @@
 # Specification / 规格
 
-Status / 状态：maintainer accepted; implementation in progress / 维护者已确认，实施中。
+Status / 状态：implemented and locally committed as 03c88d2 / 已实施并本地提交 03c88d2。
+MySQL locally verified; PostgreSQL live tests and robots deployment pending. See [review](review.md).
+MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
 
 Additional accepted requirement: future PostgreSQL support. Keep business code
 provider-neutral, generate both providers' schemas from one model definition,

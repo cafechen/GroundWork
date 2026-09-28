@@ -13,14 +13,17 @@ below. The new URL is `/parks/<id>/control`, not the old hash route.
 The robots URL below is historical and was not redeployed or reverified in this
 refactor. / 下方 robots 链接是历史记录，本轮未重新部署或验证在线状态。
 
-## Existing robots preview / 已有 robots 预览
+## Historical robots example / 历史 robots 示例
 
-Open the [demo's Operations page](http://10.1.153.185:5180/#parks/33fdfc9f-366f-405c-bb40-38334e24f90a/operations)
-on the trusted LAN. Park: **可运行示例 · 牵引车物流园**. Click **Run simulation**;
+The old [demo Operations link](http://10.1.153.185:5180/#parks/33fdfc9f-366f-405c-bb40-38334e24f90a/operations)
+is retained only as historical evidence, not a current startup instruction.
+The user confirmed robots was powered off; VPN address is `10.9.0.20`, and the
+Next.js release is not deployed. In the historical UI, park **可运行示例 · 牵引车物流园** used **Run simulation**;
 the control panel polls the job and starts replay when ready. This creates a new
 simulation run, not a real vehicle command. No route/device setup is needed.
 
-在可信局域网打开上面的作业链接，进入“可运行示例 · 牵引车物流园”，点击**开始仿真**。
+上方旧链接只作历史证据，不是当前启动入口。用户已确认robots关机，VPN地址为
+`10.9.0.20`，新版尚未部署。历史界面进入“可运行示例 · 牵引车物流园”后点击**开始仿真**。
 控制面板等待计算完成后自动播放；这是新建仿真实验，不向实车发送命令，无需再画路线
 或创建设备。不要把它与原来的“亚朵场景”混淆，原场景没有被覆盖。
 
@@ -32,16 +35,26 @@ playback controls are below the viewport. Seek the timeline or switch 2D/3D.
 
 ## Reproduce on a fresh checkout / 新环境复现
 
-Requires Node >=22.19 and dependencies/build from the root README. Terminal 1:
-需要 Node >=22.19，按根 README 安装和构建；终端一启动：
+Requires Node >=22.19 and a dedicated MySQL database. First create `.env.local`,
+generate Prisma and migrate/seed as described in the root README. Do not rerun seed
+on an existing resource database. Then use three terminals in the same repository.
+需要Node >=22.19和独立MySQL库。先按根README配置.env.local、生成Prisma、迁移并显式
+初始化；已有资源库不重复seed。然后在同一工程目录使用三个终端。
+
+Terminal 1 / 终端一（Web）：
 
 ```sh
-npm ci
 npm run build
 npm start
 ```
 
-Terminal 2, in the same repository / 终端二，在同一仓库目录：
+Terminal 2 / 终端二（worker，未启动则任务一直排队）：
+
+```sh
+node --env-file=.env.local --import tsx workers/runner.ts
+```
+
+Terminal 3 / 终端三（示例预检及创建）：
 
 ```sh
 # Read-only synthetic preflight; no server/database writes.
@@ -59,8 +72,8 @@ requires an active local simulation gateway with `state` and `events` channels
 (created by the explicit seed command). Use a remote URL only with permission to write there.
 
 使用脚本输出的园区链接，新环境 ID 不同。`BASE_URL` 只填协议、主机、端口，不带
-结尾斜杠或路径。脚本要求可用的本地仿真网关含 `state`、`events` 通道，通常启动时
-自动初始化。只有获准写入远端时，才把地址换成远端服务器。
+结尾斜杠或路径。脚本要求本地仿真网关含 `state`、`events` 通道，由显式seed命令创建，
+启动不会自动初始化。只有获准写入远端时，才把地址换成远端服务器。
 
 An active same-name demo causes a refusal, not overwrite. If creation fails halfway,
 use logged IDs to inspect partial resources; this is not one cross-resource
@@ -93,10 +106,10 @@ yard bounds, zero sampled contacts and repeat determinism.
 This is an authored route, not automatic planning. Stations are semantic labels;
 no loading mechanics, perception, video, lidar or hardware is simulated. Zero
 sampled contacts does not prove continuous clearance or real-world safety. A good
-fixture does not fix the editor's known first-use problems.
+fixture does not prove unaided first-use usability or general route feasibility.
 
 路线是人工编制而非自动规划；站点只是语义标记，不模拟装卸力学、感知、视频、雷达
-或实机。零采样接触不证明连续间隙或现实安全；成功示例不等于编辑器的首次使用问题已修复。
+或实机。零采样接触不证明连续间隙或现实安全；成功示例不证明首次使用无需协助或任意路线可行。
 
 Sources: [fixture](../examples/ready-yard.mjs), [preflight/seeder](../scripts/ready-yard-demo.mjs),
 [original evidence / 原始证据](changes/ready-yard-demo.md).

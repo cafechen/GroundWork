@@ -12,7 +12,8 @@ PG live integration remains pending. / 地图图层/设施与持久化配对汇�
 - [x] Next.js/React/shadcn + MySQL/Prisma resources, immutable versions / 新架构资源持久化与固定版本
 - [x] Scene overlays, explicit-route planar simulation, frozen replay and metrics / 场景图层、路线运动学、历史回放和统计
 - [x] Prechecked runnable synthetic tugger yard / 已预检的可运行合成牵引车物流园
-- [ ] Close unfinished-route saving and initial-pose/clearance guidance defects / 修复未完成路线保存与初始位置/净空引导缺陷
+- [x] Disable unfinished-route saving; add 2D spawn picking and route-start alignment / 禁止保存未完成路线点，支持二维初始位置点选及路线起点对齐
+- [ ] Improve whole-body clearance guidance and unaided first-use workflow / 完善整车净空引导和首次使用流程
 - [ ] Enforced browser/demo/docs CI and stage/release evidence / 浏览器、示例、文档 CI 及阶段/发布证据保障
 - [ ] Arbitrary-park Chrono model/geometry adapter / 任意园区地图和模型的 Chrono 接入
 - [ ] Vendor model assets, sensor rendering, external algorithms / 厂商模型、感知仿真、外部算法

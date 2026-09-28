@@ -1,7 +1,9 @@
 # Implementation plan / 实施计划
 
-Status / 状态：maintainer accepted on 2026-09-28; implementation in progress /
-维护者已于本对话确认，实施中。另增加未来 PostgreSQL 兼容要求，见 [intent](intent.md)。
+Status / 状态：accepted on 2026-09-28, implemented and locally committed as 03c88d2 /
+维护者已确认，已实施并本地提交。未来 PostgreSQL 兼容要求见 [intent](intent.md)。
+MySQL locally verified; PostgreSQL live tests and robots deployment pending. See [review](review.md).
+MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
 
 ## Proposed layout / 目标目录
 
