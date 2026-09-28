@@ -14,6 +14,13 @@ Physical instances, unsupported models and park Chrono requests fail explicitly.
 See [product contracts](park-platform.md). The old three-engine UI is `/workbench`;
 its history remains separate. Sections below document the preserved legacy components.
 
+根路径使用 platform 页面及 JS/CSS，五主菜单、七园区子菜单；platform-contracts
+负责资源校验，platform-store 负责 SQLite 事务、不可变版本、审计，HTTP 层提供
+平台 API。园区固定地图模型版本，聚合业务对象、设备和任务；park-viewer 叠加图层
+和回放。compileParkRun 将指定楼层/模型/实例/任务解析为冻结请求，simulatePark
+在已有 worker 运行 park-planar-1，不回退到合成场景。实机、不支持模型、园区 Chrono
+均明确拒绝。旧三引擎界面移至 /workbench，历史列表分开。下文旧模型约束不套用于新园区。
+
 ## Static map library / 静态地图层
 
 `/maps` is an independent inspection view linked from the workbench toolbar.
@@ -23,6 +30,9 @@ and `src/map-library.js` / `src/map-viewer.js` handle selection and rendering.
 No ROS or Python runs when browsing. Selecting a map does not mutate experiment
 inputs or results; the existing three engines retain their synthetic scenes.
 See [map library](map-library.md) for coordinate, provenance and mesh limitations.
+
+构建期 import_rmf.py 从固定源生成静态 JSON，map-data 校验独立契约，map-library/
+map-viewer 选择和渲染；浏览无需 ROS/Python。仅在 /maps 选地图不改变旧三引擎实验。
 
 地图是独立数据契约和查看页面，不把静态导入误认为仿真接入。当前五张可用、一张待源码；
 车辆、门禁、电梯仿真另行接入。所有原始资源保留许可与哈希，转换结果单独标识。
@@ -41,6 +51,12 @@ Unified runs use `schemaVersion:2`, `engine`, `engineVersion`, `caseKey`,
 `request`, `validity`, `verdict`, `frames`, `metrics`, `events`, `provenance`.
 Job status (`queued/running/completed/failed/cancelled/interrupted`) is separate
 from model verdict. Results persist under the GroundWork-owned data directory.
+
+集成层 HTTP 提供旧版工作台和有限同源 API，jobs 持久化任务并串行运行可取消子进程。
+yard/road 及园区使用 Node worker，Chrono 使用平移的 Python worker；domain 标准化
+输出但不混合引擎语义，viewer 使用本地 Three.js 近似几何或 2D SVG。
+统一结果 schemaVersion=2，含 engine、engineVersion、caseKey、request、validity、
+verdict、frames、metrics、events、provenance。任务状态与模型判定独立，结果在自身数据目录。
 
 下面的原始数据契约只描述 `yard` / `/classic`。其“无任意地图导入、无持久化”
 边界不适用于新增集成层；不会用道路车辆模型替代叉车，也不会把刚体接触算成事故。

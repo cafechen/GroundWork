@@ -1,5 +1,9 @@
 # RMF map library — implementation self-review / 实施自检
 
+Historical map-stage evidence, later included in `a634805`; the park release now
+supersedes maps-02. IDs and runtime statements below are historical, not live checks.
+地图阶段历史证据，后续进入 `a634805`，园区版已取代 maps-02；下方 ID/状态不代表实时检查。
+
 Date: 2026-09-28. Reviewer: implementing agent; self-review only.
 Status: implemented and verified locally and on Linux; corrected preview selected
 as `20260928-rmf-maps-02`. Final deployed browser evidence is recorded below.
@@ -122,3 +126,58 @@ was relaxed; only the converter, generated Campus output and precision metadata 
 - This final review/deployment status is a local documentation update after the
   archive was built; the archive contains its pre-deployment review, not this final
   status. No commit or push performed.
+
+## 中文对应自检（精确哈希、命令及路径沿用上文）
+
+2026-09-28 实施代理自检，无独立审查；实现前对话已确认五图/静态范围，当时未 Git
+提交。公共稀疏克隆及 ls-tree 核实固定修订，读取 YAML 头、标高、Campus 投影、
+包许可、README 和 issue314。hotel/office/airport_terminal/clinic/campus 均有源码，
+第六张所查树无匹配许可源码。静态显示不证明合成引擎使用该几何；保留脏工作区，
+仅新增 maps 页面、有限静态资源、入口及 MIME/路由，不改物理和实验契约。
+
+### 实际验证
+
+本地 Node22.23.2、Python3.14 临时环境，PyYAML6.0.2、pyproj3.7.2、Shapely2.1.2，
+NumPy2.4.4 仅用于上游对比；Chrome153.0.8010.53/Playwright/软件 WebGL。
+构建、26 Node（新增3）、118 TS/12文件、语法、8 Python（6新2旧）通过；六私有地图
+套件排除，不计通过。Python 覆盖标定、y轴、解析旋转缩放楼层、自然原点和偏移、
+非法输入及重建字节一致。
+
+另直接加载固定上游未改 transform/fiducial/wgs84_transform，比较8层全部原顶点，
+规范化存储前最大差 1.0048591735576161e-14m，证明算法一致而非测绘准确；HotelL2
+变换保存为回归。Campus 后加存储量化见下文。
+
+本地 maps 测五图八层、2D/3D、图层导航、禁用第六、慢响应、失败保留、双语及390/320，
+无页面错误或外部请求；workbench 测真实 yard/road、回放/历史竞争/语言/小屏/来源
+保护；classic 测四模块、批次、播放、导入导出、小屏。实际检查酒店中文2D、机场3D、
+诊所英文320截图，无横向溢出；全景标签较密，可放大；3D单层，不是多层同屏。
+空白/链接、原资源哈希通过；CI含Python但未运行远端CI。截图在忽略 artifacts。
+
+### 边界
+
+仅本地静态 JSON，无任意 YAML 上传、外部模型抓取、客户数据、实机、云或原产品
+运行依赖。渲染前检查有限数、索引、数量、图片路径和非仿真标记；转义文本，失败
+保留地图。家具只有位置，Campus无建筑网格；墙高厚为示意默认。门电梯只保留数据，
+无动作或净距结论；maps页无运行，旧按钮仍用合成几何。第六缺源是已接受限制，
+无安全/兼容声明，无当时提交、推送或公网发布。
+
+### 跨平台失败与修正
+
+初次 Linux test_sources_conversion_and_determinism 失败，Campus 浮点末位不同。
+系统 PyYAML6.0.1/pyproj3.6.1 失败，另装固定6.0.2/3.7.2仍失败，不是简单依赖过旧；
+查看和几何检查正常。修正投影米坐标先圆整6位再序列化/求边界，写 coordinateQuantumMetres，
+不改原资源/哈希、不弱化字节断言，并新增网格约束测试。属于存储精度非地图精度。
+
+修正后本地26 Node、8Python、语法再次通过；LinuxPython3.12固定依赖6RMF包含
+所有生成文件精确字节一致，远端Node3地图通过。157校园顶点相对未圆整上游最大
+位移6.270313425635988e-7m，只改转换器、Campus生成结果和精度元数据。
+
+### 部署与恢复记录
+
+maps-02 新release及压缩包SHA见上文，传输前后相同，是脏工作区预览不是Git发布。
+每次只停自身前确认无活跃任务，保留实验，原5173–5176均200且未重启。保留
+integration-03及maps-01，后者缺跨平台修复，当时优先02。独立 map-build 环境仅
+复现，不改系统/Chrono依赖。01曾通过map/workbench；02再次远端map全流程通过，
+无错误/外部请求，当时PID2405964、五端口200，无队列任务；本地4180已停。
+最终部署自检在本地打包后补写，包里仅含部署前记录；当时未提交推送。当前恢复
+必须另看园区版兼容性，不能直接套用旧版状态。

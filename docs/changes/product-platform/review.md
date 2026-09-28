@@ -1,5 +1,10 @@
 # Park platform — implementation self-review / 实施自检
 
+Historical implementation/deployment evidence; later committed in `a634805`.
+Subsequent user-reported first-use defects are tracked in the
+[current audit](../../audits/2026-09-28-park-sdlc.md), not erased by these passes.
+历史实施/部署证据，后续进入 `a634805`；后续首次使用缺陷见当前审计，不能被当时通过记录抹去。
+
 ## Current verification / 当前验证（2026-09-28）
 
 Reviewer: implementing agent only, not independent domain approval. Product/menu
@@ -118,3 +123,55 @@ Wrote intent/spec/plan drafts before substantive code per AGENTS.md. Existing di
 worktree and deployed map preview remain unchanged. Application tests not rerun for
 this planning-only turn. Await maintainer acceptance of detailed scope and login
 boundary before implementing the refactor.
+
+## 中文对应自检
+
+### 实施与验证阶段
+
+2026-09-28 实施代理自检，非独立领域批准；维护者已接受菜单重构、可信局域网免登录。
+当时未提交/推送，具体契约见园区手册。Node22.23.2 构建、37核心、语法通过，TS12文件
+118项通过、六私有地图排除；隔离 Python3.14.6 执行地图8项通过，解释器路径见上文。
+
+Chrome153.0.8010.53/Playwright、本地4180，platform-smoke 覆盖创建/版本编辑、多图
+园区、对象路线/撤销重做保存/离开保护、虚拟实例任务、真实worker完成、自动回放、
+2D/3D/指标报告/刷新、实机登记执行禁用和API拒绝、冲突、引用归档保护、拒绝直接
+快照提交。邻近workbench/maps/classic（classic需/classic地址）通过，中英390/320
+无JS错误/外部请求。截图在artifacts，实际检查控制和窄屏，仅证明渲染非物理。
+工具模块/浏览器完整路径见上文。
+
+处理发现：无网关通道曾被接受，先失败后加绑定约束；旧导出漏园区墙/图层，回归先
+失败后限制为JSON/HTML、拒绝RMF/SDF/XOSC；新根替换旧UI，旧smoke改workbench而
+未松断言；异步测试等待实际地图/语言就绪；HTTP非安全上下文缺randomUUID，改
+getRandomValues而非弱随机或要求登录；路线JSON在SVG前校验，服务端仍独立校验。
+
+残余：无厂商/实测/步长收敛、传感器管线、云协议、账号/实控；任意园区Chrono未接，
+仅独立旧实验室。多资源绑定但单层/单设备显示计算，无跨图；站点除限速禁行外为
+语义，质量/传感器仅定义。外部网格、孔洞、边界、其他设备不做障碍。库schema1无
+旧版迁移，归档无恢复UI，导出园区不是资源包。
+
+### 远端预览
+
+已获准5180发布park-platform-01，Node24.13.1，切换前远端37测试通过并确认无活跃
+任务，只停自身；保留maps-02和19历史任务，新SQLite在release外。5173–5176/5180
+切换后均200。远端完整platform-smoke含真实HTTP ID创建、中英小屏，无错误/外部
+请求；QA资源归档不抹历史。API烟测含旧回归、Chrono取消和120秒完整接挂/充电任务，
+任务UUID及误差见上文；最大铰接误差0.00000431749m，地面接触不是碰撞事故，也不是
+园区力学适配验证。
+
+新园区历史存在后，远端workbench/maps再次通过：yard/road、延迟竞争、静态/来源
+保护、五图八层、中英390/320。本地4180停，只保留用户要求的远端预览。打包SHA和
+执行指纹如上；包基于1683576加未提交修改，不是当时Git发布。部署记录及Python补丁
+版本更正在本地打包后完成，包内审查不是最终记录。
+
+### 更早的实施前记录（历史）
+
+当时仅方案、自检，无新代码/部署。检查发现：workbench仍A/B/C/D且合成引擎，不能
+只改标签；maps静态无持久用户图层；domain不含平台/产品版本，Chrono创建合成环线；
+physics车身尺寸质量硬编码、train用路径比例作业，模型站点编辑必须实际到构建器才
+有效；jobs可复用但不是资产库；旧workspace契约宽松不适合新领域；HTTP免认证，
+登录UI不能保护API/证据。
+
+因此先写intent/spec/plan，需新领域和持久关系，以适配器复用引擎/数据/渲染，保留
+虚实身份、版本和实际连接状态。模型导入不自动带算法/物理/传感器，接管另定权限
+和安全。当时保留脏工作区/预览、未为纯规划重跑测试，并等待范围/登录选择；这些
+后来已确认，不是当前阻塞。

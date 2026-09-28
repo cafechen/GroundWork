@@ -1,5 +1,10 @@
 # AI-native SDLC self-audit / 开发流程自检
 
+Historical initial-adoption audit, before `1683576`; do not read its “no HEAD” or
+Node 20 statements as the current state. See the [park-platform audit](2026-09-28-park-sdlc.md).
+这是 `1683576` 前的初始采用记录；“无 HEAD”和 Node20 等属于当时，不是当前状态，
+最新情况见[园区平台自检](2026-09-28-park-sdlc.md)。
+
 Date: 2026-09-28. Reviewer: the same implementation assistant; this is **self-review, not independent assurance**. / 审查者为原实现代理，不是独立审计。
 
 Reference: [The AI-native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook), read on the audit date. Assessment below is of GroundWork's actual files and available development-session evidence, not an official compliance score.

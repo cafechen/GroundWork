@@ -1,5 +1,8 @@
 # RMF map library — proposed specification / 规格草案
 
+Historical accepted specification; execution evidence is in [review](review.md).
+历史确认规格；实际执行见自检，下面“实施中”为当时状态。
+
 Status: maintainer-accepted on 2026-09-28; implementation in progress.
 本轮用户确认“五张先行、第六张待补，先完成地图层”，实施中。
 
@@ -59,3 +62,24 @@ visible limitations, not invented obstacle geometry.
    UI never implies existing engines are using its geometry when they are not.
 6. Source/config text is escaped, paths bounded and no external model fetched
    implicitly. Core tests and syntax checks pass with zero unexpected skips.
+
+## 中文对应规格补充
+
+从旧 Module A 可进入独立地图库，支持双语、楼层、2D/3D、导航和设施；保留源 YAML/
+图片、许可、URL、固定修订及文件哈希，浏览本地生成资源无需 ROS/Gazebo/另一仓库/
+云服务。不把旧合成轨迹画到新选 RMF 图上当作真实仿真。
+
+标准化契约字段如上，楼层保留标高、命名顶点、单/双向边、graph ID、墙、地板孔洞、
+门、模型引用和原参数；单位米/弧度。Hotel0/8/16米，Clinic0/10米。图片图需测量比例、
+y 轴变换和跨层对齐，按上游验证，不猜共同缩放；Airport 无字段时核实默认。
+Campus 使用 WGS84→EPSG3414 和 (22000,31500) 原点，不能把度当米或重复投影。
+
+同版本 pyproj 在 macOS ARM/Linux x86 仍发生字节重建差异后，新增投影坐标 1 微米
+存储网格；保留精确字节断言，不作为地图精度声明。非法/非有限坐标、坏索引、
+不支持坐标系、不安全路径、缺标定要明确失败，保留先前有效地图/实验。外部网格缺失
+要提示，不能编造障碍几何。
+
+验收：五张及预期楼层可读，第六禁用无伪造；比例/轴/楼层/投影有数值参考测试，
+边方向和图身份不丢；来源哈希许可可查且重建可复现；双语和桌面/手机可用，快速
+切图/楼层及失败请求不污染选择，实际看截图；原运行回放历史和 classic 正常，
+不暗示旧引擎已用新地图；文本转义、路径限制，不自动拉模型，核心/语法通过无意外跳过。

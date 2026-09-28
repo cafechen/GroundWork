@@ -16,7 +16,7 @@ For each substantive feature, model or contract change, create `docs/changes/<ch
 
 | Record | GroundWork-required content / 必填内容 |
 | --- | --- |
-| `intent.md` | Request source/date, affected user and A/B/C/D modules, desired result, exclusions, budget/data/hardware constraints, open questions / 请求来源和日期、用户与模块、目标、排除项、成本/数据/硬件约束、待定问题 |
+| `intent.md` | Request source/date, affected users/product domains/engine components, desired result, exclusions, budget/data/hardware constraints, open questions; A/B/C/D applies only to legacy components / 请求来源和日期、用户与产品领域/引擎、目标、排除项、成本/数据/硬件约束、待定问题；A/B/C/D 仅用于历史模块 |
 | `spec.md` | Coordinate/vehicle assumptions, input/output schema, boundary/error behavior, UI languages, acceptance cases with expected evidence / 坐标和车辆假设、输入输出契约、边界与错误行为、双语界面、验收案例及证据 |
 | `plan.md` | Files, implementation order, alternatives, risks, commands and recovery approach; record acceptance before substantive coding / 文件、顺序、备选方案、风险、验证命令与恢复方式；实质编码前记录确认 |
 | `review.md` | Results by acceptance case, exact checks, findings/severity, limitations, review identity and decision still needed / 按验收项记录结果、实际检查、问题与级别、局限、审查身份、待定决策 |
@@ -52,13 +52,16 @@ Running the application tests is **not** an agent behavior evaluation. Until an 
 
 ## 5. Release and maintenance / 发布与维护
 
-Current delivery is local preview and downloaded evidence. Starting localhost is not a production deployment. Before a future release: identify the exact revision, provide verification/review evidence, define a recoverable previous version and a tested recovery procedure, and obtain publishing approval. Do not use destructive Git resets as a rollback policy. / 当前交付是本地预览与导出，不是生产部署。未来发布须明确版本、验证审查证据、可恢复旧版本及经过验证的恢复步骤，并获得授权；不得把破坏性 Git 重置当作回滚策略。
+Current delivery is local preview, the explicitly approved trusted-LAN preview and downloaded evidence, not production deployment. Before a future release: identify the exact revision, provide verification/review evidence, define a recoverable previous version and a tested recovery procedure, and obtain publishing approval. Do not use destructive Git resets as a rollback policy. / 当前交付为本地预览、已获明确授权的可信局域网预览及导出，不是生产部署。未来发布须明确版本、验证审查证据、可恢复旧版本及经过验证的恢复步骤，并获得授权；不得把破坏性 Git 重置当作回滚策略。
 
 For now, maintenance begins with a manually reported defect: save its minimum synthetic config, engine/runtime versions, expected/actual behavior and result; turn it into a change record and regression test. Real customer data requires separate permission and minimization. Autonomous monitoring, cloud logs and automatic remediation are not installed or implicitly authorized. / 当前由人工报告缺陷开始，保存最小合成配置、引擎/运行时版本、预期与实际，进入变更记录和回归测试。真实数据单独授权并最小化；未安装或默认授权自主监控、云日志及自动修复。
 
 Track useful signals when records exist: first-pass check results, review-discovered defects, recurring failures, time to reproduce and independently reproduced scenarios. Do not invent historical productivity or reliability metrics. / 有记录后再跟踪首次检查、审查发现、重复缺陷、复现耗时及外部复现案例，不编造历史效率或可靠性指标。
 
 ## 6. Enforced today versus required next / 现有保障与后续要求
+
+For dated evidence after the park refactor, see the [current audit](audits/2026-09-28-park-sdlc.md).
+园区重构后的带日期证据见[当前自检](audits/2026-09-28-park-sdlc.md)，不把原始采用记录当成现状。
 
 - Present: local validation in application code; runnable core tests; a browser-smoke script; a CI workflow file for core checks. / 已有：输入校验、核心测试、浏览器验收脚本、核心检查 CI 配置。
 - Not verified: hosted CI runs and GitHub branch protection. A workflow file is not proof that remote checks ran or that merging is blocked on failure. / 未验证：远端 CI 运行及分支保护；配置文件不等于检查已运行或失败必然阻止合并。

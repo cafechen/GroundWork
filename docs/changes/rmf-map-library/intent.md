@@ -34,3 +34,14 @@ geometry/topology inspection rather than new vehicle/door/lift simulation.
 
 已确认：先导入五张有源码的地图，第六张明确标记待取得源码；本批提供地图几何和
 拓扑查看，不承诺车辆已能在这些地图上仿真。后者需要另行确认车辆尺寸、路线及设施行为。
+
+## 中文范围与来源补充
+
+本批 A 负责地图选择/导入，B 显示几何，C 保留门/电梯元数据但不控制，D 记录来源。
+不改车辆物理、输出语义、客户数据或硬件；独立仓库，浏览不依赖 ROS。
+
+固定上文 rmf_demos 修订：前五张 YAML/图片合计目录约 5MB，地图包声明 Apache-2.0。
+第六张只在 README 视频中出现，所查树无对应源码。上游 issue314 说明其来自
+ROS-Industrial APAC 而非 Open-RMF 直接维护；rmf_industrial 的 README 指向新 Unreal
+打包演示，但与指定场景是否相同及源码许可未确认，不能替代。以上是当时调查记录，
+当前第六张仍标待补。

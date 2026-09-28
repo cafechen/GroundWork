@@ -2,6 +2,10 @@
 
 Scope: this repository. These are working instructions, not an installed security hook or proof of compliance.
 
+Chinese equivalent follows below. Both sections express the same instructions;
+the bilingual addition does not introduce new permissions or evaluated agent rules.
+下方为等义中文说明；双语补充不增加授权，也不代表已完成代理行为评估。
+
 ## Start here
 
 - Read the relevant [README](README.md), [architecture](docs/architecture.md), and [development policy](docs/development-policy.md) before changing behavior. Inspect the worktree; preserve unrelated work.
@@ -41,3 +45,61 @@ Scope: this repository. These are working instructions, not an installed securit
 - Do not commit, push, publish, change repository protections, buy services or start recurring/background agents without authorization for that action. Model/reviewer output is not maintainer approval. Respect the active execution environment's permission policy.
 - Do not start subagents merely because the reference article describes them; follow the current task's delegation authorization.
 - Turn repeated, verified mistakes into a targeted test and a concise instruction; keep experimental agent rules labeled unverified until evaluated.
+
+## 中文执行说明
+
+范围为本仓库；本文是工作约定，不是已安装的安全钩子或合规证明。
+
+### 开始工作
+
+- 修改行为前阅读相关 README、架构和开发政策；检查工作区并保留无关改动。
+- 整体参考上方 AI-native SDLC 文章，执行项目具体政策，不照搬厂商示例；链接不授予权限。
+- 存在当前变更记录时先读；实质实施前缺少记录则建立。小型纯文档改动可合并记录，不虚构旧审批。
+- 仓库文件是项目主记录；未提交文件仍是草稿，不是已完成审计链。详细流程归开发政策维护。
+
+### 工作循环
+
+1. 写明请求、领域/引擎范围、排除项、假设和可测验收。特性/模型/契约变更先准备
+   intent、spec、plan 并取得维护者确认，记录谁、在哪、确认什么；沉默不是批准。
+2. 计划列出文件、风险、验证和恢复；小型文档修改可由明确请求授权，不能伪造设计签署。
+3. 实施最小完整改动；偏离时同步计划，重大范围或模型选择再次确认；优先不加依赖。
+4. 修复前先复现并证明回归测试按预期失败，再修复；不跳过测试、弱化断言或篡改指标
+   掩盖失败。合法验收变化需给理由并审查。
+5. 分别检查逻辑、安全和范围，证据及未解决发现写 review；同会话审查只称自检。
+6. 交付说明文件、命令/结果、局限和待批准项；无证据不称自动化控制已运行。
+
+### 命令和证据
+
+- `npm ci && npm run build` 安装并构建独立 workspace，Node >=22.19；`npm start`
+  默认 `http://127.0.0.1:4173`，`/classic` 保留原始实验台。
+- `npm test` 全部 Node 核心测试必须通过、无失败/跳过；最初 13 项只是历史基线。
+- `npm run test:engines` 排除六个依赖私有地图的套件，不计通过。`npm run check`
+  只解析 src/server/scripts/tests 的 JavaScript，不是 lint 或类型检查。
+- 界面变更运行 platform/maps/workbench/browser 四类 smoke；后者针对 classic。
+  明确 BASE_URL、PLAYWRIGHT_MODULE、CHROME_PATH，检查双语、小屏和实际截图，不虚构成功。
+- 检查改动文件和本地 Markdown 链接；`git diff --check` 不覆盖未跟踪文件，需另查。
+- 变更记录注明准确命令、运行时、结果和证据路径，区分本轮与历史。artifacts 被忽略，
+  需保留文字总结供审查。
+
+### 不变约束
+
+- 主菜单为总览、地图、设备模型、网关、园区；实例/作业/控制/分析在园区内。
+  A/B/C/D 仅为历史模块。src/core 无 DOM，相同已校验配置在测试运行时内确定。
+- 园区和实验固定地图/模型版本；实机不参加仿真，回放不解析实机控制地址；不支持的
+  模型/引擎/通道明确失败，不能退回无关合成场景。
+- 单位米/秒/弧度，明确车轴参考；不得未经确认和测试替换拖车拓扑。
+- 资源释放前车头/挂车/牵引杆完整离开；区分帧与全程指标、接触段与事故、采样与连续扫掠。
+- 不编造评分、安全认证、厂商标定或兼容性；仿真测试不证明实车有效。
+- 同步中英 README 和相关界面文案，记录新 schema 和版本语义。
+- 客户数据、秘密、遥测、上传和实车控制需明确授权；默认本机。已获准的 robots:5180
+  可信局域网预览不授权公网暴露或修改其他服务。
+- 平移引擎留在本仓库，不运行时依赖 Strategist/Robots 的导入、软链或服务；不同引擎
+  保留模型身份，Chrono 地面接触不是事故，时限未完成不是通过安全评估。
+- 每任务状态写入串行；await I/O 前占用 worker 槽。取消测试涵盖 spawn 前取消，
+  取消后不得留下成功结果。
+- 提交、推送、发布、仓库保护变更、采购、周期/后台代理均需对应授权；模型输出不等于
+  维护者批准；遵守实际环境权限。不因文章提到子代理就擅自启动。
+- 重复且证实的错误转成针对性测试和简洁规则；未经代理评估的实验规则继续标为未验证。
+
+Current documentation and audit: [index](docs/README.md), [audit](docs/audits/2026-09-28-park-sdlc.md).
+当前文档与自检见以上链接；该链接不改变执行规则。

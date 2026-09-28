@@ -101,6 +101,26 @@ vertices, lanes with `graph`/`bidirectional`, wall/door edges, floor/hole polygo
 model anchors, transform and bounds. Its schema is distinct from run schema `2`;
 `capabilities.simulation` and `liveControl` are always false.
 
+这些能力标记描述静态地图本身，不否认后续园区适配器可读取部分墙体做平面仿真。
+Static-asset flags do not prevent the separate park adapter using a subset of walls
+for planar checks; neither means complete physics or live control.
+
+### 中文复现与契约补充
+
+reference_image 采用测量线平均米/像素，反转图像 y，按上游全基准点对的方位/比例
+规则对齐其他楼层；Airport 缺少坐标系字段时用上游图片默认值，缺失米制标定则拒绝。
+Campus 从 WGS84 经纬度投影 EPSG:3414，再减 (22000,31500) 米；不将角度当米，
+不重复投影。上述来源及数学参考固定修订，保留 Apache-2.0 原文。
+
+转换器先校验五张输入再写 JSON，是固定演示资源构建器，不是任意 YAML 上传端点。
+已测环境重复生成字节一致；Node 核对原文件哈希和结构计数，Python 测比例、轴、
+旋转平移、SVY21 自然原点、非法输入和一致生成。上面的命令从仓库根目录运行。
+
+静态 schema 1 含 id、双语名称、来源、单位、坐标变换、楼层、电梯、能力和警告；
+每层有原索引顶点、带 graph/bidirectional 的导航边、墙门边、地板/孔洞、模型位置、
+变换和边界。与实验 schema 2 不同。可选 maps-smoke 使用 BASE_URL 及与工作台
+相同的 Playwright/Chrome 环境变量；已执行结果和缺口见变更自检。
+
 Optional browser QA: `BASE_URL=http://127.0.0.1:4180 node scripts/maps-smoke.mjs`;
 same `PLAYWRIGHT_MODULE` and `CHROME_PATH` overrides as workbench QA. See the
 [change review](changes/rmf-map-library/review.md) for executed checks and limitations.

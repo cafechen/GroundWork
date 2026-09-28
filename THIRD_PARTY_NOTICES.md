@@ -40,3 +40,29 @@ archives without their respective license/notices.
 
 No Gzweb, Unitree assets/policies or copied RMF Gazebo plugin are included in this
 migration. RMF/SDF/XOSC export format support is not a compatibility certification.
+
+## 中文说明（许可证原文保持不变）
+
+- 原创 GroundWork 代码适用根 MIT；所有者要求平移的 Strategist/Robots 代码见来源记录，
+  复制权限不等于统一 MIT 对外发布权限，公开前仍需许可审查。
+- Three.js 0.180.0、Zod 4.1.5 为 MIT npm 依赖，保留随包 LICENSE。
+  TypeScript、Vitest、Node.js 各有自身声明；Node 包版本由 package-lock.json 固定。
+- Project Chrono/PyChrono 为可选外部 BSD-3-Clause 项目，发行包另含第三方声明，
+  不内置 Git，也不被本项目重新许可。
+- pyproj/Shapely 是可选地图转换依赖，保留其声明及 PROJ/GEOS 二进制依赖声明。
+- RMF 原始 YAML/PNG 固定于上文 rmf_demos 修订，Apache-2.0，原文件未修改，逐文件
+  SHA-256 位于 catalog.json，许可原文在 rmf_demos.txt。生成 JSON 是 GroundWork
+  转换表示，不是上游发布物。
+- 图片/基准点转换数学改编自上文 rmf_traffic_editor 修订及 transform/building/level.py，
+  Apache-2.0，保留 rmf_traffic_editor.txt。改用标准库数学、拒绝缺失标定、输出静态
+  浏览器数据；运行时无需上游 Python 包。
+- PyYAML 是可选构建期 MIT 解析器，requirements-rmf.txt 固定版本；浏览已提交 JSON
+  不需要 PyYAML 或 pyproj。
+- YAML 内的 Gazebo/Fuel 引用不表示网格、纹理和许可已包含。没有下载再分发这些资源，
+  查看器只可选显示位置标记。
+- Linux 预览独立安装 Node 和 Chrono conda 前缀，不在运行时加载原产品的应用或资源；
+  分发运行时压缩包必须携带其许可证及声明。
+- 未包含 Gzweb、Unitree 资源/策略或 RMF Gazebo 插件；支持导出格式不等于互操作认证。
+
+This Chinese explanation does not replace or translate the authoritative upstream
+license texts. / 中文说明不替代上游法律原文。

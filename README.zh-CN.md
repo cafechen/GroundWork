@@ -4,7 +4,7 @@
 
 Ground 品牌下，面向工业车辆的开源、本地优先仿真与验证工作台。从封闭园区的牵引车与叉车切入，让场景、车辆、作业交互与实验记录形成一个可复现的验证流程。
 
-[English](README.md) · [架构说明](docs/architecture.md) · [路线图](docs/roadmap.md) · [参与贡献](CONTRIBUTING.md)
+[English](README.md) · [文档中心](docs/README.md) · [首个可运行示例](docs/quickstart.md) · [架构说明](docs/architecture.md) · [参与贡献](CONTRIBUTING.md)
 
 > **园区研发平台预览。** 五个主菜单：总览、地图管理、设备模型管理、接入网关、园区管理。资源持久化，设备和作业归属于园区，支持业务图层编辑、选定地图上的平面仿真与证据分析。旧引擎和独立 Chrono 实验室保留。运行时不依赖 Strategist/Robots；不是生产调度或安全认证工具。
 
@@ -25,6 +25,10 @@ npm start
 打开 **http://127.0.0.1:4173** 进入园区平台；`/workbench` 保留三引擎实验室，`/classic` 保留 v0.1 实验台。支持中英切换，默认仅监听本机，`Ctrl+C` 停止。局域网部署需显式设置 `HOST` 和主机白名单；当前**没有用户认证，不能暴露公网**。见[部署说明](docs/deployment.md)。
 
 ## 园区平台
+
+建议先用[已预检的物流园示例](docs/quickstart.md)查看牵引车和挂车移动、转弯、限速，
+再编辑自己的场景。提供只读预检和显式 API 初始化脚本。路线保存、初始位置报错及
+`CONTACT` 不动等问题，见[故障排查](docs/troubleshooting.md)。
 
 准备地图、设备模型和网关，再创建园区，关联一个或多个上述资源。园区内菜单：
 园区概览、场景编辑、设备实例、作业管理、控制面板、统计分析、园区配置。
@@ -107,17 +111,19 @@ ROS/Python 服务。详见[地图手册](docs/map-library.md)。
 
 ```text
 src/
-  app.js                 浏览器工作台与回放
-  i18n.js                中英文案
-  styles.css             响应式界面
-  core/
-    scenario.js          A：模板配置校验、固定种子随机数
-    geometry.js          B：多边形几何与距离
-    simulation.js        B/C：运动、资源、事件、帧
-    experiments.js       D：配对实验与报告
-scripts/serve.mjs         独立 HTTP/API 入口（默认监听本机）
-tests/core.test.js        Node 内置测试
-docs/                    双语架构与路线图
+  platform.js/css        当前五主菜单园区界面
+  park-viewer.js         选定楼层业务图层与回放
+  map-*.js               静态 RMF 数据、地图库与渲染
+  workbench.js/css        旧版三引擎实验室
+  app.js, core/          原始实验台与无 DOM 几何/运动学
+server/                  资源契约、SQLite、HTTP、任务进程与园区仿真
+packages/                独立平移的契约与场景引擎 SDK
+engines/                 可选 Chrono 与地图构建 Python 工具
+assets/maps/rmf/         固定版本原始地图、许可、标准化 JSON
+examples/ready-yard.mjs   可运行合成物流园数据
+scripts/                 服务、预检/初始化与验收脚本
+tests/                   Node 回归测试
+docs/                    双语手册、契约和变更证据
 ```
 
 - **场景 JSON：** 仅导入导出模板配置，不是任意地图格式。只接受 `schemaVersion: 1`、`crossing-yard`。
@@ -144,7 +150,11 @@ GroundWork 采用 Anthropic 的 [The AI-native SDLC playbook](https://claude.com
 - 分别检查仿真正确性、本地数据暴露和是否符合请求范围；明确不确定性，自检不冒充独立验证。
 - 远端写入和发布需要明确授权；复现的缺陷进入后续测试，不默认为本地原型接入遥测或后台代理。
 
-代理执行规则见 [AGENTS.md](AGENTS.md)，完整流程、验收清单和执行边界见[开发政策](docs/development-policy.md)。[2026-09-28 自检](docs/audits/2026-09-28-ai-native-sdlc.md)的结论是**部分符合，而非全面落地**：已有本地检查，但经确认的产物/提交链、强制审查门禁、代理配置评估尚未建立。书面政策本身不能强制执行这些控制。
+代理执行规则见 [AGENTS.md](AGENTS.md)，完整流程及执行边界见[开发政策](docs/development-policy.md)。
+[当前代码与文档自检](docs/audits/2026-09-28-park-sdlc.md)的结论是**部分符合，而非全面落地**：
+已有经过测试的代码和入库记录，但分阶段审批提交、强制审查门禁、代理评估以及完整
+用户缺陷闭环尚未建立。[初始自检](docs/audits/2026-09-28-ai-native-sdlc.md)保留为历史记录。
+书面政策不是强制控制或独立认证。
 
 ## 许可证
 

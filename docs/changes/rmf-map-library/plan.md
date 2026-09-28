@@ -45,3 +45,22 @@ Recovery: add maps independently of run storage and vehicle contracts; keep
 existing synthetic defaults and `/classic`. For deployment, switch only the
 GroundWork release pointer back to its prior verified release, retaining data.
 Never reset the dirty worktree or touch other services.
+
+## 中文对应计划
+
+维护者于 2026-09-28 在实质实现前确认“五张先行、第六张待补，先完成地图层”；
+更早的预检没改代码或部署，不隐含提交/推送许可。现已实施验证，部署和跨平台修复
+见 review。
+
+顺序：确认范围与第六张缺源；仅把所需 YAML/图片/许可放 assets/maps/rmf，加版本/
+哈希清单和声明；按验证过的上游变换实现确定性转换，说明构建期 YAML/投影依赖，
+生成 JSON 无 ROS 运行依赖；HTTP 有界静态服务、独立 src 地图库及 workbench 入口，
+保留实验选择保护和分离来源/判定；补转换、schema、安全和浏览器测试，同步 README/
+架构/手册；记录自检后，检查活跃作业，只更新已获准5180，保留旧版和全部实验再验收。
+
+计划运行构建、Node/TS/语法、原转换及新 RMF Python、workbench/classic/maps 浏览器。
+最初这些是计划，后续实际通过及初始跨平台失败修正均记 review；没有改变引擎或车辆。
+
+风险重点：地图与仿真误连、像素/经纬度尺度、跨层错位、方向丢失、外部资源许可、
+过期响应、机场渲染性能；明确测试，不为浏览功能引入全 Gazebo/ROS。恢复保持独立
+地图与原默认/classic，必要时只切自身兼容 release、保留数据；不重置脏工作区或动其他服务。

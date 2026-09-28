@@ -1,5 +1,8 @@
 # Deployment / 部署
 
+Status below was last verified on 2026-09-28; it is not a live availability check.
+下述部署状态最后验证于 2026-09-28，不是实时在线承诺。
+
 ## Local / 本机
 
 ```sh
@@ -12,6 +15,26 @@ Node >=22.19. Defaults to `127.0.0.1:4173`. The `yard` and `road` engines work
 without Python. To enable the optional Chrono worker, install Python 3.12 and
 PyChrono 10 in an independent environment and set an absolute
 `GROUNDWORK_CHRONO_PYTHON` path. The worker uses the core NSC/Bullet engine only.
+
+Node >=22.19，默认监听 `127.0.0.1:4173`；园区平面、yard、road 不需要 Python。
+可选 Chrono 需独立 Python 3.12/PyChrono 10 环境，设置绝对 Python 路径；仅使用
+核心 NSC/Bullet，不代表任意园区已接入力学。
+
+| Variable / 环境变量 | Meaning / 含义 |
+| --- | --- |
+| `HOST`, `PORT` | Bind address/port; defaults 127.0.0.1 / 4173 / 监听地址和端口 |
+| `GROUNDWORK_ALLOWED_HOSTS` | Comma-separated extra hostnames/IPs, no protocol or port / 额外主机或 IP，逗号分隔，不带协议端口 |
+| `GROUNDWORK_DATA` | Absolute run directory recommended; default data/runs / 建议绝对实验目录 |
+| `GROUNDWORK_PLATFORM_DB` | SQLite path; default platform.sqlite next to runs directory / 资源库路径，默认与 runs 同级 |
+| `GROUNDWORK_CHRONO_PYTHON` | Optional independent worker interpreter / 可选独立力学解释器 |
+| `GROUNDWORK_MODEL_URL`, `GROUNDWORK_MODEL_KEY` | Optional external model endpoint/key; disabled by default / 可选模型端点和密钥，默认不接外部 |
+| `GROUNDWORK_HOME` | Linux service helper base path; not the Node data-path setting / Linux 服务助手基目录，不是 Node 数据变量 |
+
+`HOST=0.0.0.0` alone does not allow arbitrary Host headers. Use only a trusted
+private network and explicitly approved hostnames. Existing HTTP origin handling
+is not a ready-made TLS/reverse-proxy configuration; review before changing transport.
+只改监听地址不会放开所有 Host。仅在可信私网设置获准主机名；现有 HTTP 来源校验
+不是已验证的 TLS/反向代理配置，改变传输方式需另行审查。
 
 ## robots preview / robots 预览
 
@@ -44,12 +67,52 @@ runtime directory is needed after installation; application source/assets were
 not shared by symlink. Archive/package-cache use during installation is not a
 runtime dependency on the old products.
 
+robots 基目录 `/home/steven/src/groundwork`，预览端口 5180；`releases/<id>` 保留各版，
+`current` 指向当前 `20260928-park-platform-01`。`/` 为园区、`/workbench` 为旧实验室、
+`/maps` 为静态地图。保留 maps-02、integration-03；原 5173–5176 服务不停止或改用。
+独立 Node/Python 路径见上表，SQLite 与 runs 在 release 之外；service.json 保存
+进程身份，server.log 保存日志。
+
+上述 SSH 命令分别查看、停止、启动 GroundWork。助手先核实 PID 命令身份，不能用于
+其他服务；没有安装 systemd 或开机自启，重启机器后需要手工 start。这是获准应用
+后台进程，不是周期监控代理。安装时复制现有第三方 Node 24.13.1 并离线克隆 PyChrono
+环境到独立前缀，安装后的运行不依赖原产品目录；缓存复用不等于产品运行时依赖。
+
 Release procedure: build/test locally; archive only application files, compiled
 workspace packages, and runtime npm dependencies; extract into a **new** release
 directory; stop only GroundWork; switch `current`; start and smoke-test. Never
 overwrite a live release or use blanket `pkill` against Node/Python/Gazebo.
 Rollback selects a retained release after stopping GroundWork; evidence remains
 in `data/runs`. Do not select an older release whose schema cannot read newer data.
+
+发布先本地构建测试，只打包应用、编译包和运行依赖，解压到**新 release**，只停
+GroundWork，再切 current、启动和验收。不能覆盖运行版或用广泛 pkill。回滚前核实
+旧版可读新数据库/实验类型；保留旧目录不等于已验证恢复。旧版不懂 park 任务时不能
+盲目回退。上次包来自提交前工作区；后来的 `a634805` 不应当作旧包构建版本。
+
+## Backup and recovery / 备份与恢复
+
+Before any schema/release migration, record active release, application/engine
+fingerprints, data paths and queued/running jobs. Use SQLite's backup mechanism,
+or stop only GroundWork and copy the whole resource DB plus any `-wal`/`-shm`
+sidecars and the runs directory to a new protected backup location. Do not copy
+only a live database file; do not erase source data after backup.
+
+迁移前记录 release、应用/引擎指纹、数据路径、排队/运行任务。用 SQLite 备份机制，
+或只停止 GroundWork 后把数据库及存在的 `-wal`/`-shm` 边文件和 runs 复制到新的
+受保护备份目录。不能仅复制正在运行的主库，也不能备份后删除原数据。
+
+Test recovery on a **separate copy** with compatible code, explicit DB/run paths
+and a different loopback port. Check resource/version counts, historical replay and
+a synthetic run. Do not run two servers on one job directory. Restoring old data
+can discard later records: compare versions and obtain approval before replacement.
+There is no automatic restore, production recovery drill or old-schema migration
+claim. Archive in the UI keeps history; it is not backup or a reversible restore UI.
+
+用**独立副本**、兼容代码、明确数据库/实验路径和不同本机端口演练恢复；核对资源/
+版本数量、历史回放和合成运行，禁止两个服务共用任务目录。旧备份覆盖会丢后续记录，
+替换前比较并取得批准。没有自动恢复、生产恢复演练或旧 schema 迁移承诺；界面归档
+保留历史，但不是备份，也没有恢复界面。
 
 ## Security boundary / 安全边界
 
@@ -69,3 +132,13 @@ The job queue is single-process: do not start two servers sharing one data direc
 Workers are subprocess-isolated for cancellation, not a sandbox for arbitrary code;
 requests cannot choose an executable, filesystem path or shell command. Monitor
 disk usage; no automatic data deletion is enabled.
+
+这是**可信局域网无认证预览**，不是公网 SaaS。只允许白名单 Host；浏览器 POST 需
+同源 Origin 及 JSON。静态文件服务限制服务器源码、环境文件、任务文件和任意
+node_modules 访问，但这些措施不能替代用户认证、TLS 或租户隔离。
+
+所有可访问允许地址的人都能读写资源、查看/启动/取消有限任务。维护者明确选择
+本轮免登录，只可用合成/非敏感数据。未经明确许可不能加公网映射、隧道、实机
+命令或外部模型调用。以操作系统权限保护数据；队列是单进程，不可共享数据目录
+启动两份服务。子进程用于隔离取消，不是任意代码沙箱；请求不能指定可执行文件、
+路径或 shell 命令。需要人工关注磁盘容量，没有自动删除数据的保留策略。

@@ -1,5 +1,9 @@
 # Runnable yard example / 可运行园区示例
 
+Historical creation evidence; source/scripts were subsequently committed in
+`a634805`. See [quickstart](../quickstart.md) for current reuse instructions.
+历史创建证据，源码/脚本后续进入 `a634805`；当前复现步骤见快速入门。
+
 2026-09-28: maintainer explicitly requested “先给我造一条能跑的数据，我先看看效果，
 后面一起优化”. Scope is sample data using the existing platform, not another UI or
 engine redesign. No change to 亚朵场景 or existing devices/routes/runs. No deployment,
@@ -45,3 +49,28 @@ recovery. The preview script only replays existing results, no data writes.
 
 No full legacy UI matrix rerun: no application/engine behavior changed this turn.
 No independent physical validation, real commands, new service release or Git commit.
+
+## 中文对应记录
+
+2026-09-28维护者要求“先给我造一条能跑的数据，我先看看效果，后面一起优化”。
+范围只是使用现有平台创建示例，不再重构UI/引擎，不改亚朵或已有设备路线实验，
+当时不部署新服务、不连真实网关、不改认证、不提交。
+
+计划为40×32米合成园区、通用牵引车和单挂、宽裕双圆角、起终点语义站和限速区；
+先用未改引擎验证，再经robots5180正常API新建，运行一次、验完成/零采样接触/非零
+位移，并实际检查浏览器回放，保留旧数据。几何/模型示意非标定，路线人工设计
+不是自主规划，装卸名称不模拟货叉。
+
+验收为确定性、完成、无建模接触、三类车体采样顶点全在边界内、有转弯和位移；
+浏览器不能只走时钟，车体几何必须变化，保留成功记录并给用户直链。
+
+实际为同代理自检：Node22.23.2预检PASS且重复一致，显式--apply经API只增示例；
+亚朵记录前后deep-equal，无引擎或接触规则修改。园区/地图/模型/实验UUID见上文，
+结果COMPLETED，54.5300米、65秒时限内51.1秒到达、0采样接触、最大偏差0.02950米，
+车头/挂车/牵引杆采样顶点在园区内，限速区确有慢帧。37 Node和语法通过；远端
+preview脚本验时间推进与多边形移动，30秒seek/3D，无页面错误，实际看截图。
+首次QA脚本误把fetch响应.ok当函数，修正后通过，不是应用修复。
+
+fixture可复用，写入脚本要求显式BASE_URL和--apply，拒绝活动同名园区；跨API多次
+创建非统一事务，打印ID便于恢复。预览脚本只读。无应用行为修改所以当时未复跑完整
+旧版UI矩阵；无独立物理验证、实控、新服务发布或当时Git提交。

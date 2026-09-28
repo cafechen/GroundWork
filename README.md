@@ -4,7 +4,7 @@
 
 An open-source, local-first simulation and validation workbench for industrial vehicles. Built under the **Ground** brand, starting with towing tractors and forklifts in closed logistics yards.
 
-[简体中文](README.zh-CN.md) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [Contributing](CONTRIBUTING.md)
+[简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [First runnable example](docs/quickstart.md) · [Architecture](docs/architecture.md) · [Contributing](CONTRIBUTING.md)
 
 > **Park-centric engineering preview.** Five menus: Overview, Maps, Device models, Gateways, Parks. Persistent resources and park-owned devices/tasks, editable business overlays, selected-map planar simulation and evidence. Legacy engines and the separate Chrono lab remain available. No Strategist/Robots runtime dependency; not production fleet control or safety certification.
 
@@ -25,6 +25,11 @@ npm start
 Open **http://127.0.0.1:4173** for the park platform; `/workbench` retains the three-engine lab and `/classic` the v0.1 lab. The UI supports Chinese/English. Default binding is loopback; stop with `Ctrl+C`. LAN deployment requires an explicit `HOST` override and host allowlist; it has **no user authentication** and must not be exposed publicly. See [deployment](docs/deployment.md).
 
 ## Park platform
+
+**Start with the [prechecked yard example](docs/quickstart.md)** to see a tugger
+and trailer move, turn and slow down before authoring your own scene. It includes
+a read-only preflight and an explicit API seeder. For route saving, initial-pose
+errors and stationary `CONTACT` results, see [troubleshooting](docs/troubleshooting.md).
 
 Create reusable maps/models/gateways, then a park with one or more of each.
 Inside a park: Overview, Scene editor, Devices, Operations, Control panel,
@@ -113,17 +118,19 @@ See [architecture and data contracts](docs/architecture.md) before adapting the 
 
 ```text
 src/
-  app.js                 Browser workbench and replay
-  i18n.js                English / Chinese copy
-  styles.css             Responsive application UI
-  core/
-    scenario.js          A: validated template configuration and seeded RNG
-    geometry.js          B: polygon geometry and distances
-    simulation.js        B/C: motion, resources, events and frames
-    experiments.js       D: paired experiments and report export
-scripts/serve.mjs         Standalone HTTP/API entry point (loopback default)
-tests/core.test.js        Node built-in regression tests
-docs/                    Architecture and roadmap (bilingual)
+  platform.js/css        Current five-menu park UI
+  park-viewer.js         Selected-floor overlays and replay
+  map-*.js               Static RMF data, library and renderer
+  workbench.js/css        Legacy three-engine lab
+  app.js, core/          Original lab and DOM-free geometry/kinematics
+server/                  Resource schemas/SQLite, HTTP, workers, park simulation
+packages/                Standalone copied contracts and scenario-engine SDK
+engines/                 Optional Chrono and map-building Python tools
+assets/maps/rmf/         Pinned original maps, licenses, normalized JSON
+examples/ready-yard.mjs   Runnable synthetic yard fixture
+scripts/                 Server, preflight/seeding and smoke checks
+tests/                   Node regression suites
+docs/                    Bilingual manuals, contracts and change evidence
 ```
 
 - **Scene JSON** imports/exports template configuration only. It is not an arbitrary geometry format. Only schema version 1 / `crossing-yard` is accepted.
@@ -152,7 +159,13 @@ Our project rules are:
 - Review simulation correctness, local-data exposure and agreement with the requested scope separately. Report uncertainty; self-review is not independent validation.
 - Require explicit authorization for remote writes and releases. Feed reproduced defects into future tests; do not add telemetry or background agents to this local-only prototype by default.
 
-The operative instructions are in [AGENTS.md](AGENTS.md); the workflow, acceptance checklist and enforcement boundaries are in [development policy](docs/development-policy.md). The [2026-09-28 self-audit](docs/audits/2026-09-28-ai-native-sdlc.md) records **partial alignment**, not full adoption: local checks exist, but an approved artifact/commit chain, enforced review gates and agent-configuration evaluations are not yet established. Written policy does not itself enforce these controls.
+The operative instructions are in [AGENTS.md](AGENTS.md); the workflow and enforcement
+boundaries are in [development policy](docs/development-policy.md). The
+[current code/documentation audit](docs/audits/2026-09-28-park-sdlc.md) concludes
+**partial alignment**, not full adoption: tested code and committed records exist,
+but staged approval commits, enforced review gates, agent evaluations and a fully
+closed user-defect loop do not. The [initial audit](docs/audits/2026-09-28-ai-native-sdlc.md)
+is historical. Written policy is not an enforced control or independent certification.
 
 ## License
 

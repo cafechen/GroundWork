@@ -20,6 +20,11 @@ The current root UI is a park-centric engineering preview. The accepted navigati
 
 ## First experiment / 第一个实验
 
+For a no-setup moving example, use the [ready yard](quickstart.md). The manual
+steps below use an empty map; do not reuse their coordinates blindly in Hotel.
+无需手工配置的演示见[可运行示例](quickstart.md)。下面的坐标适用于新建空白地图，
+不能直接搬到酒店地图；已有障碍物的场景需要检查完整车体余量。
+
 1. Maps → Create a blank map, e.g. 60 × 40 m. The five RMF maps can also be selected;
    they contain real imported topology, but not all obstacle meshes. Manufacturing
    & Logistics remains unavailable. / 创建 60 × 40 m 空白地图，或选择已有五张 RMF
@@ -29,10 +34,11 @@ The current root UI is a park-centric engineering preview. The accepted navigati
    编辑或导入设备模型；内置为通用未标定模型，不是厂商认证模型。
 3. Parks → Create → select map(s), model version(s), local simulation gateway.
    / 创建园区并选择地图、设备模型版本、本地仿真网关。
-4. Scene editor → 2D → Route → click (8,10), (28,10), Finish route; inspect/edit the
-   exact points and Save park. Add semantic stations or restricted/speed zones.
-   Undo/redo applies to this scene draft. / 2D 场景编辑中画路线，完成路线后可精确编辑
-   坐标，再保存园区。可放置充电、停车、装卸、门、禁行区、限速区等业务对象。
+4. Scene editor → 2D → Add Route → click (8,10), (28,10), Finish route → save the
+   object dialog → Save scene. Edit exact points in the dialog. A blue unfinished
+   route is not saved by Save scene alone. Undo/redo applies to the scene draft.
+   / 2D 中切换“添加 路线”，点击两点，“完成路线”并保存对象弹窗，最后“保存场景”。
+   可在弹窗修改准确坐标；只点“保存场景”不会保存蓝色未完成路线。撤销/重做针对场景草稿。
 5. Devices → virtual tugger, selected model/map/floor, spawn (8,10,0), local gateway,
    channels `["state","events"]`. / 创建设备实例，类型选虚拟，指定同一地图楼层，
    初始位姿 (8,10,0)，绑定本地仿真网关及通道。
@@ -83,6 +89,20 @@ does not make them effective in planar kinematics. / 四足和自定义类型仅
   the database **and any WAL/SHM sidecars together** with run data. Never copy only a
   live main database. There are no historical platform schema migrations yet.
 
+资源使用 Node SQLite，`user_version=1`，启用 WAL、事务、乐观版本写入、不可变历史
+和元数据审计。默认数据库 `data/platform.sqlite`，可由 `GROUNDWORK_PLATFORM_DB`
+覆盖；实验在 `data/runs` 或 `GROUNDWORK_DATA`，默认数据库位于实验目录的同级。
+全局资源 ID 自动生成，园区以 `{id,version}` 固定地图和模型，网关引用则跟随当前配置。
+园区作为一个版本整体保存地图变换、业务对象、实例和任务；过期资源写入返回 409。
+
+归档不删除历史；活动园区引用中的资源不能归档。园区 JSON 含本地 ID，不是可独立
+移植的完整资源包，也没有硬删除或归档恢复界面。实验冻结有效模型、路线、几何、
+业务对象和版本，历史回放读取冻结的地图版本。回放外的资源名称可能显示新名称，
+但固定版本仍明确。备份用 SQLite 备份机制，或停服务后将数据库、存在的 WAL/SHM
+边文件和实验目录一起复制；不能只复制运行中的主数据库。尚无旧平台库升级迁移。
+
+Full endpoint/reference guide: [API and data](api.md). 完整接口与字段说明见[接口文档](api.md)。
+
 ## Numerical meaning / 数值含义
 
 `park-planar-1`: metres/seconds/radians, +x/+y map plane, CCW yaw. Axle-centred chassis
@@ -105,6 +125,21 @@ onsets are distinct episodes, not accidents. Frame data is simulation ground tru
 not a camera/lidar stream. `CONTACT`, `COMPLETED`, `INCOMPLETE` are model verdicts,
 independent of job execution status. No manufacturer calibration or real-world tests.
 
+`park-planar-1` 使用米、秒、弧度和地图 +x/+y 平面，航向逆时针为正。车身包络以
+参考车轴为中心：牵引车参考后轴，叉车参考前轴；叉车物理后轮转角与虚拟单轨转角
+符号相反。可带一节轴上铰接挂车，铰接点在牵引车参考点；不代表工业万向轮拖车，
+没有货叉或载荷几何。AMR 暂用同一单轨近似，不是独立验证的底盘模型。
+
+前向欧拉步长 0.05 秒，回放帧间隔 0.1 秒；名义加速度 1 m/s²、减速度 1.5 m/s²，
+接触或跟踪失效时理想瞬停。纯追踪跟随显式折线，**无路径规划或自动避障**。
+初始位置须距首点不超过 2 米；路径剩余小于 0.3 米且离终点小于 0.35 米判完成，
+不检查最终航向；路径偏差超过 5 米停止。墙宽固定近似 0.1 米，地图边界、地板孔洞、
+外部网格、门/电梯和其他设备不作为碰撞障碍。
+
+只统计墙体/禁行区的离散多边形接触；车头、挂车、牵引杆分别计接触段，不是事故数。
+帧数据是仿真真值，不是相机/雷达数据。`CONTACT`、`COMPLETED`、`INCOMPLETE` 是模型
+结论，与作业进程状态独立。无厂商标定或实测验证，完成不等于园区安全批准。
+
 ## Security / 安全
 
 Maintainer confirmed trusted-LAN, single-user, **no login** for this batch. Anyone
@@ -112,3 +147,7 @@ who can reach the allowed endpoint can read and modify all preview assets and jo
 No credentials, customer data, cloud requests, physical commands or remote takeover.
 Gateway endpoint strings are stored configuration, never fetched by the server.
 Host/origin checks are not user authentication or TLS. See [deployment](deployment.md).
+
+维护者选择本轮可信局域网单用户、**不登录**。任何可访问允许地址的人都可读写预览
+资源和任务；不得放凭证、客户数据或接通实车。外部网关地址仅存配置，服务器不会
+主动访问。Host/Origin 检查不等于认证或 TLS，详见[部署](deployment.md)。
