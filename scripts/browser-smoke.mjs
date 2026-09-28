@@ -1,0 +1,87 @@
+// Optional QA only. Supply an installed Playwright module; never needed to run GroundWork.
+import assert from 'node:assert/strict';
+import { mkdir, readFile } from 'node:fs/promises';
+const { chromium }=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});
+const context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true});
+const page=await context.newPage();
+const errors=[], externalRequests=[];
+page.on('pageerror',error=>errors.push(error.message));
+page.on('request',request=>{if(new URL(request.url()).hostname!=='127.0.0.1')externalRequests.push(request.url());});
+await mkdir('artifacts',{recursive:true});
+try {
+  await page.goto(process.env.BASE_URL || 'http://127.0.0.1:4173');
+  await page.locator('#map svg').waitFor();
+  assert.equal(await page.locator('h1').textContent(),'给想法一个验证的地方。');
+  assert.ok(await page.locator('.metric-caption').textContent().then(s=>s.includes('PASS')));
+  await page.screenshot({path:'artifacts/module-a-zh.png',fullPage:true});
+  await page.locator('[data-action="language"]').click();
+  await page.screenshot({path:'artifacts/module-a-en.png',fullPage:true});
+  await page.locator('[data-action="language"]').click();
+  await page.locator('[data-action="run"]').click();
+  await page.waitForFunction(()=>Number(document.querySelector('#timeline').value)>3);
+  await page.locator('[data-action="play"]').click();
+  await page.locator('#timeline').fill('100');
+  assert.ok((await page.locator('#time-label').textContent()).startsWith('10.0'));
+  await page.locator('[data-action="reset"]').click();
+  assert.equal(await page.locator('#timeline').inputValue(),'0');
+  await page.locator('#preset').selectOption('tight');
+  await page.locator('[data-module="1"]').click();
+  await page.locator('#sweep').check();
+  await page.locator('#timeline').fill('190');
+  assert.ok((await page.locator('.metric-caption').textContent()).includes('FAIL'));
+  assert.ok(await page.locator('.contact-event').count()>0);
+  await page.screenshot({path:'artifacts/module-b-contact.png',fullPage:true});
+  await page.locator('#preset').selectOption('delay');
+  await page.locator('[data-module="2"]').click();
+  await page.locator('#timeline').fill('100');
+  assert.ok((await page.locator('#resource-details').textContent()).includes('未开启'));
+  assert.ok((await page.locator('#tasks').textContent()).includes('等待门开启'));
+  await page.screenshot({path:'artifacts/module-c-delay.png',fullPage:true});
+  await page.locator('[data-config="policy"]').selectOption('none');
+  assert.ok((await page.locator('.metric-caption').textContent()).includes('FAIL'));
+  await page.locator('#preset').selectOption('baseline');
+  await page.locator('[data-module="3"]').click();
+  await page.locator('[data-action="batch"]').click();
+  await page.locator('[data-case="5"]').waitFor();
+  assert.equal(await page.locator('.batch-panel tbody tr').count(),6);
+  await page.locator('[data-case="0"]').click();
+  assert.ok((await page.locator('.metric-caption').textContent()).includes('FAIL'));
+  await page.locator('[data-action="language"]').click();
+  assert.equal(await page.locator('html').getAttribute('lang'),'en');
+  await page.screenshot({path:'artifacts/module-d-en.png',fullPage:true});
+  for(const [action,file] of [['run-export','run.json'],['report','report.html']]) {
+    const pending=page.waitForEvent('download');await page.locator(`[data-action="${action}"]`).click();
+    const download=await pending;await download.saveAs(`artifacts/${file}`);
+  }
+  const exported=JSON.parse(await readFile('artifacts/run.json','utf8'));
+  assert.equal(exported.status,'FAIL');assert.ok(exported.frames.length>10);
+  assert.ok((await readFile('artifacts/report.html','utf8')).includes('Matched regression'));
+  await page.locator('[data-module="0"]').click();
+  const pending=page.waitForEvent('download');await page.locator('[data-action="scene-export"]').click();
+  await (await pending).saveAs('artifacts/scene.json');
+  await page.locator('#preset').selectOption('baseline');
+  await page.locator('#file-import').setInputFiles('artifacts/scene.json');
+  await page.waitForFunction(()=>!document.querySelector('#notice').hidden);
+  assert.ok((await page.locator('.metric-caption').textContent()).includes('FAIL'));
+  await page.locator('#file-import').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schemaVersion":999}')});
+  await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('Unable to load'));
+  await page.locator('#preset').selectOption('baseline');
+  await page.setViewportSize({width:390,height:844});
+  for(let i=0;i<4;i++) {
+    await page.locator(`[data-module="${i}"]`).click();
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),`Horizontal overflow on mobile module ${i}`);
+  }
+  await page.screenshot({path:'artifacts/mobile-en.png',fullPage:true});
+  await page.locator('[data-action="language"]').click();
+  await page.setViewportSize({width:320,height:800});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'320px horizontal overflow');
+  assert.deepEqual(errors,[]);
+  assert.deepEqual(externalRequests,[],'The workbench must not call external services');
+  const base=process.env.BASE_URL || 'http://127.0.0.1:4173';
+  assert.equal((await context.request.get(`${base}/.git/config`)).status(),404);
+  assert.equal((await context.request.get(`${base}/README.md`)).status(),404);
+  assert.equal((await context.request.post(base)).status(),405);
+  console.log(`Verified in Chromium ${browser.version()}; no browser errors or external requests.`);
+  console.log('Browser smoke passed: A/B/C/D, playback, presets, bilingual UI, batch, JSON/HTML downloads, import validation, 390/320px layout.');
+} finally {await browser.close();}

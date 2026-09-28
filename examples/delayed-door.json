@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "crossing-yard",
+  "config": {
+    "seed": 42, "speed": 1.6, "trailerLength": 3.2, "aisleWidth": 6,
+    "doorDelay": 18, "policy": "fifo", "vehicleCount": 2, "dt": 0.1, "duration": 90
+  }
+}
