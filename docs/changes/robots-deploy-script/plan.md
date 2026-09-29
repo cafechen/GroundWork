@@ -21,6 +21,8 @@ These requests authorize commit and deployment, not push, auth, migration or
 changes to other services. Recovery keeps the old release.
 请求授权提交和部署，不授权推送、登录、迁移或其他服务变更；保留旧版本恢复。
 
+## Original script-only plan / 最初仅实现脚本的计划
+
 The maintainer's explicit request is the authorization to automate the already
 performed preview procedure within the above bounds; no separate architecture or
 schema approval is inferred. Implementation details receive same-session self-review.

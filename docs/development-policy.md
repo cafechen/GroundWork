@@ -27,6 +27,12 @@ Small documentation-only edits may combine these fields in one record. The initi
 
 The repo is the canonical home for project decisions. README is an overview, AGENTS is the agent entry point, this policy owns the workflow, architecture owns current model conventions, and change records own individual decisions. Reference these records rather than creating contradictory copies. Policy changes require the maintainer's request or review. / 仓库是项目决策的唯一主记录；各文档分工明确，避免互相矛盾的副本。政策变更需要维护者请求或审查。
 
+Use the [handoff field guide](sdlc.md) to record acceptance cases, decision scope,
+revision, commands and evidence consistently. This explains the existing record
+requirements; it does not authorize Git actions or install automatic gates.
+使用交接字段说明统一验收项、决策范围、版本、命令和证据；它细化已有记录要求，
+不授权 Git 操作、不安装自动门禁。
+
 ## 3. Verification proportional to risk / 按风险验证
 
 | Change | Required evidence / 所需证据 |
@@ -60,14 +66,24 @@ Track useful signals when records exist: first-pass check results, review-discov
 
 ## 6. Enforced today versus required next / 现有保障与后续要求
 
-For current dated evidence, see the [Next.js review](changes/nextjs-platform/review.md).
+For dated evidence, see the [Next.js review](changes/nextjs-platform/review.md),
+[UI review](changes/shadcn-admin-ui/review.md) and
+[script deployment review](changes/robots-deploy-script/review.md).
 The [pre-Next.js park audit](audits/2026-09-28-park-sdlc.md) is historical evidence.
-当前带日期证据见 Next.js 自检；迁移前园区审计保留为历史，不把原始采用记录当成现状。
+带日期证据见 Next.js、UI 和脚本部署自检；迁移前园区审计保留为历史，不把初始采用记录当现状。
 
-- Present: local validation in application code; runnable core tests; a browser-smoke script; a CI workflow file for core checks. / 已有：输入校验、核心测试、浏览器验收脚本、核心检查 CI 配置。
+- Present: input validation; core/Next/engine tests; isolated MySQL/import and browser suites; CI configuration for build/JS/TS/lint/core/Next/engine/Python checks; same-schema robots deployment script with a verified successful cutover. / 已有输入校验、核心/Next/引擎、独立 MySQL/导入及浏览器测试；CI 配置构建/语法/类型/lint/核心/Next/引擎/Python 检查；同结构部署脚本及一次成功实机切换。
 - Not verified: hosted CI runs and GitHub branch protection. A workflow file is not proof that remote checks ran or that merging is blocked on failure. / 未验证：远端 CI 运行及分支保护；配置文件不等于检查已运行或失败必然阻止合并。
 - Not installed: test-edit protection, secret scanning hooks, enforced plan approval, agent eval harness, automated PR review, production deployment/recovery and autonomous monitoring. / 未安装：测试编辑保护、密钥扫描钩子、强制计划审批、代理评估、自动 PR 审查、生产发布恢复及自主监控。
 - AGENTS/README/policy are behavioral instructions, not an OS sandbox or unbypassable gate. Respect the actual environment's controls; add automation in separately scoped, reviewed work. / 文档是行为指导，不是系统沙箱或不可绕过的门禁；自动化另行定范围和审查。
+
+The [six-stage assessment](sdlc.md) records partial adoption. In particular, recent
+intent/spec/plan files entered Git together with implementation, not as separately
+approved stage commits. The preview deploy script does not validate a named human
+approval; its recovery orchestration is unit-tested, not a live failed-cutover or
+MySQL restore drill. Do not infer production readiness from successful preview deployment.
+六阶段评估结论为部分采用；近期意图/规格/计划与实现同批提交，并非逐阶段审批提交链。
+脚本不校验具名人工授权，恢复流程有单测但未实演失败切换或 MySQL 恢复；预览部署成功不代表生产就绪。
 
 ## Definition of done / 完成条件
 

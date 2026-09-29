@@ -93,6 +93,11 @@ Overall reference: [The AI-native SDLC playbook](https://claude.com/blog/the-ai-
 
 [AGENTS.md](AGENTS.md) and [development policy](docs/development-policy.md) govern work. Same-session review is self-review, not independent approval. Written rules do not prove enforced CI gates or full adoption. Commit, push, deployment, uploads and real control require corresponding authorization.
 
+[SDLC evidence and handoffs](docs/sdlc.md) maps the six stages to actual records
+and reusable fields. [Latest documentation audit](docs/changes/2026-09-29-sdlc-doc-audit.md)
+records corrections and gaps: no independently verified stage-gate chain, agent
+evals, enforced approval hooks or autonomous maintenance. Current adoption is partial.
+
 ## License
 
 [MIT](LICENSE) for original code. See [third-party notices](THIRD_PARTY_NOTICES.md) and [source provenance](docs/source-provenance.md). Do not upload customer maps, logs or credentials without permission.

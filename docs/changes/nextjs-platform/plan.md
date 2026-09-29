@@ -2,8 +2,9 @@
 
 Status / 状态：accepted on 2026-09-28, implemented and locally committed as 03c88d2 /
 维护者已确认，已实施并本地提交。未来 PostgreSQL 兼容要求见 [intent](intent.md)。
-MySQL locally verified; PostgreSQL live tests and robots deployment pending. See [review](review.md).
-MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
+MySQL locally verified and subsequently deployed on robots; PostgreSQL live tests
+remain pending. See [review](review.md) and [current deployment](../robots-deploy-script/review.md).
+MySQL 已本地验证并随后部署 robots；PG 实库测试仍待完成，见自检和当前部署记录。
 
 ## Proposed layout / 目标目录
 

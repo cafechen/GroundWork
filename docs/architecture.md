@@ -25,6 +25,12 @@ Local artifacts / 本地轨迹文件 ─── result API / 结果接口
 
 - `src/app`: pages/API; `src/features`: five menus, seven park tabs, laboratory.
   页面与接口由 App Router 承载，业务 React 页面位于 features。
+- `src/components/shell.tsx` and `ui/sidebar.tsx`: adapted shadcn-admin navigation;
+  `theme-provider.tsx` and `src/app/admin-theme.css`: browser-local light/dark state
+  and theme tokens. `providers.tsx` owns locale and QueryClient. None provides
+  authentication; `/login` handling in the shell is only a presentation branch,
+  not an implemented login route/session gate. / 模板外壳、浏览器主题、语言与查询缓存
+  各自分层；外壳对 /login 的显示分支不是登录页面、会话或访问保护。
 - `src/contracts/platform.ts`: strict shared Zod contracts; `src/server`: services/repositories.
   前后端共享类型契约，服务与仓储分层。
 - `src/simulation`: typed ports of existing numerical logic; `packages` remains internal.

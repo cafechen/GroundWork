@@ -10,6 +10,9 @@ PG live integration remains pending. / 地图图层/设施与持久化配对汇�
 
 - [x] Five menus, park-owned devices/operations/control/analysis / 五主菜单、园区业务闭环
 - [x] Next.js/React/shadcn + MySQL/Prisma resources, immutable versions / 新架构资源持久化与固定版本
+- [x] shadcn-admin shell, themes, mobile navigation and resource filtering / 模板外壳、明暗主题、手机导航和资源筛选
+- [x] Committed same-schema robots deployment, guarded script and live success evidence / 绑定提交的同结构部署、保护脚本与成功实机证据
+- [ ] Single-admin authentication: design scope accepted, detailed tables/API pending review / 单管理员登录：设计范围已确认，详细表和接口待审
 - [x] Scene overlays, explicit-route planar simulation, frozen replay and metrics / 场景图层、路线运动学、历史回放和统计
 - [x] Prechecked runnable synthetic tugger yard / 已预检的可运行合成牵引车物流园
 - [x] Disable unfinished-route saving; add 2D spawn picking and route-start alignment / 禁止保存未完成路线点，支持二维初始位置点选及路线起点对齐
@@ -48,12 +51,19 @@ This does not satisfy the real-hardware calibration items below. / v0.2 已完�
 ## Later · External reproducibility / 外部复现
 
 - [ ] General parameter-sweep CLI; ready-yard preflight and job API already exist / 通用参数扫描 CLI；已有示例预检和任务 API
-- [ ] Run bundle import and commit-bound release manifests; source/engine hashes already recorded / 实验包导入和绑定提交的发布清单；已有来源/引擎哈希
+- [x] Explicit legacy run-file import into empty targets and commit-bound robots deployment manifests / 显式旧实验文件导入空目标及 robots 提交绑定发布清单
+- [ ] General portable run/asset bundle import; the legacy importer is not a general bundle format / 通用可移植实验/资源包导入；旧数据导入器不是通用包格式
 - [x] Optional independent Chrono train worker (uncalibrated) / 独立 Chrono 挂车列进程（未实车标定）
 - [ ] Optional ROS/MCAP record adapters / 可选 ROS/MCAP 记录适配
 - [ ] Multi-resource contention; job cancellation/worker timeouts already exist / 多资源竞争；已有任务取消和 worker 超时
 - [ ] Publish reproducible engineering case studies; invite independent replay / 持续发布可复現工程案例，邀请独立复现
 
 ## Deliberately out of scope / 刻意不做
+
+SDLC enforcement gaps and handoff fields are tracked in [SDLC evidence](sdlc.md).
+Browser/DB/docs CI, agent evals, approval hooks, independent review and recovery
+drills are not completed by writing documentation. No schedule or recurring agent
+is enabled by this roadmap. / SDLC 保障缺口见链接；补文档不等于实现 CI、代理评估、审批
+钩子、独立审查或恢复演练，路线图不启用定时代理。
 
 Production RCS/WMS, hardware control, perception stacks, safety certification, unverified vendor compatibility and automatic root-cause claims. / 生产 RCS/WMS、硬件控制、感知栈、安全认证、未经验证的厂商兼容、自动根因诊断承诺。

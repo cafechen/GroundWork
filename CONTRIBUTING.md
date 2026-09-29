@@ -17,6 +17,13 @@ See [testing](docs/testing.md) for commands and excluded suites. Follow
 开始前阅读代理说明和开发政策。记录确认范围、修复前失败案例、测试和自检；模型、
 安全与发布决策需审查。测试命令和排除项、双语文档入口见以上链接。
 
+Use [SDLC evidence and handoffs](docs/sdlc.md) for record fields and acceptance
+traceability. Distinguish approved implementation, pending decisions, tested code,
+committed documentation and deployed revisions; do not turn a self-check into an
+independent approval or claim an unrun check passed.
+记录字段和验收追踪见 SDLC 交接；区分已批实施、待定决策、受测代码、文档提交与部署版本，
+不把自检写成独立审批，不把未执行检查计为通过。
+
 New original contributions are intended for the project's [MIT license](LICENSE).
 Copied third-party code/assets retain their own terms; do not imply that copying
 relicenses them. Review [third-party notices](THIRD_PARTY_NOTICES.md) and

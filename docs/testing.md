@@ -50,16 +50,21 @@ BASE_URL=http://127.0.0.1:4173 node scripts/next-layers-batches-smoke.mjs
 ```
 
 `PLAYWRIGHT_MODULE` / `CHROME_PATH` can select local test tools; neither is an
-application dependency. Browser scripts create synthetic resources. Never point
-them at production. `check` now includes strict TypeScript, while lint is separate.
-工具路径可指定本地浏览器测试环境，不是产品运行依赖。浏览器测试写入合成资源，
-禁止指向生产。check 现在包含严格类型检查，lint 单独执行。
+application dependency. `next-smoke`, `next-labs-smoke` and
+`next-layers-batches-smoke` create or cancel synthetic jobs/resources. The
+`admin-ui-smoke` suite is read-only but still enforces a loopback target; all these
+suites are intended for isolated tests, not production. `check` includes strict
+TypeScript, while lint is separate.
+工具路径不是产品运行依赖；前三个 Next 浏览器套件会新增或取消合成作业/资源；
+admin-ui-smoke 只读但仍限制本机地址。上述套件全部用于隔离测试，不得指向生产。
+check 包含严格类型检查，lint 单独执行。
 
 New smoke paths cover park workflow, all five maps/eight floors, graph/layer
 controls, persistent batch summaries/cancellation/exports, unified lab and classic entry.
 Old four smoke scripts below target the retained legacy DOM and must not be
 misreported as new React tests. Current results/limits live in
-[review](changes/nextjs-platform/review.md).
+[Next.js review](changes/nextjs-platform/review.md), [UI review](changes/shadcn-admin-ui/review.md)
+and [deployment review](changes/robots-deploy-script/review.md).
 新测试覆盖园区、五张地图八个楼层、图层筛选、持久化批次/取消/导出及实验室；下方四个旧脚本针对旧 DOM，
 不能冒称验证新 React。真实结果和缺口见变更自检。
 
@@ -149,6 +154,16 @@ is not evidence that GitHub ran or enforced it.
 仓库 CI 配置为 Node 22/24、Python 3.12 的构建、核心/Next/引擎/语法/类型/lint/地图测试；当前不含
 浏览器、示例预检、Chrono、文档链接、代理评估和发布审批门禁。配置存在不代表
 GitHub 已执行或强制合并门禁。
+
+The CI file also lacks real MySQL/PostgreSQL integration and import checks. Local
+database passes do not close this CI gap. Current core coverage includes the 11
+deployment-helper tests (`node --test tests/deploy-robots.test.js`); these test
+guards/orchestration, not live failed-cutover recovery. The latest remote UI check
+used a temporary read-only probe, not a checked-in portable remote smoke command;
+do not weaken local suite target guards to recreate it on a shared deployment.
+CI 同样不含真实 MySQL/PG 或导入测试；本地通过不等于 CI 已覆盖。当前核心测试含11项
+部署助手测试，验证保护/编排，不代表失败切换实演。最近远端 UI 检查使用临时只读探针，
+尚无入库的可移植远端浏览器命令；不能为复现而放宽本地套件地址保护。
 
 ## Documentation checks / 文档检查
 

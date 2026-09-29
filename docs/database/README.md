@@ -1,7 +1,15 @@
 # Database design review / 数据库结构评审
 
-Status: approved and implemented for MySQL. Tested only in isolated synthetic-data schemas; no production cutover. PostgreSQL schema/migrations are prepared and validated, not live-tested.
-状态：MySQL 方案已批准并实施，仅隔离合成数据测试库验证；未切换生产。PG 已准备并校验结构及迁移，未实库测试。
+Status: approved and implemented for MySQL, verified in isolated synthetic-data
+schemas and later deployed with legacy data imported into the dedicated robots
+preview database. This is not a production cutover. PostgreSQL schema/migrations
+are prepared and validated, not live-tested. [Deployment evidence](../changes/robots-nextjs-deployment.md).
+状态：MySQL 已批准、实施并通过隔离合成数据验证，随后部署到 robots 专用预览库并导入旧数据，
+不是生产切换。PG 已准备并校验结构及迁移，未实库测试；部署证据见链接。
+
+There are still 18 business models. The [AuthUser/AuthSession proposal](../changes/shadcn-admin-ui/authentication.md)
+awaits detailed review; neither table nor its migration/login API is implemented.
+当前仍为18个业务模型；两张登录表的详细方案待 review，表、迁移及登录接口均未实现。
 
 Reviewable source: [prisma/schema.prisma](../../prisma/schema.prisma).
 Implementation gate: [intent](../changes/nextjs-platform/intent.md),

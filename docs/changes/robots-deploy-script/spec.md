@@ -1,5 +1,9 @@
 # Specification / 约定
 
+Implemented as written; the initial script-only scope was later followed by an
+explicitly authorized successful live deployment. [Evidence](review.md).
+约定已实现；最初只实现脚本，随后另行获准完成实机部署，证据见自检。
+
 - Fixed authorized target: SSH alias robots, VPN 10.9.0.20:5180, existing
   `/home/steven/src/groundwork`; Node/npm and user systemd must already exist.
   固定已授权目标及独立 Node/npm；不使用 sudo、Docker 或关闭 SSH 主机校验。
@@ -19,5 +23,6 @@
   units/ports; `logs` is explicit because logs may contain operational data.
   启动可重建临时单元，拒绝无关服务/端口；日志仅显式请求时读取。
 - Tests must cover input validation, migration mismatches, command ordering,
-  rollback and refusal paths. No live deployment is required this turn.
-  测试覆盖输入、迁移不匹配、执行顺序、恢复与拒绝路径；本轮无需线上切换。
+  rollback and refusal paths. The original script-only turn required no live
+  deployment; the later successful cutover is distinct from a failed-cutover drill.
+  测试覆盖输入、迁移不匹配、执行顺序、恢复与拒绝；最初脚本阶段无需切换，后续成功切换不等于失败恢复实演。

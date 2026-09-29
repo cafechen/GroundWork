@@ -36,9 +36,12 @@ ssh robots 'journalctl --user -u groundwork-next-web -u groundwork-next-worker -
 
 Restart interrupts an active simulation; use a maintenance window. The commands
 above require the transient units to still exist; after reboot/user-manager exit,
-recreate them using the deployment record. Do not use the legacy `service.py`.
+recreate the current version with `node scripts/deploy-robots.mjs start --apply`
+from the reviewed local checkout. Inspect partial service states first; do not
+reuse the historical release's hard-coded unit commands or legacy `service.py`.
 重启会中断活动仿真，应选维护窗口。上述命令要求临时单元仍存在；重启机器或用户管理器
-退出后按部署记录重新创建，不能用旧 service.py。
+退出后在审查过的本地代码中用上述脚本启动 current；部分运行先检查，不能复制历史旧目录的
+启动命令，也不能使用旧 service.py。
 
 The general runbook below describes preparing another release. Do not repeat
 seed/import or start duplicate foreground services on the deployed database/port.

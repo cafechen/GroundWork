@@ -1,5 +1,13 @@
 # Implementation review / 实施自检
 
+Historical refactor-stage evidence below. Later authorized deployment/import of
+`baaa97b` and UI update `2bfe8b2` are recorded in the
+[initial deployment](../robots-nextjs-deployment.md) and
+[script deployment](../robots-deploy-script/review.md). They supersede the earlier
+“no robots deployment” status, not the recorded test results. PG remains unverified live.
+下文是重构阶段历史证据；后续获准部署/导入及 UI 更新见链接，取代早期“未部署”状态，
+不改写当时测试结果；PG 实库仍未验证。
+
 Date / 日期：2026-09-28. Same-session self-review, **not independent approval**.
 The initial review preceded commit; implementation was later locally committed as
 `03c88d2`. No push or robots deployment. See [documentation alignment](../nextjs-docs-alignment.md).

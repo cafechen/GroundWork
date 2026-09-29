@@ -50,6 +50,8 @@ check/typecheck, lint and diff whitespace checks passed again before commit.
 无需放宽保护；临时考虑的工作区快照方案已撤回。提交前复验核心48项、Next16项、
 check/类型、lint和差异检查均通过。下文为最初脚本实现阶段的历史证据。
 
+## Historical script-only verification / 历史脚本阶段验收
+
 Date: 2026-09-29. Same-session implementation review, **not independent approval**.
 Status: implemented locally, unit-checked and remote read-only checks passed;
 the new script has **not performed a live cutover/reboot/recovery drill**.

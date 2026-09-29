@@ -122,3 +122,7 @@ General checks below apply to this repository; the explicitly named legacy brows
 Current documentation and self-review: [index](docs/README.md), [Next.js review](docs/changes/nextjs-platform/review.md).
 The [pre-Next.js audit](docs/audits/2026-09-28-park-sdlc.md) is historical.
 当前文档与自检见索引和 Next.js 自检；迁移前审计属于历史记录，链接不改变执行规则。
+
+Current stage/evidence gaps and reusable record fields: [SDLC handoffs](docs/sdlc.md).
+Latest consistency audit: [2026-09-29](docs/changes/2026-09-29-sdlc-doc-audit.md).
+当前阶段/证据缺口和记录字段、最新一致性审计见上述链接；这是文档导航补充，不改变代理权限。

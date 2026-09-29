@@ -2,6 +2,15 @@
 
 Date / 日期: 2026-09-29. Release source / 发布源码: `baaa97b`.
 
+Historical first Next.js cutover/import record. The current preview subsequently
+updated to `2bfe8b2`; see [deployment status](../deployment.md) and
+[script verification](robots-deploy-script/review.md). The hard-coded systemd
+commands below reproduce the old release, **not the current restart procedure**.
+Use `node scripts/deploy-robots.mjs start --apply` from a reviewed local checkout
+for current-version startup after reboot; inspect partial service states first.
+这是首次 Next.js 切换/导入历史记录，后来已更新版本。下方写死旧目录的命令仅记录旧版本，
+**不是当前启动步骤**；当前重启后在审查过的本地代码中运行上述脚本，部分服务运行时先检查。
+
 ## Authorization and scope / 授权与范围
 
 The maintainer requested deployment on robots, then chose the existing MySQL

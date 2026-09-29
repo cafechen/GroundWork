@@ -1,8 +1,9 @@
 # Specification / 规格
 
 Status / 状态：implemented and locally committed as 03c88d2 / 已实施并本地提交 03c88d2。
-MySQL locally verified; PostgreSQL live tests and robots deployment pending. See [review](review.md).
-MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
+MySQL locally verified and subsequently deployed on robots; PostgreSQL live tests
+remain pending. See [review](review.md) and [current deployment](../robots-deploy-script/review.md).
+MySQL 已本地验证并随后部署 robots；PG 实库测试仍待完成，见自检和当前部署记录。
 
 Additional accepted requirement: future PostgreSQL support. Keep business code
 provider-neutral, generate both providers' schemas from one model definition,

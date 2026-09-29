@@ -89,6 +89,10 @@ node --env-file=.env.local --import tsx --test tests-next/database.integration.j
 
 执行规则见 [AGENTS.md](AGENTS.md) 和[开发政策](docs/development-policy.md)。同会话审查只是自检，不是独立批准；书面规则不证明已有强制 CI 门禁或完整落地。提交、推送、部署、上传及实机控制需要对应授权。
 
+[SDLC 证据与交接](docs/sdlc.md)将六阶段对应到实际记录及可复用字段；
+[最新文档审计](docs/changes/2026-09-29-sdlc-doc-audit.md)记录修正和缺口：尚无独立验证的
+阶段门禁链、代理评估、强制审批钩子或自主维护。当前属于部分采用。
+
 ## 许可证
 
 原创代码采用 [MIT](LICENSE)。见[第三方声明](THIRD_PARTY_NOTICES.md)和[源码来源](docs/source-provenance.md)。未经许可不上传客户地图、日志或凭证。

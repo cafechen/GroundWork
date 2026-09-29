@@ -3,17 +3,25 @@
 [Documentation / 文档中心](README.md) · [Contracts / 权威字段定义](../src/contracts/platform.ts)
 
 Engineering preview, not a stable public SDK. JSON requests; no authentication.
-Never expose publicly or store secrets. POST requires `Content-Type: application/json`
-and `Origin` exactly matching `GROUNDWORK_ORIGIN` when set, otherwise `http://<Host>`;
+Never expose publicly or store secrets. POST handlers that parse bodies require
+`Content-Type: application/json`. All POST requests require `Origin` exactly
+matching `GROUNDWORK_ORIGIN` when set, otherwise `http://<Host>`;
 platform bodies ≤4 MiB, batches ≤16 KiB, other run submissions ≤1 MiB.
 Host allowlisting/origin checks are not identity checks. No real-device command API.
 
 这是工程预览，不是稳定公共 SDK。JSON 请求，无用户认证；不能公开部署或存放秘密。
-POST 需 JSON Content-Type，Origin 必须与配置的 GROUNDWORK_ORIGIN 完全一致，
+读取请求体的 POST 需 JSON Content-Type；所有 POST 的 Origin 必须与配置的 GROUNDWORK_ORIGIN 完全一致，
 未配置则与 `http://<Host>` 一致；平台请求体最多
 4 MiB，批次 16 KiB，其他实验提交 1 MiB。主机和来源检查不验证身份，没有真实设备命令接口。
 
 ## Current runtime / 当前运行时
+
+Exception: run and batch cancellation handlers currently ignore the request body;
+the client sends `{}`, but those handlers do not enforce JSON content-type/body
+limits. Host/Origin checks still apply. This is an implementation boundary, not a
+blanket body-validation guarantee. No `/api/auth/*` endpoints exist yet.
+例外：单次/批次取消接口当前忽略请求体，客户端发送 `{}`，但接口不强制 JSON 类型/大小；
+Host/Origin 检查仍适用，不能泛称所有接口均校验请求体。尚无登录接口。
 
 Next.js Route Handlers own the API; Prisma persists resources and run metadata.
 Errors are `{error, code, issues?}`; internal failures include an opaque requestId,
@@ -102,7 +110,7 @@ a gateway and defined channel names. Do not include keys in URLs or descriptions
 
 | Endpoint / 接口 | Meaning / 含义 |
 | --- | --- |
-| `GET /api/capabilities` | Legacy engine availability/catalog/limits, not the full park capability matrix / 旧版引擎可用性，不是完整园区能力矩阵 |
+| `GET /api/capabilities` | Configured engine flags/catalog/limits; `park/yard/road=true`, `chrono` reflects whether its Python env setting is nonempty, not a runtime probe / 配置能力标志；Chrono 只看环境项非空，不是实测可用性 |
 | `GET /api/runs` | Retained jobs, newest first, at most 200 / 保留实验倒序，最多 200 条 |
 | `POST /api/runs` | Legacy yard/road/chrono requests; park requests must use park endpoint / 旧版实验，园区需专用接口 |
 | `GET /api/runs/:id` | Job state/progress/error / 状态、进度、错误 |
@@ -129,11 +137,14 @@ Typical errors: 400 validation/unsupported input, 403 host/origin, 404 missing
 resource/route, 409 resource revision/reference conflict, 405 unsupported method.
 Errors return `{error,code,issues?}` with readable validation details. Park-run
 revision mismatch returns 409. Unsupported paths return 404; unexported HTTP
-methods use the framework's 405 response.
+methods use the framework's 405 response. Body-parsing handlers return 413 for
+oversize bodies and 415 for non-JSON content-type. Generic unexpected errors return
+500 with a requestId; custom engine/Zod messages are not all fully bilingual.
 
 典型错误：400 参数或不支持，403 主机/来源，404 缺失，409 资源版本或引用冲突，
 405 方法不支持。返回可读 `{error,code,issues?}`；园区版本冲突返回 409。
-未知路径返回404，未导出的HTTP方法由框架返回405。
+未知 API 路径返回404，未导出的HTTP方法由框架返回405；读取请求体的接口超限返回413、
+非 JSON 返回415，未预期异常返回500及 requestId。引擎/Zod 的部分原生错误仍非完整双语。
 
 Read-only local inspection / 本地只读查看：
 

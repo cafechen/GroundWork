@@ -1,5 +1,9 @@
 # Intent / 意图
 
+Current status: committed as `2bfe8b2`; successful live script deployment separately
+authorized and verified on 2026-09-29. See [follow-up plan](plan.md) and [evidence](review.md).
+当前：已提交，后续单独获准于 2026-09-29 实机部署且验收通过；下文为最初仅脚本化的范围。
+
 2026-09-29 maintainer request: “将刚才的部署过程固化为一个脚本，下次我自己部署。”
 The request authorizes codifying the existing robots preview deployment, not a new
 live cutover, database redesign, production service or automatic boot setup.

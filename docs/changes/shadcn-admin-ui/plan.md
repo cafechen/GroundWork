@@ -1,5 +1,13 @@
 # Plan / 计划
 
+Completed UI plan; source `2bfe8b2`, post-deployment evidence `377415c`.
+The later requests “使用部署脚本部署到 robots 中，如果部署脚本无法部署，更改部署脚本。”
+and “那你先提交吧。” authorized commit/deployment separately, not authentication
+or push. [Actual results](review.md). The original local-only recovery scope below
+describes the visual implementation stage; deployment retains the previous release.
+UI 计划已完成；后续上述请求分别授权提交和部署，不授权登录或推送。原本地恢复边界
+指视觉实施阶段，后续部署保留旧版本，实际证据见自检。
+
 Approval: maintainer explicitly selected the live demo's style, then confirmed
 the single-administrator auth design scope. Implement the visual adaptation now;
 prepare and request review of auth tables before implementing authentication.

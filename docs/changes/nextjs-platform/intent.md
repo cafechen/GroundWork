@@ -1,8 +1,10 @@
 # Intent / 意图：Next.js platform refactor
 
 Date / 日期：2026-09-28. Status / 状态：**implemented and locally committed as 03c88d2 / 已实施并本地提交 03c88d2**。
-MySQL locally verified; PostgreSQL live tests and robots deployment remain pending. See [review](review.md).
-MySQL 已本地验证；PG 实库测试和 robots 部署待完成，见自检。
+MySQL locally verified; later deployed on robots as `baaa97b`, then updated to UI
+revision `2bfe8b2`. PostgreSQL live tests remain pending. See [review](review.md)
+and [current deployment](../robots-deploy-script/review.md).
+MySQL 已本地验证，随后以 baaa97b 部署 robots，再更新 UI 为 2bfe8b2；PG 实库测试仍待完成。
 
 ## Request / 请求
 

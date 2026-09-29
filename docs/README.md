@@ -1,11 +1,13 @@
 # Documentation / 文档中心
 
-Current runtime: Next.js/MySQL, deployed on robots on 2026-09-29 from `baaa97b`:
-[VPN preview](http://10.9.0.20:5180). See [deployment evidence](changes/robots-nextjs-deployment.md),
+Current runtime: Next.js/MySQL + shadcn-admin UI, deployed on robots on 2026-09-29
+from **`2bfe8b2`**: [VPN preview](http://10.9.0.20:5180). Deployment evidence was
+subsequently committed as `377415c`; that docs-only revision is not the deployed
+source. See [current deployment evidence](changes/robots-deploy-script/review.md),
 [documentation alignment](changes/nextjs-docs-alignment.md) and
 [implementation review](changes/nextjs-platform/review.md). No Git push in this deployment.
-当前为 Next.js/MySQL，2026-09-29 已从 baaa97b 部署到 robots，VPN 地址如上；
-部署、文档及实现证据见对应记录，本次部署未推送 Git。
+当前为 Next.js/MySQL 与 shadcn-admin 界面，2026-09-29 从 **2bfe8b2** 部署；
+事后证据提交为 377415c，不是线上源码。入口及证据如上，未推送 Git。
 
 Documents use either paired English/Chinese files or bilingual sections in one
 file. Historical change records describe their original stage, not today's feature
@@ -39,6 +41,8 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | [Contributing / 贡献](../CONTRIBUTING.md) | Change and verification requirements / 修改和验证要求 |
 | [Agent instructions / 代理说明](../AGENTS.md) | Working entry point / 工作入口 |
 | [Development policy / 开发政策](development-policy.md) | Project-specific AI-native SDLC rules / 项目 SDLC 约定 |
+| [SDLC evidence and handoffs / SDLC 证据与交接](sdlc.md) | Six-stage assessment, reusable fields and missing enforcement / 六阶段现状、记录字段与保障缺口 |
+| [Current documentation audit / 当前文档审计](changes/2026-09-29-sdlc-doc-audit.md) | Code/document consistency, findings and verification / 代码文档一致性、发现与验收 |
 | [Next.js implementation review / 当前实现自检](changes/nextjs-platform/review.md) | Current implementation evidence and remaining limits / 当前实现证据及剩余边界 |
 | [Historical park SDLC audit / 历史园区自检](audits/2026-09-28-park-sdlc.md) | Pre-Next.js findings; not current UI status / Next.js迁移前发现，不代表当前UI状态 |
 | [Initial SDLC audit / 初始自检](audits/2026-09-28-ai-native-sdlc.md) | Historical adoption snapshot / 采用原则时的历史快照 |
@@ -59,6 +63,7 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | robots Next.js deployment / 新架构部署 | [Record / 记录](changes/robots-nextjs-deployment.md) |
 | robots deployment script / 部署脚本 | [Intent / 意图](changes/robots-deploy-script/intent.md) · [Spec / 规格](changes/robots-deploy-script/spec.md) · [Plan / 计划](changes/robots-deploy-script/plan.md) · [Review / 自检](changes/robots-deploy-script/review.md) |
 | shadcn-admin redesign / 后台重设计 | [Intent / 意图](changes/shadcn-admin-ui/intent.md) · [Spec / 规格](changes/shadcn-admin-ui/spec.md) · [Plan / 计划](changes/shadcn-admin-ui/plan.md) · [Auth proposal / 登录待审方案](changes/shadcn-admin-ui/authentication.md) · [Review / 自检](changes/shadcn-admin-ui/review.md) |
+| SDLC documentation audit / SDLC 文档审计 | [Combined record / 合并记录](changes/2026-09-29-sdlc-doc-audit.md) |
 
 Historical records that say “not committed” describe the moment they were written.
 The pre-Next.js park implementation and its records were subsequently committed as `a634805`;
