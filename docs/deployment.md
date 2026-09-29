@@ -1,15 +1,49 @@
 # Deployment / 部署
 
+For routine updates of the existing robots Next.js preview, use the
+[self-service script](deploy-robots.md): `node scripts/deploy-robots.mjs deploy --apply`.
+It requires a clean committed tree and unchanged database schema, reuses protected
+remote configuration, and never repeats seed/import. First-time setup remains below.
+现有 robots Next.js 的日常更新优先使用上方自助脚本；要求已提交的干净工作区和不变的
+数据库结构，复用远端受保护配置，不重复初始化或导入。首次安装仍按下方独立流程。
+
 ## Current status / 当前状态
 
-Next.js/MySQL implementation is locally committed as `03c88d2`. **It has not
-been deployed on robots**; the user confirmed the machine was powered off.
-VPN address: `10.9.0.20`. Local default: `127.0.0.1:4173`; `5180` is the
-historical robots preview port, proposed for reuse only after checking occupancy.
-The following is an **unexecuted manual runbook**, not a verified remote release.
-新版已本地提交，但 **robots 尚未部署**，用户确认已关机，VPN 地址如上。
-本机默认 4173；5180 是旧预览端口，仅在核实占用后考虑复用。
-以下为**尚未在远端执行的手工操作手册**，不是远端验收成功记录。
+Deployed and checked on **2026-09-29**, source `baaa97b` (implementation `03c88d2`):
+[robots preview](http://10.9.0.20:5180). Local default remains `127.0.0.1:4173`.
+This is a dated verification, not a promise of continued availability.
+See [deployment evidence and restart commands](changes/robots-nextjs-deployment.md).
+**2026-09-29 已部署并验收**，源码 baaa97b，VPN 预览地址如上；本机仍默认 4173。
+这是有日期的验收，不是持续在线保证；实际证据和重启命令见部署记录。
+
+- Release / 版本: `/home/steven/src/groundwork/releases/20260929-nextjs-baaa97b`;
+  `current` now selects this release / current 已指向此版本。
+- Database / 专用库: `groundwork_robots_20260929`; dedicated account only permits
+  robots' VPN source and this database / 专用账号仅限 robots VPN 来源及该库。
+- Artifacts / 轨迹: `/home/steven/src/groundwork/data/next-runs-20260929`.
+- Processes / 进程: user-scoped transient `groundwork-next-web.service` and
+  `groundwork-next-worker.service`, **not boot-enabled** / 用户级临时单元，**未开机自启**。
+- Legacy data and release retained; backup / 旧数据及版本保留，备份位于
+  `/home/steven/src/groundwork/backups/20260929-pre-nextjs`.
+
+```sh
+ssh robots 'systemctl --user status groundwork-next-web groundwork-next-worker --no-pager'
+ssh robots 'systemctl --user restart groundwork-next-web groundwork-next-worker'
+ssh robots 'journalctl --user -u groundwork-next-web -u groundwork-next-worker -n 80 --no-pager'
+```
+
+Restart interrupts an active simulation; use a maintenance window. The commands
+above require the transient units to still exist; after reboot/user-manager exit,
+recreate them using the deployment record. Do not use the legacy `service.py`.
+重启会中断活动仿真，应选维护窗口。上述命令要求临时单元仍存在；重启机器或用户管理器
+退出后按部署记录重新创建，不能用旧 service.py。
+
+The general runbook below describes preparing another release. Do not repeat
+seed/import or start duplicate foreground services on the deployed database/port.
+The separate-copy **legacy rollback check passed**; the MySQL dump/restore procedure
+below has **not** been drilled and must not be described as verified recovery.
+下方通用手册用于准备另一版本，不要在已部署库/端口重复 seed、导入或启动前台副本。
+独立副本上的**旧版恢复检查已通过**；下方 MySQL dump/restore **尚未演练**，二者不能混称。
 
 ## Prerequisites and configuration / 前提与配置
 

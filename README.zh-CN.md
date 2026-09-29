@@ -27,7 +27,15 @@ node --env-file=.env.local --import tsx workers/runner.ts
 
 初始化只允许资源空库。开发模式使用 `npm run dev`，同时启动 worker。打开 **http://127.0.0.1:4173**，两个进程分别 Ctrl+C 停止。未运行 worker 时任务保持排队。当前仍为**可信局域网、单用户、无登录预览**，不能暴露公网。见[部署文档](docs/deployment.md)。
 
+现有 robots 预览的同结构更新，可在测试通过、已提交且干净的工作区执行
+`node scripts/deploy-robots.mjs deploy --apply`。[自助部署手册](docs/deploy-robots.md)
+包含只读计划/状态检查、机器重启后启动、保护措施和限制；不自动迁移数据库或导入数据。
+
 ## 产品流程
+
+后台界面现按 **shadcn-admin** 模板适配：可折叠侧栏、手机抽屉、明暗主题、真实资源总览及
+可筛选列表。见[界面手册与登录边界](docs/admin-ui.md)。视觉适配不改仿真模型；新增登录后端
+属于单独审查阶段，不用模板假登录冒充真实认证。
 
 五个主菜单：**总览、地图管理、设备模型、接入网关、园区管理**。园区内包含概览、场景编辑、设备实例、作业管理、控制面板、统计分析、园区配置。
 
@@ -57,7 +65,7 @@ Chrono 仍使用独立合成力学世界，不接任意园区地图。`GROUNDWOR
 
 18 张关系表管理资源和园区设备、对象、任务；不可变版本、实验输入、租约、文件校验和及审计保留证据。轨迹默认位于 `data/next-runs`。JSON 列使用版本化文本封装，避免 Prisma JSON 通道舍入几何浮点数，由仓储层解码。见[表字典与迁移](docs/database/README.md)。
 
-SQLite 和实验文件导入器默认 dry-run，必须显式指定源路径；备份后仅向独立空目标应用，不修改源文件。本轮未迁移 robots/生产数据，未部署。
+SQLite 和实验文件导入器默认 dry-run，必须显式指定源路径；备份后仅向独立空目标应用，不修改源文件。2026-09-29 已从 baaa97b 部署 robots 可信 VPN 预览，并将旧资源/历史导入独立 MySQL 库。见[部署证据](docs/changes/robots-nextjs-deployment.md)。这不是生产发布，未配置开机自启。
 
 ```sh
 npm run build

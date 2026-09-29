@@ -1,11 +1,11 @@
 # Documentation / 文档中心
 
-Current implementation: Next.js/MySQL refactor committed locally as `03c88d2`,
-not pushed or deployed at this checkpoint. robots is powered off; its VPN IP is
-`10.9.0.20`. See the current [documentation alignment](changes/nextjs-docs-alignment.md) and
-[implementation review](changes/nextjs-platform/review.md).
-当前重构已本地提交03c88d2，截至本次记录未推送或部署；robots关机，VPN地址10.9.0.20。
-本次文档对齐与实施证据见上述记录。
+Current runtime: Next.js/MySQL, deployed on robots on 2026-09-29 from `baaa97b`:
+[VPN preview](http://10.9.0.20:5180). See [deployment evidence](changes/robots-nextjs-deployment.md),
+[documentation alignment](changes/nextjs-docs-alignment.md) and
+[implementation review](changes/nextjs-platform/review.md). No Git push in this deployment.
+当前为 Next.js/MySQL，2026-09-29 已从 baaa97b 部署到 robots，VPN 地址如上；
+部署、文档及实现证据见对应记录，本次部署未推送 Git。
 
 Documents use either paired English/Chinese files or bilingual sections in one
 file. Historical change records describe their original stage, not today's feature
@@ -23,6 +23,8 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | [Troubleshooting / 故障排查](troubleshooting.md) | Route saving, initial pose, contact and replay / 路线保存、初始位姿、接触与回放 |
 | [Maps / 地图库](map-library.md) | Five RMF maps, coordinates, missing geometry / 五张 RMF 地图、坐标与几何缺口 |
 | [Deployment / 部署与恢复](deployment.md) | Local/LAN setup, data and release boundaries / 本地与局域网、数据和发布边界 |
+| [Self-service robots deployment / robots 自助部署](deploy-robots.md) | Script commands, protected updates and restart / 脚本命令、安全更新与重启 |
+| [Admin UI / 后台界面](admin-ui.md) | shadcn-admin layout, themes, mobile and login boundary / 模板布局、主题、手机及登录边界 |
 | [Laboratories / 实验室](unified-workbench.md) | Current React/batch guide, then explicitly historical reference / 当前React与批次说明，下附标明历史的详细参考 |
 
 ## Develop and verify / 开发与验证
@@ -54,6 +56,9 @@ set. Original upstream licenses, identifiers, schemas and commands remain unchan
 | Documentation and audit / 文档与审计 | [Record / 记录](changes/bilingual-docs-and-sdlc.md) |
 | Next.js refactor / Next.js 重构 | [Intent / 意图](changes/nextjs-platform/intent.md) · [Spec / 规格](changes/nextjs-platform/spec.md) · [Plan / 计划](changes/nextjs-platform/plan.md) · [Review / 自检](changes/nextjs-platform/review.md) |
 | Next.js documentation alignment / 文档对齐 | [Record / 记录](changes/nextjs-docs-alignment.md) |
+| robots Next.js deployment / 新架构部署 | [Record / 记录](changes/robots-nextjs-deployment.md) |
+| robots deployment script / 部署脚本 | [Intent / 意图](changes/robots-deploy-script/intent.md) · [Spec / 规格](changes/robots-deploy-script/spec.md) · [Plan / 计划](changes/robots-deploy-script/plan.md) · [Review / 自检](changes/robots-deploy-script/review.md) |
+| shadcn-admin redesign / 后台重设计 | [Intent / 意图](changes/shadcn-admin-ui/intent.md) · [Spec / 规格](changes/shadcn-admin-ui/spec.md) · [Plan / 计划](changes/shadcn-admin-ui/plan.md) · [Auth proposal / 登录待审方案](changes/shadcn-admin-ui/authentication.md) · [Review / 自检](changes/shadcn-admin-ui/review.md) |
 
 Historical records that say “not committed” describe the moment they were written.
 The pre-Next.js park implementation and its records were subsequently committed as `a634805`;

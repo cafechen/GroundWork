@@ -1,5 +1,21 @@
 # Third-party and migrated-code notices
 
+## shadcn-admin layout / 后台模板布局
+
+UI theme, sidebar, sheet, tooltip, skeleton and mobile hook adapted from
+[satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin), revision
+`e16c87f213a5ba5e45964e9b67c792105ec74d26`, MIT, Copyright (c) 2024 Sat Naing.
+Full license: [shadcn-admin-MIT.txt](licenses/shadcn-admin-MIT.txt).
+App shell and overview adapt its layout/header/nav-group/main/dashboard patterns.
+Changes: Next.js routing, existing Radix aggregate imports, deterministic skeleton,
+Chinese/English labels, GroundWork data and no external fonts or mock sales/accounts.
+No upstream Vite runtime, TanStack Router, Clerk or mock login token is adopted.
+主题与侧栏等组件来自上述固定模板版本并保留完整 MIT；外壳与总览改编其布局模式，
+适配 Next.js、既有 Radix、确定性骨架、双语与真实业务数据，不采用外部字体、假销售/账号、
+上游构建运行时、Clerk 或假登录令牌。
+
+## Other dependencies / 其他依赖
+
 - Original GroundWork code: [MIT](LICENSE).
 - Owner-requested copied Strategist/Robots code: see [source provenance](docs/source-provenance.md).
   Copy authority is recorded; public licensing review remains required before

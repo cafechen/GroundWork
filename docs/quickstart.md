@@ -10,20 +10,29 @@ below. The new URL is `/parks/<id>/control`, not the old hash route.
 先按根 README 完成数据库迁移、显式初始化、构建并启动 Web 与 worker，
 再执行下方预检或 --apply。新 URL 为上述页面路径，不再使用 hash。
 
-The robots URL below is historical and was not redeployed or reverified in this
-refactor. / 下方 robots 链接是历史记录，本轮未重新部署或验证在线状态。
+## Current robots preview / 当前 robots 预览
+
+Deployed on 2026-09-29: [homepage](http://10.9.0.20:5180) and
+[ready-yard control panel](http://10.9.0.20:5180/parks/33fdfc9f-366f-405c-bb40-38334e24f90a/control).
+Select **Replay** beside the latest completed run; loading starts playback.
+To compute again, open Operations and start the existing delivery task.
+Do not rerun the seeder on this imported database. VPN access is required;
+processes are not boot-enabled. See [deployment](deployment.md).
+2026-09-29 已部署，首页与可运行示例控制面板见上方链接。点击最新完成记录旁的**回放**
+即可播放；需要重新计算则进入作业管理运行已有运输任务。此库已导入，不要重复 seed。
+需要 VPN，未设置开机自启，详见部署文档。
 
 ## Historical robots example / 历史 robots 示例
 
 The old [demo Operations link](http://10.1.153.185:5180/#parks/33fdfc9f-366f-405c-bb40-38334e24f90a/operations)
 is retained only as historical evidence, not a current startup instruction.
 The user confirmed robots was powered off; VPN address is `10.9.0.20`, and the
-Next.js release is not deployed. In the historical UI, park **可运行示例 · 牵引车物流园** used **Run simulation**;
+Next.js release was not deployed at that earlier checkpoint. In the historical UI, park **可运行示例 · 牵引车物流园** used **Run simulation**;
 the control panel polls the job and starts replay when ready. This creates a new
 simulation run, not a real vehicle command. No route/device setup is needed.
 
 上方旧链接只作历史证据，不是当前启动入口。用户已确认robots关机，VPN地址为
-`10.9.0.20`，新版尚未部署。历史界面进入“可运行示例 · 牵引车物流园”后点击**开始仿真**。
+`10.9.0.20`，当时新版尚未部署。历史界面进入“可运行示例 · 牵引车物流园”后点击**开始仿真**。
 控制面板等待计算完成后自动播放；这是新建仿真实验，不向实车发送命令，无需再画路线
 或创建设备。不要把它与原来的“亚朵场景”混淆，原场景没有被覆盖。
 

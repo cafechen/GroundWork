@@ -27,7 +27,18 @@ node --env-file=.env.local --import tsx workers/runner.ts
 
 Seed requires an empty resource database. Development: `npm run dev` plus the same worker. Open **http://127.0.0.1:4173**. Stop both processes with Ctrl+C. Without a worker, jobs remain queued. This is a **trusted-LAN, single-user, no-login preview**, not a public service. See [deployment](docs/deployment.md).
 
+For subsequent same-schema updates to the existing robots preview, use
+`node scripts/deploy-robots.mjs deploy --apply` from a clean, tested, committed
+checkout. [Self-service deployment](docs/deploy-robots.md) includes read-only
+planning/status, restart after reboot, safeguards and limits; no automatic DB migrations/imports.
+
 ## Product workflow
+
+The admin interface now adapts the **shadcn-admin** template: collapsible sidebar,
+mobile drawer, light/dark themes, real-resource overview and filterable lists.
+See [UI guide and authentication boundary](docs/admin-ui.md). The UI adaptation
+does not change simulation models; the requested login backend remains a separately
+reviewed stage, not a fake template login.
 
 Five menus: **Overview, Maps, Device models, Gateways, Parks**. Each park contains Overview, Scene editor, Devices, Operations, Control panel, Analytics and Settings.
 
@@ -57,7 +68,7 @@ Old JavaScript UI/server files remain as explicit compatibility and regression b
 
 18 relational tables normalize resources and park-owned instances/objects/tasks. Immutable revisions, run inputs, leases, artifact checksums and audit events preserve evidence. Frames default to `data/next-runs`. JSON columns use versioned text envelopes to preserve floating-point geometry through Prisma; repositories decode them. See [table dictionary and migration](docs/database/README.md).
 
-SQLite/run importers default to dry-run and require explicit source paths. Apply only to dedicated empty targets after backup; source files remain unchanged. No robots/production data was migrated or deployed in this change.
+SQLite/run importers default to dry-run and require explicit source paths. Apply only to dedicated empty targets after backup; source files remain unchanged. The trusted-VPN robots preview was deployed on 2026-09-29 from `baaa97b`, with old resources/history imported into a separate MySQL database. See [deployment evidence](docs/changes/robots-nextjs-deployment.md). This is not a production release or boot-enabled service.
 
 ```sh
 npm run build

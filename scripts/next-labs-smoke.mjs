@@ -14,6 +14,10 @@ try {
       viewport: { width: 1440, height: 1000 },
     }),
     errors = [];
+  const capture = async (options) => {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ ...options, animations: "disabled" });
+  };
   page.setDefaultTimeout(20000);
   page.on("pageerror", (e) => errors.push(e.message));
   const api = async (p, data) => {
@@ -45,7 +49,7 @@ try {
     await page.getByRole("img", { name: "园区地图" }).waitFor();
     await page.getByRole("button", { name: "3D", exact: true }).click();
     await page.locator("canvas").waitFor();
-    await page.screenshot({ path: `artifacts/next-map-${name}.png` });
+    await capture({ path: `artifacts/next-map-${name}.png` });
     await page
       .getByRole("dialog")
       .getByRole("button", { name: "Close", exact: true })
@@ -93,7 +97,7 @@ try {
     await page.getByRole("button", { name: "暂停", exact: true }).click();
     await page.getByRole("button", { name: "3D", exact: true }).click();
     await page.locator("canvas").waitFor();
-    await page.screenshot({
+    await capture({
       path: `artifacts/next-lab-${engine}.png`,
       fullPage: true,
     });
@@ -125,7 +129,7 @@ try {
     .getByRole("heading", { name: "Classic laboratory", exact: true })
     .waitFor();
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-classic-mobile-en.png",
     fullPage: true,
   });

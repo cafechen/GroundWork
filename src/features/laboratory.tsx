@@ -176,12 +176,19 @@ export function Laboratory({ classic = false }: { classic?: boolean }) {
   }, [result]);
   return (
     <div className="space-y-6">
-      <p className="text-xs tracking-[.2em]">GROUNDWORK / LABORATORY</p>
-      <h1 className="text-3xl font-semibold">
-        {classic
-          ? t("经典实验室", "Classic laboratory")
-          : t("独立实验室", "Standalone laboratory")}
-      </h1>
+      <div>
+        <h1 className="page-heading">
+          {classic
+            ? t("经典实验室", "Classic laboratory")
+            : t("独立实验室", "Standalone laboratory")}
+        </h1>
+        <p className="page-description">
+          {t(
+            "配置实验、比较运行结果并检查可复现证据。",
+            "Configure experiments, compare runs and inspect reproducible evidence.",
+          )}
+        </p>
+      </div>
       <Notice>
         {t(
           "合成场景；不同引擎不是同一车辆的可互换后端。Chrono 仍独立，不接园区地图。",

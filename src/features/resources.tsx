@@ -2,6 +2,17 @@
 import { errorMessage } from "@/lib/error-message";
 import { useState } from "react";
 import Link from "next/link";
+import {
+  ArrowRight,
+  Boxes,
+  Map as MapIcon,
+  Network,
+  Plus,
+  Search,
+  Warehouse,
+  Route,
+  Layers3,
+} from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { api, useCatalog } from "@/data/platform";
 import {
@@ -33,6 +44,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Field, Choice, Notice, download } from "@/components/common";
 import { MapStage } from "./scene/map-stage";
 
@@ -41,6 +53,30 @@ const titles = {
   models: ["设备模型", "Device models"],
   gateways: ["接入网关", "Gateways"],
   parks: ["园区管理", "Parks"],
+} as const;
+const resourceIcons = {
+  maps: MapIcon,
+  models: Boxes,
+  gateways: Network,
+  parks: Warehouse,
+};
+const descriptions = {
+  maps: [
+    "管理园区底图、楼层与导航拓扑。",
+    "Manage park maps, floors and navigation topology.",
+  ],
+  models: [
+    "定义可复用的设备类型、尺寸与运动参数。",
+    "Define reusable device types, dimensions and motion parameters.",
+  ],
+  gateways: [
+    "管理设备连接配置与数据通道。",
+    "Manage connection configuration and data channels.",
+  ],
+  parks: [
+    "组织地图、设备与任务，进入园区开始验证。",
+    "Bring maps, devices and tasks together in a park.",
+  ],
 } as const;
 const modelDefault = modelSchema.parse({
   category: "tugger",
@@ -58,41 +94,170 @@ export function Overview() {
     { t } = useLocale();
   return (
     <div className="space-y-6">
-      <p className="text-xs tracking-[.25em]">GROUNDWORK / OVERVIEW</p>
-      <h1 className="text-3xl font-semibold">
-        {t("从场景到可复现证据", "From scenes to reproducible evidence")}
-      </h1>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="page-heading">{t("总览", "Overview")}</h1>
+          <p className="page-description">
+            {t("从场景到可复现证据", "From scenes to reproducible evidence")}
+          </p>
+        </div>
+        <Button asChild>
+          <Link href="/parks">
+            <Warehouse />
+            {t("管理园区", "Manage parks")}
+            <ArrowRight />
+          </Link>
+        </Button>
+      </div>
+      {error && <Notice error>{error.message}</Notice>}
+      {isPending && <p>{t("载入中…", "Loading…")}</p>}
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {data &&
+          (["maps", "models", "gateways", "parks"] as Kind[]).map((kind) => {
+            const Icon = resourceIcons[kind];
+            return (
+              <Card key={kind} className="gap-2">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0">
+                  <CardTitle className="text-sm font-medium">
+                    <Link href={`/${kind}`}>
+                      {t(titles[kind][0], titles[kind][1])}
+                    </Link>
+                  </CardTitle>
+                  <Icon className="size-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold tracking-tight">
+                    {data[kind].filter((r) => !r.archived).length}
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {t(
+                      "未归档资源 · 当前工作区",
+                      "Non-archived · Current workspace",
+                    )}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
+      </div>
+      <div className="grid gap-6 xl:grid-cols-7">
+        <Card className="xl:col-span-4">
+          <CardHeader>
+            <CardTitle>{t("园区工作空间", "Park workspaces")}</CardTitle>
+            <p className="page-description">
+              {t(
+                "继续场景编辑、运行任务或查看实验结果。",
+                "Continue editing scenes, running tasks or reviewing evidence.",
+              )}
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            {data?.parks
+              .filter((p) => !p.archived)
+              .slice(0, 5)
+              .map((park) => (
+                <Link
+                  key={park.id}
+                  href={`/parks/${park.id}`}
+                  className="flex items-center gap-3 rounded-lg border p-4 transition-colors hover:bg-muted/50"
+                >
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+                    <Warehouse className="size-5 text-muted-foreground" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold">
+                      {park.name}
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {park.data.maps.length} {t("地图", "maps")} ·{" "}
+                      {park.data.devices.length} {t("设备", "devices")} ·{" "}
+                      {park.data.tasks.length} {t("任务", "tasks")}
+                    </p>
+                  </div>
+                  <Badge variant="outline">v{park.version}</Badge>
+                  <ArrowRight className="size-4 shrink-0 text-muted-foreground" />
+                </Link>
+              ))}
+            {data && !data.parks.some((p) => !p.archived) && (
+              <div className="rounded-lg border border-dashed px-6 py-10 text-center">
+                <Warehouse className="mx-auto mb-3 size-8 text-muted-foreground" />
+                <p className="font-medium">
+                  {t("创建第一个园区", "Create your first park")}
+                </p>
+                <p className="page-description">
+                  {t(
+                    "选择地图和设备模型，建立自己的验证空间。",
+                    "Choose maps and device models to create a validation workspace.",
+                  )}
+                </p>
+                <Button className="mt-4" variant="outline" asChild>
+                  <Link href="/parks">
+                    {t("前往园区管理", "Go to parks")}
+                    <ArrowRight />
+                  </Link>
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+        <Card className="xl:col-span-3">
+          <CardHeader>
+            <CardTitle>{t("验证工作流", "Validation workflow")}</CardTitle>
+            <p className="page-description">
+              {t(
+                "从基础资源到一次可回放的实验。",
+                "From reusable assets to a replayable experiment.",
+              )}
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {[
+              {
+                icon: Layers3,
+                title: t("准备地图与模型", "Prepare maps and models"),
+                detail: t(
+                  "固定版本，确认尺寸和场景边界。",
+                  "Pin revisions and verify dimensions and scene boundaries.",
+                ),
+              },
+              {
+                icon: Route,
+                title: t("编排园区与任务", "Configure parks and tasks"),
+                detail: t(
+                  "放置设备、绘制路线并保存场景。",
+                  "Place devices, draw routes and save the scene.",
+                ),
+              },
+              {
+                icon: Boxes,
+                title: t("仿真、回放与分析", "Simulate, replay and analyze"),
+                detail: t(
+                  "检查运动轨迹、接触事件和执行指标。",
+                  "Inspect trajectories, contact events and execution metrics.",
+                ),
+              },
+            ].map((step, i) => (
+              <div key={i} className="flex gap-3">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border bg-muted/50">
+                  <step.icon className="size-4" />
+                </span>
+                <div>
+                  <p className="text-sm font-medium">{step.title}</p>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    {step.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
       <Notice>
         {t(
           "仿真预览：实机、视频、点云、远程接管尚未接通。",
           "Simulation preview: live devices, video, point clouds and takeover are not connected.",
         )}
       </Notice>
-      {error && <Notice error>{error.message}</Notice>}
-      {isPending && <p>{t("载入中…", "Loading…")}</p>}
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {data &&
-          (["maps", "models", "gateways", "parks"] as Kind[]).map((kind) => (
-            <Card key={kind}>
-              <CardHeader>
-                <CardTitle>
-                  <Link href={`/${kind}`}>
-                    {t(titles[kind][0], titles[kind][1])}
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-4xl">
-                {data[kind].filter((r) => !r.archived).length}
-              </CardContent>
-            </Card>
-          ))}
-      </div>
-      <p className="text-sm text-muted-foreground">
-        {t(
-          "地图和模型可复用；设备、场景、任务、控制和分析在园区内管理。",
-          "Reuse maps and models; manage devices, scenes, tasks, controls and analytics inside each park.",
-        )}
-      </p>
     </div>
   );
 }
@@ -104,7 +269,17 @@ export function Resources({ kind }: { kind: Kind }) {
   const [editor, setEditor] = useState<AnyResource | "new" | null>(null),
     [message, setMessage] = useState(""),
     [view, setView] = useState<AnyResource | null>(null),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [search, setSearch] = useState(""),
+    [status, setStatus] = useState("all");
+  const rows = (data?.[kind] ?? []).filter(
+    (row) =>
+      row.name
+        .toLocaleLowerCase()
+        .includes(search.trim().toLocaleLowerCase()) &&
+      (status === "all" ||
+        (status === "archived" ? row.archived : !row.archived)),
+  );
   async function action(row: AnyResource, verb: "clone" | "archive") {
     if (
       verb === "archive" &&
@@ -132,16 +307,19 @@ export function Resources({ kind }: { kind: Kind }) {
   }
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-xs tracking-[.2em]">
-            GROUNDWORK / {kind.toUpperCase()}
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold">
+          <h1 className="page-heading">
             {t(titles[kind][0], titles[kind][1])}
           </h1>
+          <p className="page-description">
+            {t(descriptions[kind][0], descriptions[kind][1])}
+          </p>
         </div>
-        <Button onClick={() => setEditor("new")}>{t("创建", "Create")}</Button>
+        <Button onClick={() => setEditor("new")}>
+          <Plus />
+          {t("创建", "Create")}
+        </Button>
       </div>
       {kind === "maps" && (
         <Notice>
@@ -161,8 +339,31 @@ export function Resources({ kind }: { kind: Kind }) {
       )}
       {(error || message) && <Notice error>{message || error?.message}</Notice>}
       {isPending && <p>{t("载入中…", "Loading…")}</p>}
-      <Card>
-        <CardContent>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div className="relative w-full sm:max-w-xs">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="search"
+            className="pl-9"
+            aria-label={t("搜索资源", "Search resources")}
+            placeholder={t("按名称搜索…", "Filter by name…")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <Choice
+          label={t("资源状态", "Resource state")}
+          value={status}
+          onChange={setStatus}
+          options={[
+            { value: "all", label: t("全部", "All") },
+            { value: "active", label: t("未归档", "Not archived") },
+            { value: "archived", label: t("已归档", "Archived") },
+          ]}
+        />
+      </div>
+      <Card className="gap-0 overflow-hidden py-0">
+        <CardContent className="p-0">
           <Table className="min-w-[640px]">
             <TableHeader>
               <TableRow>
@@ -173,7 +374,7 @@ export function Resources({ kind }: { kind: Kind }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.[kind].map((row) => (
+              {rows.map((row) => (
                 <TableRow key={row.id}>
                   <TableCell className="font-medium">
                     {kind === "parks" ? (
@@ -230,14 +431,18 @@ export function Resources({ kind }: { kind: Kind }) {
               ))}
             </TableBody>
           </Table>
-          {data && !data[kind].length && (
+          {data && !rows.length && (
             <p className="py-12 text-center text-muted-foreground">
               {t(
-                "暂无资源，点击创建。",
-                "No resources yet. Create one to begin.",
+                "没有匹配的资源，请调整筛选或创建资源。",
+                "No matching resources. Adjust filters or create one.",
               )}
             </p>
           )}
+          <div className="border-t px-4 py-3 text-xs text-muted-foreground">
+            {t("显示", "Showing")} {rows.length} / {data?.[kind].length ?? 0}{" "}
+            {t("项资源", "resources")}
+          </div>
         </CardContent>
       </Card>
       {data && editor && (

@@ -1,5 +1,6 @@
 "use client";
 import { useId } from "react";
+import { CircleAlert, Info } from "lucide-react";
 import { Alert, AlertDescription } from "./ui/alert";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -18,7 +19,15 @@ export function Notice({
   error?: boolean;
 }) {
   return (
-    <Alert variant={error ? "destructive" : "default"} className="my-4">
+    <Alert
+      variant={error ? "destructive" : "default"}
+      className={
+        error
+          ? "my-4 border-destructive/25 bg-destructive/5"
+          : "my-4 bg-muted/30"
+      }
+    >
+      {error ? <CircleAlert /> : <Info />}
       <AlertDescription>{children}</AlertDescription>
     </Alert>
   );

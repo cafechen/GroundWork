@@ -9,6 +9,18 @@ startup but required for converter tests. Do not interpret omitted tests as pass
 
 ## Next.js acceptance / Next.js 验收
 
+The shadcn-admin layout has an additional read-only browser suite:
+`BASE_URL=http://127.0.0.1:14173 node scripts/admin-ui-smoke.mjs`.
+Use a separately seeded isolated test deployment, Playwright and Chrome as below.
+It checks desktop/mobile navigation, light/dark + language persistence, filtering,
+map dialogs, overflow, and external requests. Screenshots are under `artifacts/admin-ui/`.
+The existing park suite now also verifies cancelling brand navigation preserves
+an unfinished route. Snapshot capture waits out finite animations and scrolls to
+the top so fixed/sticky navigation is not misleadingly captured mid-page.
+模板布局另有上述只读浏览器测试，仍须预先初始化的独立测试环境及浏览器；验证主题、语言、
+导航、筛选、地图弹窗、溢出与外部请求，截图位于 artifacts/admin-ui。
+园区测试增加“取消品牌导航保留未完成路线”；截图结束有限动画并回到顶部，避免固定导航截图错位。
+
 ```sh
 npm ci
 npm run build

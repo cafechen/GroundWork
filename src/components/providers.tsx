@@ -7,6 +7,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider } from "./theme-provider";
 type Locale = {
   lang: "zh" | "en";
   toggle: () => void;
@@ -52,7 +53,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <LocaleContext
         value={{ lang, toggle, t: (zh, en) => (lang === "zh" ? zh : en) }}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </LocaleContext>
     </QueryClientProvider>
   );

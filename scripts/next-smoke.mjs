@@ -20,6 +20,10 @@ try {
   const page = await browser.newPage({
     viewport: { width: 1440, height: 1100 },
   });
+  const capture = async (options) => {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ ...options, animations: "disabled" });
+  };
   page.setDefaultTimeout(15000);
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("request", (r) => {
@@ -42,7 +46,9 @@ try {
     name: `QA map ${suffix}`,
   });
   await page.goto(base);
-  await page.getByRole("heading", { name: "从场景到可复现证据" }).waitFor();
+  // Accepted shadcn-admin redesign: title is Overview, old title is subtitle.
+  await page.getByRole("heading", { name: "总览", exact: true }).waitFor();
+  await page.getByText("从场景到可复现证据", { exact: true }).waitFor();
   assert.equal(
     await page
       .getByRole("navigation", { name: "主菜单" })
@@ -50,7 +56,7 @@ try {
       .count(),
     5,
   );
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-overview-zh.png",
     fullPage: true,
   });
@@ -101,6 +107,21 @@ try {
   };
   await pick(8, 6);
   await pick(24, 6);
+  // The template moved the brand link out of <header>; it must still guard drafts.
+  const draftUrl = page.url();
+  let warned = false;
+  page.once("dialog", async (dialog) => {
+    warned = true;
+    assert.match(dialog.message(), /未保存|unsaved/);
+    await dialog.dismiss();
+  });
+  await page.locator('[data-slot="sidebar-header"] a[href="/"]').click();
+  assert.equal(
+    warned,
+    true,
+    "Brand navigation must warn before discarding a scene draft",
+  );
+  assert.equal(page.url(), draftUrl);
   await page.getByRole("button", { name: "完成路线 (2)" }).click();
   await page.getByLabel("名称", { exact: true }).fill(`QA route ${suffix}`);
   await page.getByRole("button", { name: "应用到草稿" }).click();
@@ -151,29 +172,32 @@ try {
     () => Number(document.querySelector("input[type=range]")?.value) > 3,
   );
   await page.getByRole("button", { name: "暂停", exact: true }).click();
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-replay-2d-zh.png",
     fullPage: true,
   });
   await page.getByRole("button", { name: "3D", exact: true }).click();
   await page.locator("canvas").waitFor();
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-replay-3d-zh.png",
     fullPage: true,
   });
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await page.getByRole("link", { name: "Analytics", exact: true }).click();
   await page.getByRole("heading", { name: "Metrics", exact: true }).waitFor();
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-analytics-en.png",
     fullPage: true,
   });
   await page.setViewportSize({ width: 390, height: 844 });
+  await page
+    .getByRole("button", { name: "Toggle sidebar", exact: true })
+    .click();
   await page.getByRole("link", { name: "Device models", exact: true }).click();
   await page
     .getByRole("heading", { name: "Device models", exact: true })
     .waitFor();
-  await page.screenshot({
+  await capture({
     path: "artifacts/next-mobile-en.png",
     fullPage: true,
   });

@@ -63,3 +63,24 @@ see [license](../licenses/shadcn-ui-MIT.txt). Strategist informed layering only.
 数值代码由本仓库旧 JS 平移为 TS，服务与 React 业务页为新增代码；以旧模块验证一致性。
 shadcn/ui 来自官方注册表并保留许可证，调整别名及标题语义。Strategist 仅作分层参考，
 不依赖其服务、源代码路径或凭证运行。
+
+## shadcn-admin visual adaptation / 后台模板适配
+
+Maintainer-selected upstream: [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin),
+revision `e16c87f213a5ba5e45964e9b67c792105ec74d26`, inspected 2026-09-29.
+MIT, Copyright (c) 2024 Sat Naing; [full license](../licenses/shadcn-admin-MIT.txt).
+维护者指定该模板，固定上述版本并保留完整许可证。
+
+| Upstream source / 上游源码 | GroundWork adaptation / 本地适配 |
+| --- | --- |
+| `src/styles/theme.css` | `src/app/admin-theme.css`: light/dark tokens / 明暗主题 |
+| `src/components/ui/{sidebar,sheet,tooltip,skeleton}.tsx`, `src/hooks/use-mobile.tsx` | Same component/hook paths: existing aggregate Radix imports, client boundaries, deterministic skeleton and bilingual mobile labels / 同路径组件，适配 Radix、客户端边界、确定性骨架及双语 |
+| `src/components/layout/{app-sidebar,header,main,nav-group}.tsx` | `src/components/shell.tsx`: adapted layout with Next Link, GroundWork navigation and no mock profile/team data / Next 路由及真实菜单，无假个人/团队数据 |
+| `src/features/dashboard/index.tsx` | `src/features/resources.tsx`: dashboard composition, actual counts and park list, no copied revenue or sales fixtures / 仪表盘组织，真实统计与园区，无销售假数据 |
+| `src/context/theme-provider.tsx` | `src/components/theme-provider.tsx`: theme preference concept adapted to SSR-safe browser storage / 主题偏好适配 SSR 与浏览器存储 |
+
+No external runtime checkout, Vite/TanStack Router/Clerk, remote assets or mock auth
+implementation was copied. Authentication is separately proposed and pending table
+review; do not confuse an upstream sign-in demo with server-side access control.
+不依赖外部工程运行，未复制上游构建/路由/Clerk、外部资源或假认证；登录待独立表结构审查，
+不将模板登录演示当成后端访问控制。

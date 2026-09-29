@@ -115,7 +115,9 @@ function ParkWorkbench({
     const warnNavigation = (event: MouseEvent) => {
       const target =
         event.target instanceof Element
-          ? event.target.closest("header a, nav[aria-label] a")
+          ? event.target.closest(
+              "header a, nav[aria-label] a, a[data-navigation]",
+            )
           : null;
       if (
         target &&
@@ -297,11 +299,10 @@ function ParkWorkbench({
   );
   return (
     <div className="space-y-6">
-      <div className="flex justify-between gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-xs tracking-[.2em]">GROUNDWORK / PARKS</p>
-          <h1 className="my-3 text-3xl font-semibold">{row.name}</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="page-heading">{row.name}</h1>
+          <p className="page-description">
             {t(tabs[tab][0], tabs[tab][1])} · v{version}{" "}
             {dirtyAll ? t("· 有未保存修改", "· Unsaved changes") : ""}
           </p>
@@ -326,30 +327,27 @@ function ParkWorkbench({
           </Link>
         </Button>
       </div>
-      <nav
-        aria-label={t("园区菜单", "Park menu")}
-        className="flex flex-wrap gap-2"
-      >
+      <nav aria-label={t("园区菜单", "Park menu")} className="park-tabs">
         {Object.entries(tabs).map(([key, label]) => (
-          <Button asChild variant={key === tab ? "default" : "ghost"} key={key}>
-            <Link
-              href={`/parks/${row.id}/${key}`}
-              onClick={(e) => {
-                if (
-                  dirtyAll &&
-                  !confirm(
-                    t(
-                      "切换页面可能丢失未保存修改，继续？",
-                      "Changing pages may discard drafts. Continue?",
-                    ),
-                  )
+          <Link
+            key={key}
+            aria-current={key === tab ? "page" : undefined}
+            href={`/parks/${row.id}/${key}`}
+            onClick={(e) => {
+              if (
+                dirtyAll &&
+                !confirm(
+                  t(
+                    "切换页面可能丢失未保存修改，继续？",
+                    "Changing pages may discard drafts. Continue?",
+                  ),
                 )
-                  e.preventDefault();
-              }}
-            >
-              {t(label[0], label[1])}
-            </Link>
-          </Button>
+              )
+                e.preventDefault();
+            }}
+          >
+            {t(label[0], label[1])}
+          </Link>
         ))}
       </nav>
       {error && <Notice error>{error}</Notice>}
