@@ -48,7 +48,11 @@ There is no fake login, default password, registration, Clerk integration or OAu
 **无登录可信局域网预览**。外壳和盾牌图标不等于访问控制，不提供假登录、默认密码、
 注册、Clerk 或 OAuth。
 
-Local UI changes are not automatically deployed to robots. Keep deployed-source
+Revision `2bfe8b2` was deployed by the script on 2026-09-29 to
+**http://10.9.0.20:5180**, with read-only UI and existing-run replay verification.
+版本 2bfe8b2 已于 2026-09-29 经脚本部署到上述 VPN 地址，界面及既有实验回放只读验收通过。
+
+Future local UI changes are not automatically deployed to robots. Keep deployed-source
 evidence separate from local screenshots and tests. See [change review](changes/shadcn-admin-ui/review.md)
 for actual acceptance results and remaining work.
 本地界面改动不会自动部署到 robots；线上版本证据与本地截图/测试分开记录，实际验收和待办见变更自检。

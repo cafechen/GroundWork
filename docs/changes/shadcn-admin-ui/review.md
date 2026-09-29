@@ -1,5 +1,12 @@
 # UI self-review / 界面自检
 
+**Current deployment:** UI code and bilingual docs committed as `2bfe8b2` and
+deployed through the script to **http://10.9.0.20:5180** on 2026-09-29.
+Read-only desktop/mobile/theme and existing-run playback checks passed; data
+preserved. [Deployment evidence](../robots-deploy-script/review.md).
+**当前部署：** UI 和双语文档已提交为 `2bfe8b2`，并于 2026-09-29 经脚本部署到 robots；
+桌面/手机/主题和既有实验回放只读验收通过，原数据保留，证据见链接。登录未实施。
+
 Follow-up authorization: the maintainer subsequently requested robots deployment
 using the script, then explicitly requested committing first. The checks below
 remain the UI-stage evidence; before commit, `npm test` (48), `test:next` (16),
@@ -104,7 +111,7 @@ operation added. Existing deployment-script/docs changes were preserved.
 
 Authentication is **not implemented yet**: the existing preview remains no-login
 until [authentication.md](authentication.md) is approved and implemented/tested.
-No Git commit/push or robots cutover. No new PG, Gazebo or Chrono physics execution
+At that UI-only stage, no Git commit/push or robots cutover. No new PG, Gazebo or Chrono physics execution
 claim. Screenshots prove presentation, not industrial safety or secure authentication.
-登录**尚未实现**，待独立方案通过并实现验收；未提交/推送/切换 robots，不声称新增 PG、Gazebo
+登录**尚未实现**，待独立方案通过并实现验收；最初 UI 阶段未提交/推送/切换 robots，不声称新增 PG、Gazebo
 或 Chrono 实跑验证，截图不能证明安全认证或登录安全。

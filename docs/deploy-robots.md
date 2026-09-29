@@ -4,6 +4,10 @@ This helper repeats **same-schema updates of the existing Next.js preview**.
 It is not a fresh-machine installer, MySQL provisioning tool or production release system.
 本脚本用于**现有 Next.js 预览的同数据库结构更新**，不是新机器安装器、MySQL 建库器或生产发布系统。
 
+Live use verified on 2026-09-29: committed UI revision `2bfe8b2` built and switched
+successfully; old resources/runs preserved. [Evidence](changes/robots-deploy-script/review.md).
+2026-09-29 已实机验证：成功构建并切换 UI 提交 2bfe8b2，保留原资源和作业；证据见链接。
+
 ## Quick commands / 常用命令
 
 Run locally from the GroundWork repository, using Node **22.19+**, Git, SSH/SCP

@@ -32,6 +32,10 @@ For subsequent same-schema updates to the existing robots preview, use
 checkout. [Self-service deployment](docs/deploy-robots.md) includes read-only
 planning/status, restart after reboot, safeguards and limits; no automatic DB migrations/imports.
 
+The shadcn-admin UI revision **`2bfe8b2`** is now deployed at
+**http://10.9.0.20:5180**, with existing data retained and read-only browser/replay
+checks passed. [Deployment verification](docs/changes/robots-deploy-script/review.md).
+
 ## Product workflow
 
 The admin interface now adapts the **shadcn-admin** template: collapsible sidebar,

@@ -1,5 +1,45 @@
 # Self-review / 自检
 
+## Live deployment follow-up / 实机部署补验
+
+The maintainer authorized deployment and then commit first. On 2026-09-29,
+`node scripts/deploy-robots.mjs deploy --apply` deployed the clean committed
+revision **`2bfe8b24cb5915e387f4b981172cd4a0d25c8980`** successfully, without changing
+the deployment implementation. The dirty-tree refusal was resolved by the
+authorized commit, not a bypass. No push, schema migration, seed or import.
+维护者授权部署并要求先提交；2026-09-29 上述命令成功部署干净提交 **2bfe8b2**，
+无需修改部署实现。脏工作区阻碍通过获准提交解决，未绕过保护；未推送、迁移、初始化或导入。
+
+- URL: **http://10.9.0.20:5180**. Release directory:
+  `/home/steven/src/groundwork/releases/20260929T022745955Z-2bfe8b2-4fcbe390`.
+  Web/worker both active, each `NRestarts=0`, correct working directory;
+  `.env.local` retained owner steven/mode 0600. / 两服务运行、零重启，目录和配置权限正确。
+- Script verified official Linux Prisma engine hashes, built on robots, checked
+  exact schema/migrations and idle queue, switched and passed the three read-only
+  HTTP checks. Subsequent `status` passed. / 引擎哈希、实机构建、结构/迁移、队列和接口验收通过。
+- All 19 resource IDs/versions unchanged: 8 maps, 6 models, 2 gateways, 3 parks
+  including archived resources. `/api/runs` still has 30 records; its exact response
+  SHA256 before/after is `3d81f05f627e7f6f2bf3a60cae9cab411a6f9afe1cdef3c1a724e2797d494344`.
+  全部19项资源 ID/版本未变（含归档项），30条作业清单的部署前后响应哈希完全相同。
+- Read-only Chrome/Playwright check passed: Chinese light overview, English dark
+  mode persisting after reload, mobile drawer/Escape, existing run
+  `7bceca6e-3d9b-4fe7-a090-1b74b2ff8644` actual 2D polygon movement and seeking,
+  3D canvas, JSON export and English mobile without horizontal overflow. No browser
+  errors/external requests; no new job or resource writes. Screenshots retained in
+  `artifacts/robots-admin-ui-20260929/` and inspected. First overview capture was
+  taken before data loaded; rerun waited for the real park link and passed.
+  只读浏览器验收双语/主题/手机抽屉与既有实验回放移动、拖动、3D、导出通过，无错误或外部请求；
+  不新建作业/写资源。首张总览截图早于数据返回，改为等待实际园区链接后复验通过。
+- Previous code remains at `releases/20260929-nextjs-baaa97b`, referenced by
+  `previous-20260929T022745955Z-2bfe8b2-4fcbe390`; original data/artifacts preserved.
+  旧代码和恢复链接、原数据/轨迹保留。No reboot, failed-cutover recovery or MySQL
+  dump/restore drill was performed; boot autostart remains disabled. / 未演练机器重启、
+  切换失败恢复或数据库备份恢复，仍未开机自启。Authentication remains pending / 登录仍待实施。
+
+Same-session deployment verification, not independent approval. The historical
+implementation-only evidence below predates this successful cutover.
+以上为同会话部署自检，不是独立审批；下文历史证据早于此次成功切换。
+
 Follow-up on 2026-09-29: the maintainer requested live script deployment, then
 explicitly requested committing first. Reproduced dirty-tree refusal; read-only
 status confirmed both original services active. No safety-gate change is needed

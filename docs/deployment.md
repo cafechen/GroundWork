@@ -9,15 +9,17 @@ remote configuration, and never repeats seed/import. First-time setup remains be
 
 ## Current status / 当前状态
 
-Deployed and checked on **2026-09-29**, source `baaa97b` (implementation `03c88d2`):
+Deployed and checked on **2026-09-29**, current UI source **`2bfe8b2`**:
 [robots preview](http://10.9.0.20:5180). Local default remains `127.0.0.1:4173`.
 This is a dated verification, not a promise of continued availability.
-See [deployment evidence and restart commands](changes/robots-nextjs-deployment.md).
-**2026-09-29 已部署并验收**，源码 baaa97b，VPN 预览地址如上；本机仍默认 4173。
+See [script deployment evidence](changes/robots-deploy-script/review.md) and the
+[original Next.js deployment](changes/robots-nextjs-deployment.md).
+**2026-09-29 已部署并验收**，当前 UI 源码 **2bfe8b2**，VPN 预览地址如上；本机仍默认 4173。
 这是有日期的验收，不是持续在线保证；实际证据和重启命令见部署记录。
 
-- Release / 版本: `/home/steven/src/groundwork/releases/20260929-nextjs-baaa97b`;
+- Release / 版本: `/home/steven/src/groundwork/releases/20260929T022745955Z-2bfe8b2-4fcbe390`;
   `current` now selects this release / current 已指向此版本。
+- Previous Next.js release retained / 保留上一版本: `releases/20260929-nextjs-baaa97b`.
 - Database / 专用库: `groundwork_robots_20260929`; dedicated account only permits
   robots' VPN source and this database / 专用账号仅限 robots VPN 来源及该库。
 - Artifacts / 轨迹: `/home/steven/src/groundwork/data/next-runs-20260929`.

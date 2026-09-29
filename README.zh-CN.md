@@ -31,6 +31,9 @@ node --env-file=.env.local --import tsx workers/runner.ts
 `node scripts/deploy-robots.mjs deploy --apply`。[自助部署手册](docs/deploy-robots.md)
 包含只读计划/状态检查、机器重启后启动、保护措施和限制；不自动迁移数据库或导入数据。
 
+shadcn-admin 新界面版本 **`2bfe8b2`** 已部署至 **http://10.9.0.20:5180**，
+原数据保留，浏览器与回放只读验收通过。见[部署验收](docs/changes/robots-deploy-script/review.md)。
+
 ## 产品流程
 
 后台界面现按 **shadcn-admin** 模板适配：可折叠侧栏、手机抽屉、明暗主题、真实资源总览及
